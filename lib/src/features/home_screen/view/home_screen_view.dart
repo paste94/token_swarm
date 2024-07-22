@@ -6,6 +6,11 @@ class HomeScreenView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Text('CIAOOOO');
+    return Scaffold(
+      appBar: (AppBar(
+        title: Text('Home'),
+      )),
+      body: Text('CIAOOOO'),
+    );
   }
 }
