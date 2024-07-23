@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:token_swarm/src/app/const/routes.dart';
 import 'package:token_swarm/src/features/home_screen/home_screen.dart';
+import 'package:token_swarm/src/features/search_card/search_card.dart';
 
 class AppView extends ConsumerWidget {
   AppView({super.key});
@@ -10,8 +12,12 @@ class AppView extends ConsumerWidget {
   final _router = GoRouter(
     routes: [
       GoRoute(
-        path: '/',
+        path: HOME_ROUTE,
         builder: (context, state) => const HomeScreenView(),
+      ),
+      GoRoute(
+        path: SEARCH_CARD_ROUTE,
+        builder: (context, state) => const SearchCardView(),
       ),
     ],
   );
