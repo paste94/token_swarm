@@ -1,9 +1,8 @@
-// ignore_for_file: body_might_complete_normally_nullable
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
+import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
 
 class TappedSelector extends ConsumerStatefulWidget {
   const TappedSelector({super.key});
@@ -13,31 +12,49 @@ class TappedSelector extends ConsumerStatefulWidget {
 }
 
 class _TappedSelectorState extends ConsumerState<TappedSelector> {
-  final TextEditingController number = TextEditingController()..text = '0';
+  late TextEditingController _controller;
 
-  VoidCallback? addButton() {
+  void _addButton() {
     try {
-      int intVal = int.parse(number.text);
+      int intVal = int.parse(_controller.text);
       if (intVal > 0) {
-        number.text = '${intVal - 1}';
+        _controller.text = '${intVal - 1}';
       }
     } catch (e) {
-      number.text = '0';
+      _controller.text = '0';
     }
   }
 
-  VoidCallback? removeButton() {
+  void _removeButton() {
     try {
-      int intVal = int.parse(number.text);
-      number.text = '${intVal + 1}';
+      int intVal = int.parse(_controller.text);
+      _controller.text = '${intVal + 1}';
     } catch (e) {
-      number.text = '0';
+      _controller.text = '0';
+    }
+  }
+
+  void _controllerListener() {
+    try {
+      ref
+          .read(tokenProvider.notifier)
+          .setTappedNumber(int.parse(_controller.text));
+    } catch (e) {
+      ref.read(tokenProvider.notifier).setTappedNumber(0);
     }
   }
 
   @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController()
+      ..text = '${ref.read(tokenProvider)?.tokenNumber ?? '0'}';
+    _controller.addListener(_controllerListener);
+  }
+
+  @override
   void dispose() {
-    number.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -45,7 +62,7 @@ class _TappedSelectorState extends ConsumerState<TappedSelector> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        IntrinsicHeight(
+        const IntrinsicHeight(
           child: Text('Tapped'),
         ),
         IntrinsicHeight(
@@ -60,12 +77,12 @@ class _TappedSelectorState extends ConsumerState<TappedSelector> {
                   ),
                   iconSize: ICON_SIZE_S,
                   color: Theme.of(context).primaryColor,
-                  onPressed: addButton,
+                  onPressed: _addButton,
                 ),
               ),
               Expanded(
                 child: TextField(
-                  controller: number,
+                  controller: _controller,
                   inputFormatters: [
                     FilteringTextInputFormatter.digitsOnly,
                   ],
@@ -89,7 +106,7 @@ class _TappedSelectorState extends ConsumerState<TappedSelector> {
                   ),
                   iconSize: ICON_SIZE_S,
                   color: Theme.of(context).primaryColor,
-                  onPressed: removeButton,
+                  onPressed: _removeButton,
                 ),
               ),
             ],

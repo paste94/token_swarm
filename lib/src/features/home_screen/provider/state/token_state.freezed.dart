@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TokenState {
   MtgCard? get selectedToken => throw _privateConstructorUsedError;
   int get tokenNumber => throw _privateConstructorUsedError;
-  int get tappenDumber => throw _privateConstructorUsedError;
+  int get tappedNumber => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TokenStateCopyWith<TokenState> get copyWith =>
@@ -31,7 +31,7 @@ abstract class $TokenStateCopyWith<$Res> {
           TokenState value, $Res Function(TokenState) then) =
       _$TokenStateCopyWithImpl<$Res, TokenState>;
   @useResult
-  $Res call({MtgCard? selectedToken, int tokenNumber, int tappenDumber});
+  $Res call({MtgCard? selectedToken, int tokenNumber, int tappedNumber});
 }
 
 /// @nodoc
@@ -49,7 +49,7 @@ class _$TokenStateCopyWithImpl<$Res, $Val extends TokenState>
   $Res call({
     Object? selectedToken = freezed,
     Object? tokenNumber = null,
-    Object? tappenDumber = null,
+    Object? tappedNumber = null,
   }) {
     return _then(_value.copyWith(
       selectedToken: freezed == selectedToken
@@ -60,9 +60,9 @@ class _$TokenStateCopyWithImpl<$Res, $Val extends TokenState>
           ? _value.tokenNumber
           : tokenNumber // ignore: cast_nullable_to_non_nullable
               as int,
-      tappenDumber: null == tappenDumber
-          ? _value.tappenDumber
-          : tappenDumber // ignore: cast_nullable_to_non_nullable
+      tappedNumber: null == tappedNumber
+          ? _value.tappedNumber
+          : tappedNumber // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -76,7 +76,7 @@ abstract class _$$TokenStateImplCopyWith<$Res>
       __$$TokenStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({MtgCard? selectedToken, int tokenNumber, int tappenDumber});
+  $Res call({MtgCard? selectedToken, int tokenNumber, int tappedNumber});
 }
 
 /// @nodoc
@@ -92,7 +92,7 @@ class __$$TokenStateImplCopyWithImpl<$Res>
   $Res call({
     Object? selectedToken = freezed,
     Object? tokenNumber = null,
-    Object? tappenDumber = null,
+    Object? tappedNumber = null,
   }) {
     return _then(_$TokenStateImpl(
       selectedToken: freezed == selectedToken
@@ -103,9 +103,9 @@ class __$$TokenStateImplCopyWithImpl<$Res>
           ? _value.tokenNumber
           : tokenNumber // ignore: cast_nullable_to_non_nullable
               as int,
-      tappenDumber: null == tappenDumber
-          ? _value.tappenDumber
-          : tappenDumber // ignore: cast_nullable_to_non_nullable
+      tappedNumber: null == tappedNumber
+          ? _value.tappedNumber
+          : tappedNumber // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -115,7 +115,7 @@ class __$$TokenStateImplCopyWithImpl<$Res>
 
 class _$TokenStateImpl implements _TokenState {
   const _$TokenStateImpl(
-      {this.selectedToken, this.tokenNumber = 0, this.tappenDumber = 0});
+      {this.selectedToken, this.tokenNumber = 0, this.tappedNumber = 0});
 
   @override
   final MtgCard? selectedToken;
@@ -124,11 +124,11 @@ class _$TokenStateImpl implements _TokenState {
   final int tokenNumber;
   @override
   @JsonKey()
-  final int tappenDumber;
+  final int tappedNumber;
 
   @override
   String toString() {
-    return 'TokenState(selectedToken: $selectedToken, tokenNumber: $tokenNumber, tappenDumber: $tappenDumber)';
+    return 'TokenState(selectedToken: $selectedToken, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber)';
   }
 
   @override
@@ -140,13 +140,13 @@ class _$TokenStateImpl implements _TokenState {
                 other.selectedToken == selectedToken) &&
             (identical(other.tokenNumber, tokenNumber) ||
                 other.tokenNumber == tokenNumber) &&
-            (identical(other.tappenDumber, tappenDumber) ||
-                other.tappenDumber == tappenDumber));
+            (identical(other.tappedNumber, tappedNumber) ||
+                other.tappedNumber == tappedNumber));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, selectedToken, tokenNumber, tappenDumber);
+      Object.hash(runtimeType, selectedToken, tokenNumber, tappedNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -159,14 +159,14 @@ abstract class _TokenState implements TokenState {
   const factory _TokenState(
       {final MtgCard? selectedToken,
       final int tokenNumber,
-      final int tappenDumber}) = _$TokenStateImpl;
+      final int tappedNumber}) = _$TokenStateImpl;
 
   @override
   MtgCard? get selectedToken;
   @override
   int get tokenNumber;
   @override
-  int get tappenDumber;
+  int get tappedNumber;
   @override
   @JsonKey(ignore: true)
   _$$TokenStateImplCopyWith<_$TokenStateImpl> get copyWith =>

@@ -1,9 +1,8 @@
-// ignore_for_file: body_might_complete_normally_nullable
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
+import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
 
 class NumberSelector extends ConsumerStatefulWidget {
   const NumberSelector({super.key});
@@ -13,39 +12,57 @@ class NumberSelector extends ConsumerStatefulWidget {
 }
 
 class _NumberSelectorState extends ConsumerState<NumberSelector> {
-  final TextEditingController number = TextEditingController()..text = '0';
+  late TextEditingController _controller;
+
+  void addButton() {
+    try {
+      int intVal = int.parse(_controller.text);
+      if (intVal > 0) {
+        _controller.text = '${intVal - 1}';
+      }
+    } catch (e) {
+      _controller.text = '0';
+    }
+  }
+
+  void removeButton() {
+    try {
+      int intVal = int.parse(_controller.text);
+      _controller.text = '${intVal + 1}';
+    } catch (e) {
+      _controller.text = '0';
+    }
+  }
+
+  void controllerListener() {
+    try {
+      ref
+          .read(tokenProvider.notifier)
+          .setTokenNumber(int.parse(_controller.text));
+    } catch (e) {
+      ref.read(tokenProvider.notifier).setTokenNumber(0);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController()
+      ..text = '${ref.read(tokenProvider)?.tokenNumber ?? '0'}';
+    _controller.addListener(controllerListener);
+  }
 
   @override
   void dispose() {
-    number.dispose();
+    _controller.dispose();
     super.dispose();
-  }
-
-  VoidCallback? addButton() {
-    try {
-      int intVal = int.parse(number.text);
-      if (intVal > 0) {
-        number.text = '${intVal - 1}';
-      }
-    } catch (e) {
-      number.text = '0';
-    }
-  }
-
-  VoidCallback? removeButton() {
-    try {
-      int intVal = int.parse(number.text);
-      number.text = '${intVal + 1}';
-    } catch (e) {
-      number.text = '0';
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        IntrinsicHeight(
+        const IntrinsicHeight(
           child: Text('Tot'),
         ),
         IntrinsicHeight(
@@ -65,7 +82,7 @@ class _NumberSelectorState extends ConsumerState<NumberSelector> {
               ),
               Expanded(
                 child: TextField(
-                  controller: number,
+                  controller: _controller,
                   inputFormatters: [
                     FilteringTextInputFormatter.digitsOnly,
                   ],

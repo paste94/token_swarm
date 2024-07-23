@@ -19,13 +19,7 @@ class Token extends _$Token {
     state = state?.copyWith(tokenNumber: newVal);
   }
 
-  void add() {
-    state = state?.copyWith(tokenNumber: state!.tokenNumber + 1);
-  }
-
-  void remove() {
-    state = state?.copyWith(
-      tokenNumber: state!.tokenNumber <= 0 ? 0 : state!.tokenNumber - 1,
-    );
+  void setTappedNumber(int newVal) {
+    state = state?.copyWith(tokenNumber: newVal);
   }
 }

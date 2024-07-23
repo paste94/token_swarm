@@ -8,6 +8,6 @@ class TokenState with _$TokenState {
   const factory TokenState({
     MtgCard? selectedToken,
     @Default(0) int tokenNumber,
-    @Default(0) int tappenDumber,
+    @Default(0) int tappedNumber,
   }) = _TokenState;
 }

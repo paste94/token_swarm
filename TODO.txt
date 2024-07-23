@@ -1,5 +1,5 @@
+- Add riverpod handling, not controller
 - Add a "Turn" button 
 - Add "summon weakness" counter
 - Add power and thoughness counter
 - Add check for tapped and tot values
-- Add riverpod handling, not controller
