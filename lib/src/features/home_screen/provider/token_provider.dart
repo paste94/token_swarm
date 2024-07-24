@@ -16,10 +16,27 @@ class Token extends _$Token {
   }
 
   void setTokenNumber(int newVal) {
-    state = state?.copyWith(tokenNumber: newVal);
+    if (state != null) {
+      state = state!.copyWith(
+        tokenNumber: newVal,
+      );
+    }
   }
 
   void setTappedNumber(int newVal) {
-    state = state?.copyWith(tokenNumber: newVal);
+    if (state != null) {
+      state = state!.copyWith(
+        tappedNumber: newVal,
+      );
+    }
+  }
+
+  void newTurn() {
+    if (state != null) {
+      state = state!.copyWith(
+        tappedNumber: 0,
+        weakNumber: 0,
+      );
+    }
   }
 }

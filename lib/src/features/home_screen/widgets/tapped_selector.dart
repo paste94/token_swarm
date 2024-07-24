@@ -14,7 +14,7 @@ class TappedSelector extends ConsumerStatefulWidget {
 class _TappedSelectorState extends ConsumerState<TappedSelector> {
   late TextEditingController _controller;
 
-  void _addButton() {
+  void _removeButton() {
     try {
       int intVal = int.parse(_controller.text);
       if (intVal > 0) {
@@ -25,10 +25,14 @@ class _TappedSelectorState extends ConsumerState<TappedSelector> {
     }
   }
 
-  void _removeButton() {
+  void _addButton() {
     try {
+      int tokenNumber = ref.read(tokenProvider)!.tokenNumber;
       int intVal = int.parse(_controller.text);
-      _controller.text = '${intVal + 1}';
+
+      if (intVal + 1 <= tokenNumber) {
+        _controller.text = '${intVal + 1}';
+      }
     } catch (e) {
       _controller.text = '0';
     }
@@ -60,6 +64,11 @@ class _TappedSelectorState extends ConsumerState<TappedSelector> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(tokenProvider, (previous, next) {
+      if (previous!.tappedNumber != next!.tappedNumber) {
+        _controller.text = '${next.tappedNumber}';
+      }
+    });
     return Column(
       children: [
         const IntrinsicHeight(
@@ -77,7 +86,7 @@ class _TappedSelectorState extends ConsumerState<TappedSelector> {
                   ),
                   iconSize: ICON_SIZE_S,
                   color: Theme.of(context).primaryColor,
-                  onPressed: _addButton,
+                  onPressed: _removeButton,
                 ),
               ),
               Expanded(
@@ -106,7 +115,7 @@ class _TappedSelectorState extends ConsumerState<TappedSelector> {
                   ),
                   iconSize: ICON_SIZE_S,
                   color: Theme.of(context).primaryColor,
-                  onPressed: _removeButton,
+                  onPressed: _addButton,
                 ),
               ),
             ],

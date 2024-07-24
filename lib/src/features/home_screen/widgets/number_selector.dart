@@ -14,18 +14,21 @@ class NumberSelector extends ConsumerStatefulWidget {
 class _NumberSelectorState extends ConsumerState<NumberSelector> {
   late TextEditingController _controller;
 
-  void addButton() {
+  void _removeButton() {
     try {
       int intVal = int.parse(_controller.text);
       if (intVal > 0) {
         _controller.text = '${intVal - 1}';
+        if (intVal - 1 < ref.read(tokenProvider)!.tappedNumber) {
+          ref.read(tokenProvider.notifier).setTappedNumber(intVal - 1);
+        }
       }
     } catch (e) {
       _controller.text = '0';
     }
   }
 
-  void removeButton() {
+  void _addButton() {
     try {
       int intVal = int.parse(_controller.text);
       _controller.text = '${intVal + 1}';
@@ -34,7 +37,7 @@ class _NumberSelectorState extends ConsumerState<NumberSelector> {
     }
   }
 
-  void controllerListener() {
+  void _controllerListener() {
     try {
       ref
           .read(tokenProvider.notifier)
@@ -49,7 +52,7 @@ class _NumberSelectorState extends ConsumerState<NumberSelector> {
     super.initState();
     _controller = TextEditingController()
       ..text = '${ref.read(tokenProvider)?.tokenNumber ?? '0'}';
-    _controller.addListener(controllerListener);
+    _controller.addListener(_controllerListener);
   }
 
   @override
@@ -60,6 +63,11 @@ class _NumberSelectorState extends ConsumerState<NumberSelector> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(tokenProvider, (previous, next) {
+      if (previous!.tokenNumber != next!.tokenNumber) {
+        _controller.text = '${next.tokenNumber}';
+      }
+    });
     return Column(
       children: [
         const IntrinsicHeight(
@@ -77,7 +85,7 @@ class _NumberSelectorState extends ConsumerState<NumberSelector> {
                   ),
                   iconSize: ICON_SIZE_S,
                   color: Theme.of(context).primaryColor,
-                  onPressed: addButton,
+                  onPressed: _removeButton,
                 ),
               ),
               Expanded(
@@ -106,7 +114,7 @@ class _NumberSelectorState extends ConsumerState<NumberSelector> {
                   ),
                   iconSize: ICON_SIZE_S,
                   color: Theme.of(context).primaryColor,
-                  onPressed: removeButton,
+                  onPressed: _addButton,
                 ),
               ),
             ],

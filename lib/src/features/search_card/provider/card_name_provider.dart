@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:scryfall_api/scryfall_api.dart';
+import 'package:token_swarm/src/features/search_card/provider/exceptions/card_name_exception.dart';
 
 /// dart run build_runner build
 part 'card_name_provider.g.dart';
@@ -34,6 +37,19 @@ Future<PaginableList<MtgCard>> fetchCards(ref) async {
     );
     return filteredCardList;
   } catch (e) {
-    return PaginableList(data: [], hasMore: false);
+    if (e is ScryfallException) {
+      // turn PaginableList(data: [], hasMore: false);
+      throw CardNameException(
+        details: 'ScryfallException code ${e.code}',
+        message: e.details,
+      );
+    } else if (e is SocketException) {
+      throw CardNameException(
+        details: 'SocketException: ${e.message}',
+        message: 'Please check your internet connection and retry',
+      );
+    } else {
+      throw const CardNameException();
+    }
   }
 }
