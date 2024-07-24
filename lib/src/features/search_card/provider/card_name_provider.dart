@@ -38,11 +38,11 @@ Future<PaginableList<MtgCard>> fetchCards(ref) async {
     return filteredCardList;
   } catch (e) {
     if (e is ScryfallException) {
-      // turn PaginableList(data: [], hasMore: false);
-      throw CardNameException(
-        details: 'ScryfallException code ${e.code}',
-        message: e.details,
-      );
+      return PaginableList(data: [], hasMore: false);
+      // throw CardNameException(
+      //   details: 'ScryfallException code ${e.code}',
+      //   message: e.details,
+      // );
     } else if (e is SocketException) {
       throw CardNameException(
         details: 'SocketException: ${e.message}',
