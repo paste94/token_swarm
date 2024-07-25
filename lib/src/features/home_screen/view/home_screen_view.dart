@@ -58,10 +58,10 @@ class _HomeScreenViewState extends ConsumerState<HomeScreenView> {
         ),
       ),
       floatingActionButton: AnimatedSlide(
-        duration: Duration(milliseconds: 200),
-        offset: _showFab ? Offset.zero : Offset(0, 2),
+        duration: const Duration(milliseconds: 200),
+        offset: _showFab ? Offset.zero : const Offset(0, 2),
         child: AnimatedOpacity(
-          duration: Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 200),
           opacity: _showFab ? 1 : 0,
           child: FloatingActionButton(
             child: const Icon(Icons.add),

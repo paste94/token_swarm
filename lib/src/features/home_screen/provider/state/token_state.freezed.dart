@@ -17,12 +17,12 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TokenState {
   MtgCard? get selectedToken => throw _privateConstructorUsedError;
+  int? get power => throw _privateConstructorUsedError;
+  int? get toughness => throw _privateConstructorUsedError;
   int get tokenNumber => throw _privateConstructorUsedError;
   int get tappedNumber => throw _privateConstructorUsedError;
   int get prevTappedNumber => throw _privateConstructorUsedError;
   int get weakNumber => throw _privateConstructorUsedError;
-  int get power => throw _privateConstructorUsedError;
-  int get toughness => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TokenStateCopyWith<TokenState> get copyWith =>
@@ -37,12 +37,12 @@ abstract class $TokenStateCopyWith<$Res> {
   @useResult
   $Res call(
       {MtgCard? selectedToken,
+      int? power,
+      int? toughness,
       int tokenNumber,
       int tappedNumber,
       int prevTappedNumber,
-      int weakNumber,
-      int power,
-      int toughness});
+      int weakNumber});
 }
 
 /// @nodoc
@@ -59,18 +59,26 @@ class _$TokenStateCopyWithImpl<$Res, $Val extends TokenState>
   @override
   $Res call({
     Object? selectedToken = freezed,
+    Object? power = freezed,
+    Object? toughness = freezed,
     Object? tokenNumber = null,
     Object? tappedNumber = null,
     Object? prevTappedNumber = null,
     Object? weakNumber = null,
-    Object? power = null,
-    Object? toughness = null,
   }) {
     return _then(_value.copyWith(
       selectedToken: freezed == selectedToken
           ? _value.selectedToken
           : selectedToken // ignore: cast_nullable_to_non_nullable
               as MtgCard?,
+      power: freezed == power
+          ? _value.power
+          : power // ignore: cast_nullable_to_non_nullable
+              as int?,
+      toughness: freezed == toughness
+          ? _value.toughness
+          : toughness // ignore: cast_nullable_to_non_nullable
+              as int?,
       tokenNumber: null == tokenNumber
           ? _value.tokenNumber
           : tokenNumber // ignore: cast_nullable_to_non_nullable
@@ -86,14 +94,6 @@ class _$TokenStateCopyWithImpl<$Res, $Val extends TokenState>
       weakNumber: null == weakNumber
           ? _value.weakNumber
           : weakNumber // ignore: cast_nullable_to_non_nullable
-              as int,
-      power: null == power
-          ? _value.power
-          : power // ignore: cast_nullable_to_non_nullable
-              as int,
-      toughness: null == toughness
-          ? _value.toughness
-          : toughness // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -109,12 +109,12 @@ abstract class _$$TokenStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {MtgCard? selectedToken,
+      int? power,
+      int? toughness,
       int tokenNumber,
       int tappedNumber,
       int prevTappedNumber,
-      int weakNumber,
-      int power,
-      int toughness});
+      int weakNumber});
 }
 
 /// @nodoc
@@ -129,18 +129,26 @@ class __$$TokenStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? selectedToken = freezed,
+    Object? power = freezed,
+    Object? toughness = freezed,
     Object? tokenNumber = null,
     Object? tappedNumber = null,
     Object? prevTappedNumber = null,
     Object? weakNumber = null,
-    Object? power = null,
-    Object? toughness = null,
   }) {
     return _then(_$TokenStateImpl(
       selectedToken: freezed == selectedToken
           ? _value.selectedToken
           : selectedToken // ignore: cast_nullable_to_non_nullable
               as MtgCard?,
+      power: freezed == power
+          ? _value.power
+          : power // ignore: cast_nullable_to_non_nullable
+              as int?,
+      toughness: freezed == toughness
+          ? _value.toughness
+          : toughness // ignore: cast_nullable_to_non_nullable
+              as int?,
       tokenNumber: null == tokenNumber
           ? _value.tokenNumber
           : tokenNumber // ignore: cast_nullable_to_non_nullable
@@ -157,14 +165,6 @@ class __$$TokenStateImplCopyWithImpl<$Res>
           ? _value.weakNumber
           : weakNumber // ignore: cast_nullable_to_non_nullable
               as int,
-      power: null == power
-          ? _value.power
-          : power // ignore: cast_nullable_to_non_nullable
-              as int,
-      toughness: null == toughness
-          ? _value.toughness
-          : toughness // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -174,15 +174,19 @@ class __$$TokenStateImplCopyWithImpl<$Res>
 class _$TokenStateImpl implements _TokenState {
   const _$TokenStateImpl(
       {this.selectedToken,
+      this.power,
+      this.toughness,
       this.tokenNumber = 0,
       this.tappedNumber = 0,
       this.prevTappedNumber = 0,
-      this.weakNumber = 0,
-      this.power = 0,
-      this.toughness = 0});
+      this.weakNumber = 0});
 
   @override
   final MtgCard? selectedToken;
+  @override
+  final int? power;
+  @override
+  final int? toughness;
   @override
   @JsonKey()
   final int tokenNumber;
@@ -195,16 +199,10 @@ class _$TokenStateImpl implements _TokenState {
   @override
   @JsonKey()
   final int weakNumber;
-  @override
-  @JsonKey()
-  final int power;
-  @override
-  @JsonKey()
-  final int toughness;
 
   @override
   String toString() {
-    return 'TokenState(selectedToken: $selectedToken, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber, prevTappedNumber: $prevTappedNumber, weakNumber: $weakNumber, power: $power, toughness: $toughness)';
+    return 'TokenState(selectedToken: $selectedToken, power: $power, toughness: $toughness, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber, prevTappedNumber: $prevTappedNumber, weakNumber: $weakNumber)';
   }
 
   @override
@@ -214,6 +212,9 @@ class _$TokenStateImpl implements _TokenState {
             other is _$TokenStateImpl &&
             (identical(other.selectedToken, selectedToken) ||
                 other.selectedToken == selectedToken) &&
+            (identical(other.power, power) || other.power == power) &&
+            (identical(other.toughness, toughness) ||
+                other.toughness == toughness) &&
             (identical(other.tokenNumber, tokenNumber) ||
                 other.tokenNumber == tokenNumber) &&
             (identical(other.tappedNumber, tappedNumber) ||
@@ -221,15 +222,12 @@ class _$TokenStateImpl implements _TokenState {
             (identical(other.prevTappedNumber, prevTappedNumber) ||
                 other.prevTappedNumber == prevTappedNumber) &&
             (identical(other.weakNumber, weakNumber) ||
-                other.weakNumber == weakNumber) &&
-            (identical(other.power, power) || other.power == power) &&
-            (identical(other.toughness, toughness) ||
-                other.toughness == toughness));
+                other.weakNumber == weakNumber));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedToken, tokenNumber,
-      tappedNumber, prevTappedNumber, weakNumber, power, toughness);
+  int get hashCode => Object.hash(runtimeType, selectedToken, power, toughness,
+      tokenNumber, tappedNumber, prevTappedNumber, weakNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -241,15 +239,19 @@ class _$TokenStateImpl implements _TokenState {
 abstract class _TokenState implements TokenState {
   const factory _TokenState(
       {final MtgCard? selectedToken,
+      final int? power,
+      final int? toughness,
       final int tokenNumber,
       final int tappedNumber,
       final int prevTappedNumber,
-      final int weakNumber,
-      final int power,
-      final int toughness}) = _$TokenStateImpl;
+      final int weakNumber}) = _$TokenStateImpl;
 
   @override
   MtgCard? get selectedToken;
+  @override
+  int? get power;
+  @override
+  int? get toughness;
   @override
   int get tokenNumber;
   @override
@@ -258,10 +260,6 @@ abstract class _TokenState implements TokenState {
   int get prevTappedNumber;
   @override
   int get weakNumber;
-  @override
-  int get power;
-  @override
-  int get toughness;
   @override
   @JsonKey(ignore: true)
   _$$TokenStateImplCopyWith<_$TokenStateImpl> get copyWith =>

@@ -29,13 +29,11 @@ class _MtgCardImageViewerState extends ConsumerState<MtgCardImageViewer> {
   @override
   Widget build(BuildContext context) {
     isSingleSided = widget.myCard?.cardFaces?[face].imageUris == null;
-    print('[MtgCardImageViewer] isSingleSided: $isSingleSided');
 
     String imageUri =
         widget.myCard?.cardFaces?[face].imageUris?.normal.toString() ??
             widget.myCard?.imageUris?.normal.toString() ??
             '';
-    print('[MtgCardImageViewer] imageUri: $imageUri');
 
     return Stack(
       alignment: Alignment.bottomCenter,

@@ -7,11 +7,11 @@ part "token_state.freezed.dart";
 class TokenState with _$TokenState {
   const factory TokenState({
     MtgCard? selectedToken,
+    int? power,
+    int? toughness,
     @Default(0) int tokenNumber,
     @Default(0) int tappedNumber,
     @Default(0) int prevTappedNumber,
     @Default(0) int weakNumber,
-    @Default(0) int power,
-    @Default(0) int toughness,
   }) = _TokenState;
 }
