@@ -1,44 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:token_swarm/src/app/const/heroes.dart';
+import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
 import 'package:token_swarm/src/features/home_screen/widgets/number_selector.dart';
 import 'package:token_swarm/src/features/home_screen/widgets/tapped_selector.dart';
 import 'package:token_swarm/src/features/home_screen/widgets/token_viewer.dart';
 
-class HomeScreenView extends ConsumerStatefulWidget {
+class HomeScreenView extends ConsumerWidget {
   const HomeScreenView({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _HomeScreenViewState();
-}
-
-class _HomeScreenViewState extends ConsumerState<HomeScreenView> {
-  bool _showFab = true;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     var token = ref.watch(tokenProvider);
+    bool isTokenSelected = ref.watch(tokenProvider) != null;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      body: NotificationListener<UserScrollNotification>(
-        onNotification: (notification) {
-          final ScrollDirection direction = notification.direction;
-          setState(() {
-            if (direction == ScrollDirection.reverse) {
-              _showFab = false;
-            } else if (direction == ScrollDirection.forward) {
-              _showFab = true;
-            }
-          });
-          return true;
-        },
-        child: SingleChildScrollView(
-          child: token != null
-              ? const Column(
+      body: SingleChildScrollView(
+        // child: AnimatedSwitcher(
+        //   duration: const Duration(milliseconds: FADE_ANIMATION_MS),
+        child: isTokenSelected
+            ? Container(
+                key: UniqueKey(),
+                child: const Column(
                   children: [
                     IntrinsicHeight(
                       child: Row(
@@ -51,27 +38,69 @@ class _HomeScreenViewState extends ConsumerState<HomeScreenView> {
                     ),
                     IntrinsicHeight(child: TokenViewer()),
                   ],
-                )
-              : const Center(
+                ),
+              )
+            : Container(
+                key: UniqueKey(),
+                child: const Center(
                   child: Text('Press + button to add a token'),
                 ),
+              ),
+      ),
+      // ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            // IconButton(
+            //   onPressed: () {},
+            //   // icon: SvgPicture.asset('assets/single_card.svg'),
+            //   icon: Transform.rotate(
+            //     angle: 90 * pi / 180,
+            //     child: const Icon(Icons.crop_3_2),
+            //   ),
+            // ),
+            // if (_visible)
+            AnimatedOpacity(
+              opacity: isTokenSelected ? 1 : 0,
+              duration: const Duration(milliseconds: FADE_ANIMATION_MS),
+              child: IconButton(
+                onPressed: isTokenSelected
+                    ? () {
+                        ref.read(tokenProvider.notifier).removeToken();
+                      }
+                    : null,
+                icon: const Icon(Icons.delete),
+              ),
+            )
+          ],
         ),
       ),
-      floatingActionButton: AnimatedSlide(
-        duration: const Duration(milliseconds: 200),
-        offset: _showFab ? Offset.zero : const Offset(0, 2),
-        child: AnimatedOpacity(
-          duration: const Duration(milliseconds: 200),
-          opacity: _showFab ? 1 : 0,
-          child: FloatingActionButton(
-            child: const Icon(Icons.add),
-            onPressed: () {
-              context.push('/search_card');
-            },
-          ),
+      floatingActionButton: FloatingActionButton(
+        heroTag: SEARCH_TOKEN_HERO_FAB,
+        onPressed: () => context.push('/search_card'),
+        tooltip: 'Add New Item',
+        elevation: 0.0,
+        child: Icon(
+          isTokenSelected ? Icons.refresh : Icons.add,
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
+      // floatingActionButton: AnimatedSlide(
+      //   duration: const Duration(milliseconds: 200),
+      //   offset: _showFab ? Offset.zero : const Offset(0, 2),
+      //   child: AnimatedOpacity(
+      //     duration: const Duration(milliseconds: 200),
+      //     opacity: _showFab ? 1 : 0,
+      //     child: FloatingActionButton(
+      //       child: const Icon(Icons.add),
+      //       onPressed: () {
+      //         context.push('/search_card');
+      //       },
+      //     ),
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

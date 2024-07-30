@@ -31,47 +31,54 @@ class AlertCard extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               // HEADER
-              IntrinsicHeight(
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(MATERIAL_RADIUS),
-                      topRight: Radius.circular(MATERIAL_RADIUS),
-                    ),
-                    color: color,
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: DOUBLE_PADDING,
-                          bottom: PADDING,
-                        ),
-                        child: Icon(
-                          icon,
-                          size: ALERT_ICON_SIZE,
-                          color: iconColor,
-                        ),
+              Flexible(
+                flex: 2,
+                child: SingleChildScrollView(
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(MATERIAL_RADIUS),
+                        topRight: Radius.circular(MATERIAL_RADIUS),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: DOUBLE_PADDING),
-                        child: Text(
-                          iconText,
-                          style: TextStyle(
+                      color: color,
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: DOUBLE_PADDING,
+                            bottom: PADDING,
+                          ),
+                          child: Icon(
+                            icon,
+                            size: ALERT_ICON_SIZE,
                             color: iconColor,
-                            fontSize: ALERT_FONT_SIZE,
                           ),
                         ),
-                      )
-                    ],
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(bottom: DOUBLE_PADDING),
+                          child: Text(
+                            iconText,
+                            style: TextStyle(
+                              color: iconColor,
+                              fontSize: ALERT_FONT_SIZE,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
               // BODY
-              ListTile(
-                title: Text(title),
-                subtitle: Text(text),
+              Flexible(
+                flex: 1,
+                child: ListTile(
+                  title: Text(title),
+                  subtitle: Text(text),
+                ),
               ),
             ],
           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:token_swarm/src/features/search_card/provider/card_name_provider.dart';
+import 'package:token_swarm/src/app/const/heroes.dart';
 import 'package:token_swarm/src/features/search_card/widgets/card_grid_view.dart';
 import 'package:token_swarm/src/features/search_card/widgets/card_search_bar.dart';
 
@@ -13,12 +13,21 @@ class SearchCardView extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Search Card'),
       ),
-      body: const Column(
-        children: [
-          IntrinsicHeight(child: CardSearchBar()),
-          Expanded(child: CardGridView()),
-        ],
+      body: const Hero(
+        tag: SEARCH_TOKEN_HERO_FAB,
+        child: Column(
+          children: [
+            IntrinsicHeight(child: CardSearchBar()),
+            Expanded(child: CardGridView()),
+          ],
+        ),
       ),
+      // bottomNavigationBar: BottomAppBar(
+      //   child: Row(
+      //     mainAxisAlignment: MainAxisAlignment.start,
+      //     children: [],
+      //   ),
+      // ),
     );
   }
 }

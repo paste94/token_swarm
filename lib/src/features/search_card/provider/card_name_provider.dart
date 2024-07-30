@@ -21,7 +21,7 @@ class SearchCardName extends _$SearchCardName {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<PaginableList<MtgCard>> fetchCards(ref) async {
   try {
     final cardName = ref.watch(searchCardNameProvider);

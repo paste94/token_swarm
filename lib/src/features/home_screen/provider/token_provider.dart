@@ -5,7 +5,7 @@ import 'package:token_swarm/src/features/home_screen/provider/state/token_state.
 
 part 'token_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class Token extends _$Token {
   @override
   TokenState? build() {
@@ -43,15 +43,69 @@ class Token extends _$Token {
   }
 
   void setTokenNumber(int newVal) {
-    if (state != null) {
+    if (state == null) {
+      return;
+    }
+    state = state!.copyWith(
+      tokenNumber: newVal,
+    );
+  }
+
+  void setTappedNumber(int newVal) {
+    if (state == null) {
+      return;
+    }
+    if (newVal > state!.tokenNumber) {
+      newVal = state!.tokenNumber;
+    }
+    state = state!.copyWith(
+      tappedNumber: newVal,
+    );
+  }
+
+  /// Increases the number of tapped tokens given a number of tokens to tap
+  void increaseTapped(int val) {
+    if (state == null) {
+      return;
+    }
+    if (state!.tappedNumber + val <= state!.tokenNumber) {
       state = state!.copyWith(
-        tokenNumber: newVal,
+        tappedNumber: state!.tappedNumber + val,
       );
     }
   }
 
-  void setTappedNumber(int newVal) {
-    if (state != null) {
+  /// Decreases the number of tapped tokens given a number of tokens to untap
+  void decreaseTapped(int val) {
+    if (state == null || state!.tappedNumber == 0) {
+      return;
+    }
+    final newVal = state!.tappedNumber - val;
+    state = state!.copyWith(
+      tappedNumber: newVal >= 0 ? newVal : 0,
+    );
+  }
+
+  /// Increases the number of tokens given a number of tokens to add
+  void increaseNumber(int val) {
+    if (state == null) {
+      return;
+    }
+    state = state!.copyWith(
+      tokenNumber: state!.tokenNumber + val,
+    );
+  }
+
+  /// Decreases the number of tokens given a number of tokens to remove
+  void decreaseNumber(int val) {
+    if (state == null || state!.tokenNumber == 0) {
+      return;
+    }
+    final newVal = state!.tokenNumber - val < 0 ? 0 : state!.tokenNumber - val;
+    state = state!.copyWith(
+      tokenNumber: newVal,
+    );
+    if (newVal < state!.tappedNumber) {
       state = state!.copyWith(
         tappedNumber: newVal,
       );
@@ -59,23 +113,30 @@ class Token extends _$Token {
   }
 
   void newTurn() {
-    if (state != null) {
-      state = state!.copyWith(
-        tappedNumber: 0,
-        weakNumber: 0,
-      );
+    if (state == null) {
+      return;
     }
+    state = state!.copyWith(
+      tappedNumber: 0,
+      weakNumber: 0,
+    );
   }
 
   void setPower(int newVal) {
-    if (state != null) {
-      state = state!.copyWith(power: newVal);
+    if (state == null) {
+      return;
     }
+    state = state!.copyWith(power: newVal);
   }
 
   void setToughness(int newVal) {
-    if (state != null) {
-      state = state!.copyWith(toughness: newVal);
+    if (state == null) {
+      return;
     }
+    state = state!.copyWith(toughness: newVal);
+  }
+
+  void removeToken() {
+    state = null;
   }
 }
