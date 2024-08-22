@@ -2,3 +2,4 @@
 
 String HOME_ROUTE = '/';
 String SEARCH_CARD_ROUTE = '/search_card';
+String ABOUT_ROUTE = '/about';

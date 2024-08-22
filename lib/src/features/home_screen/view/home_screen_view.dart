@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:token_swarm/src/app/const/heroes.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
+import 'package:token_swarm/src/app/const/routes.dart';
 import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
 import 'package:token_swarm/src/features/home_screen/widgets/number_selector.dart';
 import 'package:token_swarm/src/features/home_screen/widgets/tapped_selector.dart';
@@ -19,6 +20,22 @@ class HomeScreenView extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
+        actions: [
+          PopupMenuButton(
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                child: Text('About'),
+                value: 0,
+              )
+            ],
+            onSelected: (value) {
+              switch (value) {
+                case 0:
+                  context.push(ABOUT_ROUTE);
+              }
+            },
+          )
+        ],
       ),
       body: SingleChildScrollView(
         // child: AnimatedSwitcher(
@@ -107,7 +124,7 @@ class HomeScreenView extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         heroTag: SEARCH_TOKEN_HERO_FAB,
-        onPressed: () => context.push('/search_card'),
+        onPressed: () => context.push(SEARCH_CARD_ROUTE),
         tooltip: 'Add New Item',
         elevation: 0.0,
         child: Icon(
