@@ -26,7 +26,7 @@ class HomeScreenView extends ConsumerWidget {
         child: isTokenSelected
             ? Container(
                 key: UniqueKey(),
-                child: Column(
+                child: const Column(
                   children: [
                     IntrinsicHeight(
                       child: Row(
@@ -43,74 +43,66 @@ class HomeScreenView extends ConsumerWidget {
               )
             : Container(
                 key: UniqueKey(),
-                child: Column(
-                  children:
-                      // const Center(
-                      //   child: Text('Press + button to add a token'),
-                      // ),
-                      BlendMode.values.map((e) {
-                    print(e);
-                    return Row(
-                      children: [
-                        IconButton(
-                          icon: SvgPicture.asset(
-                            'assets/icons/Mana/Q_reversed.svg',
-                            semanticsLabel: 'Label',
-                            height: 20,
-                            colorFilter: ColorFilter.mode(Colors.blue, e),
-                          ),
-                          onPressed: () {},
-                        ),
-                        Text(e.toString()),
-                      ],
-                    );
-                  }).toList(),
-                ),
+                child: const Column(children: [
+                  Center(
+                    child: Text('Press + button to add a token'),
+                  ),
+                ]),
               ),
       ),
       // ),
       bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            // IconButton(
-            //   onPressed: () {},
-            //   // icon: SvgPicture.asset('assets/single_card.svg'),
-            //   icon: Transform.rotate(
-            //     angle: 90 * pi / 180,
-            //     child: const Icon(Icons.crop_3_2),
-            //   ),
-            // ),
-            // if (_visible)
-            AnimatedOpacity(
-              opacity: isTokenSelected ? 1 : 0,
-              duration: const Duration(milliseconds: FADE_ANIMATION_MS),
-              child: IconButton(
+        child: AnimatedOpacity(
+          opacity: isTokenSelected ? 1 : 0,
+          duration: const Duration(milliseconds: FADE_ANIMATION_MS),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              IconButton(
                 onPressed: isTokenSelected
-                    ? () {
-                        ref.read(tokenProvider.notifier).removeToken();
-                      }
+                    ? () => showDialog(
+                          context: context,
+                          builder: (builder) => AlertDialog(
+                              title: const Text('Delete token?'),
+                              content: const SingleChildScrollView(
+                                child: ListBody(
+                                  children: <Widget>[
+                                    Text(
+                                        'Do you really want to delete this token?'),
+                                  ],
+                                ),
+                              ),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: const Text('Cancel'),
+                                  onPressed: () => Navigator.of(context).pop(),
+                                ),
+                                TextButton(
+                                  child: const Text('Delete'),
+                                  onPressed: () => ref
+                                      .read(tokenProvider.notifier)
+                                      .removeToken()
+                                      .then((value) =>
+                                          Navigator.of(context).pop()),
+                                ),
+                              ]),
+                        )
                     : null,
                 icon: const Icon(Icons.delete),
               ),
-            ),
-            AnimatedOpacity(
-              opacity: isTokenSelected ? 1 : 0,
-              duration: const Duration(milliseconds: FADE_ANIMATION_MS),
-              child: IconButton(
+              IconButton(
                 icon: SvgPicture.asset(
                   'assets/icons/Mana/Q_reversed.svg',
-                  // semanticsLabel: 'Label',
                   height: 19,
                   colorFilter: ColorFilter.mode(
                     Theme.of(context).iconTheme.color!,
                     BlendMode.srcIn,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () => ref.read(tokenProvider.notifier).untapAll(),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -123,21 +115,6 @@ class HomeScreenView extends ConsumerWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
-      // floatingActionButton: AnimatedSlide(
-      //   duration: const Duration(milliseconds: 200),
-      //   offset: _showFab ? Offset.zero : const Offset(0, 2),
-      //   child: AnimatedOpacity(
-      //     duration: const Duration(milliseconds: 200),
-      //     opacity: _showFab ? 1 : 0,
-      //     child: FloatingActionButton(
-      //       child: const Icon(Icons.add),
-      //       onPressed: () {
-      //         context.push('/search_card');
-      //       },
-      //     ),
-      //   ),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
