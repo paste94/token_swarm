@@ -136,7 +136,11 @@ class Token extends _$Token {
     state = state!.copyWith(toughness: newVal);
   }
 
-  void removeToken() {
+  Future removeToken() async {
     state = null;
+  }
+
+  void untapAll() {
+    state = state!.copyWith(tappedNumber: 0);
   }
 }
