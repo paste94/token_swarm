@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 11.985 13.996"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="AKR.svg"
+   width="11.985"
+   height="13.996"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs12" />
+  <sodipodi:namedview
+     id="namedview10"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="51.357"
+     inkscape:cx="5.9972"
+     inkscape:cy="6.9903"
+     inkscape:window-width="1920"
+     inkscape:window-height="986"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8" />
+  <g
+     fill="#000000"
+     fill-rule="nonzero"
+     id="g6"
+     transform="translate(0)">
+    <path
+       d="M 5.993,10.106 2.555,8.082 C 2.205,7.842 2.052,7.569 2.095,7.266 2.115,6.926 2.492,6.481 3.222,5.933 4.046,5.186 4.547,4.508 4.725,3.899 5.004,3.049 4.989,1.749 4.681,0 4.768,1.21 4.432,2.407 3.672,3.589 A 5.39,5.39 0 0 1 2.828,4.57 C 2.214,5.094 1.609,5.531 1.014,5.881 0.432,6.284 0.105,6.765 0.034,7.326 -0.104,8.162 0.179,8.806 0.881,9.257 l 5.112,2.962 5.111,-2.962 C 11.807,8.806 12.089,8.162 11.951,7.327 11.881,6.765 11.553,6.284 10.971,5.881 10.376,5.531 9.771,5.094 9.157,4.571 A 5.39,5.39 0 0 1 8.313,3.589 C 7.553,2.407 7.217,1.21 7.303,0 6.996,1.75 6.981,3.05 7.261,3.899 7.438,4.508 7.939,5.186 8.763,5.933 9.493,6.481 9.869,6.925 9.89,7.266 9.933,7.569 9.78,7.841 9.43,8.082 l -3.437,2.024"
+       id="path2" />
+    <path
+       d="m 5.993,13.105 -5.128,-3.103 -0.541,0.63 5.669,3.364 5.668,-3.365 -0.54,-0.63 -5.128,3.104 m 0,-9.041 L 3.086,7.43 5.993,9.164 8.899,7.43 5.993,4.064"
+       id="path4" />
+  </g>
+</svg>

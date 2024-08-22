@@ -26,6 +26,13 @@ class AppView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       routerConfig: _router,
+      theme: ThemeData(
+        iconTheme: IconThemeData(
+          color: Colors.black54, // Custom default color for icons
+        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
+      ),
     );
   }
 }

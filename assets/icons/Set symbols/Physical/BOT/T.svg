@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="140px" height="155px" viewBox="0 0 140 155" enable-background="new 0 0 140 155" xml:space="preserve">
+<g id="Layer_1_1_">
+</g>
+<g id="Layer_3" display="none">
+</g>
+<g>
+	<g>
+		<path fill="#FFFFFF" d="M129.58,5.583l-13.604,18.809L92.827,34.746l5.415-29.561l-9.631,3.154l-9.986,21.746H64.053
+			c-15.167,0-27.748,2.526-38.46,7.725l-0.366,0.178l-1.075-3.177L1.787,34.812l7.492,40.552l0.427,0.315l4.4,59.389l34.743,14.52
+			l-0.692,3.355h28.211l43.263-22.559l8.798-58.436l0.363-0.537l8.85-68.469L129.58,5.583z"/>
+	</g>
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="25.6196" y1="21.8877" x2="122.998" y2="119.2661">
+		<stop  offset="0" style="stop-color:#622D76"/>
+		<stop  offset="0.1079" style="stop-color:#6B3B7F"/>
+		<stop  offset="0.25" style="stop-color:#7B5290"/>
+		<stop  offset="0.291" style="stop-color:#88609A"/>
+		<stop  offset="0.3825" style="stop-color:#A47DAE"/>
+		<stop  offset="0.4553" style="stop-color:#B791BC"/>
+		<stop  offset="0.5" style="stop-color:#BF99C2"/>
+		<stop  offset="0.5447" style="stop-color:#B791BC"/>
+		<stop  offset="0.6175" style="stop-color:#A47DAE"/>
+		<stop  offset="0.709" style="stop-color:#88609A"/>
+		<stop  offset="0.75" style="stop-color:#7B5290"/>
+		<stop  offset="0.8921" style="stop-color:#6B3B7F"/>
+		<stop  offset="1" style="stop-color:#622D76"/>
+	</linearGradient>
+	<path fill="url(#SVGID_1_)" d="M131.568,11.289l-7.537,58.318l-53.058,78.209l0.001-62.705l15.838-14.315l0.007,0.016
+		l24.784-10.982l0.753-4.668L88.129,65.897l1.385-7.559l24.051-10.657l0.753-4.668l-23.94,10.608l2.465-13.456l26.371-11.793
+		L131.568,11.289z M109.082,72.007h-0.005C98.074,76.981,75.91,86.586,75.91,86.586l6.858,16.846L109.082,72.007L109.082,72.007z
+		 M121.506,84.656l-43.193,61.686l36.795-19.186L121.506,84.656z M81.801,35.041H71.047l-0.013,8.505h6.86l-6.921,15.069v18.482
+		l10.856-9.813l9.844-53.743L81.801,35.041z M54.238,147.988h9.814v-14.084h-6.91L54.238,147.988z M64.053,127.959v-5.822H52.987
+		V94.844l-9.874,8.082l0,38.369l5.849,2.84l3.336-16.176H64.053z M18.821,131.637l18.265,7.426l0-36.92l-10.917-6.002l-2.831-9.145
+		l-8.279-6.125L18.821,131.637z M58.933,88.139v28.053h5.12V69.048l-9.939-3.96L58.933,88.139z M64.053,62.648v-9.833l-14.596-7.783
+		c0,0,6.688-1.486,14.596-1.486v-8.505c-12.8,0-25.097,1.793-36.297,7.227l0.096,0.385l2.181,6.443L64.053,62.648z M47.487,62.449
+		l-22.206-8.846l-4.684-13.838L7.741,39.766l6.056,32.776l17.5,12.944h21.007L47.487,62.449z M16.816,55.15l25.796,11.432
+		l0.897,4.731L17.688,59.872L16.816,55.15z M45.413,81.711L19.611,70.278l-0.872-4.721l25.851,11.455l0.871,4.593L45.413,81.711z"/>
+</g>
+</svg>

@@ -46,7 +46,7 @@ class _MtgCardImageViewerState extends ConsumerState<MtgCardImageViewer> {
                 child: CachedNetworkImage(
                   imageUrl: imageUri,
                   progressIndicatorBuilder: (_, __, ___) => const Image(
-                    image: AssetImage('assets/mtg_rear.jpg'),
+                    image: AssetImage('assets/img/mtg_rear.jpg'),
                   ),
                   errorWidget: (_, __, ___) => const SizedBox(
                     child: Icon(Icons.image_not_supported),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:token_swarm/src/app/const/heroes.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
@@ -25,7 +26,7 @@ class HomeScreenView extends ConsumerWidget {
         child: isTokenSelected
             ? Container(
                 key: UniqueKey(),
-                child: const Column(
+                child: Column(
                   children: [
                     IntrinsicHeight(
                       child: Row(
@@ -42,8 +43,28 @@ class HomeScreenView extends ConsumerWidget {
               )
             : Container(
                 key: UniqueKey(),
-                child: const Center(
-                  child: Text('Press + button to add a token'),
+                child: Column(
+                  children:
+                      // const Center(
+                      //   child: Text('Press + button to add a token'),
+                      // ),
+                      BlendMode.values.map((e) {
+                    print(e);
+                    return Row(
+                      children: [
+                        IconButton(
+                          icon: SvgPicture.asset(
+                            'assets/icons/Mana/Q_reversed.svg',
+                            semanticsLabel: 'Label',
+                            height: 20,
+                            colorFilter: ColorFilter.mode(Colors.blue, e),
+                          ),
+                          onPressed: () {},
+                        ),
+                        Text(e.toString()),
+                      ],
+                    );
+                  }).toList(),
                 ),
               ),
       ),
@@ -72,7 +93,23 @@ class HomeScreenView extends ConsumerWidget {
                     : null,
                 icon: const Icon(Icons.delete),
               ),
-            )
+            ),
+            AnimatedOpacity(
+              opacity: isTokenSelected ? 1 : 0,
+              duration: const Duration(milliseconds: FADE_ANIMATION_MS),
+              child: IconButton(
+                icon: SvgPicture.asset(
+                  'assets/icons/Mana/Q_reversed.svg',
+                  // semanticsLabel: 'Label',
+                  height: 19,
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).iconTheme.color!,
+                    BlendMode.srcIn,
+                  ),
+                ),
+                onPressed: () {},
+              ),
+            ),
           ],
         ),
       ),
