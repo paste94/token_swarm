@@ -43,6 +43,9 @@ dependencies:
   freezed_annotation: ^2.4.1
   numberpicker: ^2.1.2
   flutter_svg: ^2.0.10+1
+  shared_preferences: ^2.2.3
+  sqflite: ^2.3.2
+  path: ^1.8.3
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +71,7 @@ flutter:
   assets:
     - assets/img/
     - assets/icons/Mana/
+    - assets/icons/Ability icons/Power Toughness/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

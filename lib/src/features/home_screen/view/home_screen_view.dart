@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:token_swarm/src/app/const/heroes.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/routes.dart';
@@ -15,31 +16,32 @@ class HomeScreenView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var token = ref.watch(tokenProvider);
     bool isTokenSelected = ref.watch(tokenProvider) != null;
+    final prefs = SharedPreferences.getInstance();
+    final historyList =
+        prefs.then((value) => value.getStringList('last_saved'));
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
         actions: [
           PopupMenuButton(
             itemBuilder: (context) => [
-              PopupMenuItem(
-                child: Text('About'),
+              const PopupMenuItem(
                 value: 0,
+                child: Text('About'),
               )
             ],
             onSelected: (value) {
               switch (value) {
                 case 0:
-                  context.push(ABOUT_ROUTE);
+                  context.push(RoutePath.about);
               }
             },
           )
         ],
       ),
       body: SingleChildScrollView(
-        // child: AnimatedSwitcher(
-        //   duration: const Duration(milliseconds: FADE_ANIMATION_MS),
         child: isTokenSelected
             ? Container(
                 key: UniqueKey(),
@@ -60,13 +62,29 @@ class HomeScreenView extends ConsumerWidget {
               )
             : Container(
                 key: UniqueKey(),
-                child: const Column(children: [
-                  Center(
-                    child: Text('Press + button to add a token'),
-                  ),
-                ]),
-              ),
+                child: FutureBuilder<List<String>?>(
+                  future: historyList,
+                  builder: (BuildContext context,
+                      AsyncSnapshot<List<String>?> snapshot) {
+                    if (snapshot.hasData) {
+                      return Column(
+                        children: snapshot.data!.map((e) => Text(e)).toList(),
+                      );
+                    }
+                    return const Center(
+                      child: Text('Press + button to add a token'),
+                    );
+                  },
+                )
+                // const Column(
+                //   children: [
+                //     Center(
+                //       child: Text('Press + button to add a token'),
+                //     ),
+                //   ],
+                ),
       ),
+
       // ),
       bottomNavigationBar: BottomAppBar(
         child: AnimatedOpacity(
@@ -116,15 +134,17 @@ class HomeScreenView extends ConsumerWidget {
                     BlendMode.srcIn,
                   ),
                 ),
-                onPressed: () => ref.read(tokenProvider.notifier).untapAll(),
+                onPressed: isTokenSelected
+                    ? () => ref.read(tokenProvider.notifier).untapAll()
+                    : null,
               ),
             ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        heroTag: SEARCH_TOKEN_HERO_FAB,
-        onPressed: () => context.push(SEARCH_CARD_ROUTE),
+        heroTag: HeroesStringTokens.searchHeroFab,
+        onPressed: () => context.push(RoutePath.searchCard),
         tooltip: 'Add New Item',
         elevation: 0.0,
         child: Icon(

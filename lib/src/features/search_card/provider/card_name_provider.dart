@@ -4,8 +4,9 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:scryfall_api/scryfall_api.dart';
 import 'package:token_swarm/src/features/search_card/provider/exceptions/card_name_exception.dart';
 
-/// dart run build_runner build
 part 'card_name_provider.g.dart';
+
+/// dart run build_runner build
 
 final apiClient = ScryfallApiClient();
 

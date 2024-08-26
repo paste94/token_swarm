@@ -19,12 +19,12 @@ class _CardListItemState extends ConsumerState<CardListItem> {
   Widget _cardImage() => MtgCardImageViewer(
         myCard: widget.token,
         borderRadius: const BorderRadius.all(
-          Radius.circular(CARD_BORDER_RADIUS),
+          Radius.circular(SearchCardConstants.cardBorderRadius),
         ),
       );
 
   Widget _cardName() => Padding(
-        padding: const EdgeInsets.only(left: PADDING),
+        padding: const EdgeInsets.only(left: ConstPadding.padding),
         child: Align(
           alignment: Alignment.bottomLeft,
           child: Text(widget.token.name),
@@ -53,7 +53,7 @@ class _CardListItemState extends ConsumerState<CardListItem> {
           color: Theme.of(context).colorScheme.outline,
         ),
         borderRadius: const BorderRadius.all(
-          Radius.circular(CARD_BORDER_RADIUS),
+          Radius.circular(SearchCardConstants.cardBorderRadius),
         ),
       ),
       child: Column(

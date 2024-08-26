@@ -14,7 +14,7 @@ class SearchCardView extends ConsumerWidget {
         title: const Text('Search Card'),
       ),
       body: const Hero(
-        tag: SEARCH_TOKEN_HERO_FAB,
+        tag: HeroesStringTokens.searchHeroFab,
         child: Column(
           children: [
             IntrinsicHeight(child: CardSearchBar()),
@@ -22,12 +22,6 @@ class SearchCardView extends ConsumerWidget {
           ],
         ),
       ),
-      // bottomNavigationBar: BottomAppBar(
-      //   child: Row(
-      //     mainAxisAlignment: MainAxisAlignment.start,
-      //     children: [],
-      //   ),
-      // ),
     );
   }
 }

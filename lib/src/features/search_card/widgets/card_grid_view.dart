@@ -11,8 +11,8 @@ class CardGridView extends ConsumerWidget {
   const CardGridView({super.key});
   Widget _onData(PaginableList cardList) => cardList.length > 0
       ? GridView.count(
-          crossAxisCount: N_CARDS_FOR_ROW,
-          childAspectRatio: CARD_ASPECT_RATIO,
+          crossAxisCount: SearchCardConstants.nCardsForRow,
+          childAspectRatio: SearchCardConstants.cardAspectRatio,
           children:
               cardList.data.map((card) => CardListItem(token: card)).toList(),
         )
@@ -32,8 +32,8 @@ class CardGridView extends ConsumerWidget {
         title: 'Attention!',
         text: err is CardNameException ? err.message : 'Unknown error occurred',
         color: Colors.red[300],
-        iconColor: Colors.white,
         icon: Icons.cloud_off,
+        iconColor: Colors.white,
       );
 
   @override

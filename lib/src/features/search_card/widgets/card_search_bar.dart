@@ -8,9 +8,6 @@ class CardSearchBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SearchBar(
-      // decoration: const InputDecoration(
-      //   labelText: 'Search Card',
-      // ),
       onChanged: (value) =>
           ref.read(searchCardNameProvider.notifier).setState(value),
     );

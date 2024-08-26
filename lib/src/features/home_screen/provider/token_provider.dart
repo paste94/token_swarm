@@ -1,9 +1,11 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:scryfall_api/scryfall_api.dart';
-import 'package:token_swarm/src/features/home_screen/provider/exception/token_provider_exception.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:token_swarm/src/features/home_screen/provider/state/token_state.dart';
 
 part 'token_provider.g.dart';
+
+/// dart run build_runner build
 
 @Riverpod(keepAlive: true)
 class Token extends _$Token {
@@ -15,7 +17,6 @@ class Token extends _$Token {
   void setToken(MtgCard token) {
     int? power;
     int? toughness;
-    print('********** ${token.power}/${token.toughness}');
     if (token.power == null) {
       power = null;
     } else {
@@ -40,6 +41,26 @@ class Token extends _$Token {
       power: power,
       toughness: toughness,
     );
+
+    _persistData(token.id);
+  }
+
+  void _persistData(String tokenId) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      var l = prefs.getStringList('last_saved');
+      if (l != null) {
+        if (l.length >= 10) {
+          l.removeAt(0);
+        }
+        l.add(tokenId);
+      } else {
+        l = [tokenId];
+      }
+      await prefs.setStringList('last_saved', l);
+    } catch (e) {
+      print(e);
+    }
   }
 
   void setTokenNumber(int newVal) {

@@ -64,13 +64,13 @@ class _MtgCardImageViewerState extends ConsumerState<MtgCardImageViewer> {
           child: Visibility(
             visible: !isSingleSided,
             child: CircleAvatar(
-              radius: CIRCLE_AVATAR_BUTTON_SIZE,
+              radius: SearchCardConstants.avatarButtonSize,
               backgroundColor: Theme.of(context).primaryColor,
               child: IconButton(
                 onPressed: flipCardImage,
                 icon: const Icon(
                   Icons.flip_camera_android,
-                  size: CIRCLE_AVATAR_BUTTON_SIZE,
+                  size: SearchCardConstants.avatarButtonSize,
                 ),
               ),
             ),

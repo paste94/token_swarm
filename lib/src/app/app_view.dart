@@ -13,15 +13,15 @@ class AppView extends ConsumerWidget {
   final _router = GoRouter(
     routes: [
       GoRoute(
-        path: HOME_ROUTE,
+        path: RoutePath.home,
         builder: (context, state) => const HomeScreenView(),
       ),
       GoRoute(
-        path: SEARCH_CARD_ROUTE,
+        path: RoutePath.searchCard,
         builder: (context, state) => const SearchCardView(),
       ),
       GoRoute(
-        path: ABOUT_ROUTE,
+        path: RoutePath.about,
         builder: (context, state) => const AboutView(),
       ),
     ],
@@ -32,7 +32,7 @@ class AppView extends ConsumerWidget {
     return MaterialApp.router(
       routerConfig: _router,
       theme: ThemeData(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black54, // Custom default color for icons
         ),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),

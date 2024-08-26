@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
+import 'package:token_swarm/src/app/const/typography.dart';
 import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
 import 'package:token_swarm/src/features/home_screen/widgets/dialogs/edit_number_dialog.dart';
 
@@ -22,10 +23,10 @@ class NumberSelector extends ConsumerWidget {
                 child: IconButton(
                   icon: const Icon(Icons.remove),
                   padding: const EdgeInsets.symmetric(
-                    vertical: 4.0,
-                    horizontal: 18.0,
+                    vertical: SelectedTokenConstants.buttonSizeVertical,
+                    horizontal: SelectedTokenConstants.buttonSizeHorizontal,
                   ),
-                  iconSize: ICON_SIZE_S,
+                  iconSize: SelectedTokenConstants.iconSize,
                   color: Theme.of(context).primaryColor,
                   onPressed: () =>
                       ref.read(tokenProvider.notifier).decreaseNumber(1),
@@ -36,16 +37,12 @@ class NumberSelector extends ConsumerWidget {
                   onTap: () => showDialog(
                       context: context,
                       builder: (context) {
-                        return EditTokenNumberDialog();
+                        return const EditTokenNumberDialog();
                       }),
                   child: Text(
                     '$tokenNumber',
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.black87,
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: MyTypography.h3Bold,
                   ),
                 ),
               ),
@@ -55,10 +52,10 @@ class NumberSelector extends ConsumerWidget {
                     IconButton(
                       icon: const Icon(Icons.add),
                       padding: const EdgeInsets.symmetric(
-                        vertical: 4.0,
-                        horizontal: 18.0,
+                        vertical: SelectedTokenConstants.buttonSizeVertical,
+                        horizontal: SelectedTokenConstants.buttonSizeHorizontal,
                       ),
-                      iconSize: ICON_SIZE_S,
+                      iconSize: SelectedTokenConstants.iconSize,
                       color: Theme.of(context).primaryColor,
                       onPressed: () =>
                           ref.read(tokenProvider.notifier).increaseNumber(1),

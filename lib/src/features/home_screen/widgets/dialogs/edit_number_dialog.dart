@@ -29,22 +29,21 @@ class _EditTokenNumberDialogState extends ConsumerState<EditTokenNumberDialog> {
   Widget build(BuildContext context) {
     return Dialog(
       child: Padding(
-        padding: const EdgeInsets.all(TRIPLE_PADDING),
+        padding: const EdgeInsets.all(ConstPadding.triplePadding),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             // Title
             const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Select Number',
-                  style: HEADLINE,
+                  'How many tokens?',
+                  style: MyTypography.dialogTitle,
                 ),
               ],
             ),
             const Divider(
-              height: DOUBLE_PADDING,
+              height: ConstPadding.doublePadding,
               color: Colors.transparent,
             ),
 
@@ -55,16 +54,11 @@ class _EditTokenNumberDialogState extends ConsumerState<EditTokenNumberDialog> {
                 FilteringTextInputFormatter.digitsOnly,
               ],
               keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.black87,
-                fontSize: 18.0,
-                fontWeight: FontWeight.w500,
-              ),
+              style: MyTypography.h3Bold,
               decoration: InputDecoration(errorText: _error),
             ),
             const Divider(
-              height: TRIPLE_PADDING,
+              height: ConstPadding.triplePadding,
               color: Colors.transparent,
             ),
             Row(
@@ -75,7 +69,7 @@ class _EditTokenNumberDialogState extends ConsumerState<EditTokenNumberDialog> {
                   child: const Text('Cancel'),
                 ),
                 const VerticalDivider(
-                  width: PADDING,
+                  width: ConstPadding.padding,
                   color: Colors.transparent,
                 ),
                 TextButton(
