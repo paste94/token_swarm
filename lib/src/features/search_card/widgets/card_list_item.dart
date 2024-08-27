@@ -4,12 +4,13 @@ import 'package:go_router/go_router.dart';
 import 'package:scryfall_api/scryfall_api.dart';
 import 'package:token_swarm/src/app/common_widgets/mtg_card_image_viewer.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
+import 'package:token_swarm/src/app/model/token_model.dart';
 import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
 
 class CardListItem extends ConsumerStatefulWidget {
   const CardListItem({super.key, required this.token});
 
-  final MtgCard token;
+  final TokenModel token;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _CardListItemState();

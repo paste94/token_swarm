@@ -1,7 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:scryfall_api/scryfall_api.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:token_swarm/src/features/home_screen/provider/state/token_state.dart';
+import 'package:token_swarm/src/app/model/mini_token_model.dart';
+import 'package:token_swarm/src/app/model/token_model.dart';
+import 'package:token_swarm/src/app/persistence/provider/persistence.dart';
 
 part 'token_provider.g.dart';
 
@@ -9,58 +10,24 @@ part 'token_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 class Token extends _$Token {
+  final apiClient = ScryfallApiClient();
+
   @override
-  TokenState? build() {
+  TokenModel? build() {
     return null;
   }
 
-  void setToken(MtgCard token) {
-    int? power;
-    int? toughness;
-    if (token.power == null) {
-      power = null;
-    } else {
-      try {
-        power = int.parse(token.power!);
-      } catch (e) {
-        power = 0;
-      }
-    }
-    if (token.toughness == null) {
-      toughness = null;
-    } else {
-      try {
-        toughness = int.parse(token.toughness!);
-      } catch (e) {
-        toughness = 0;
-      }
-    }
-
-    state = TokenState(
-      selectedToken: token,
-      power: power,
-      toughness: toughness,
-    );
-
-    _persistData(token.id);
+  void setToken(TokenModel token) {
+    state = token;
+    ref
+        .read(persistenceProvider.notifier)
+        .insert(MiniTokenModel.fromToken(token));
   }
 
-  void _persistData(String tokenId) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      var l = prefs.getStringList('last_saved');
-      if (l != null) {
-        if (l.length >= 10) {
-          l.removeAt(0);
-        }
-        l.add(tokenId);
-      } else {
-        l = [tokenId];
-      }
-      await prefs.setStringList('last_saved', l);
-    } catch (e) {
-      print(e);
-    }
+  Future<void> setTokenFromId(String id) async {
+    final card = await apiClient.getCardById(id);
+    final token = TokenModel.fromMtgCard(mtgCard: card);
+    setToken(token);
   }
 
   void setTokenNumber(int newVal) {

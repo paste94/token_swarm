@@ -1,26 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'token_provider.dart';
+part of 'persistence.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$tokenHash() => r'b03cbd41e32f87e6414d0761f055ed6ae781d388';
+String _$persistenceHash() => r'6e17728d8d2124ffbb0bdab114395ce0d456060f';
 
 /// dart run build_runner build
 ///
-/// Copied from [Token].
-@ProviderFor(Token)
-final tokenProvider = NotifierProvider<Token, TokenModel?>.internal(
-  Token.new,
-  name: r'tokenProvider',
+/// Copied from [Persistence].
+@ProviderFor(Persistence)
+final persistenceProvider =
+    NotifierProvider<Persistence, SqfLiteRepository>.internal(
+  Persistence.new,
+  name: r'persistenceProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$tokenHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$persistenceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$Token = Notifier<TokenModel?>;
+typedef _$Persistence = Notifier<SqfLiteRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

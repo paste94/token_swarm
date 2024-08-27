@@ -12,7 +12,7 @@ class TokenViewer extends ConsumerWidget {
     final token = ref.watch(tokenProvider);
     return Column(
       children: [
-        MtgCardImageViewer(myCard: token?.selectedToken),
+        MtgCardImageViewer(myCard: token),
         const PowerToughness(),
       ],
     );

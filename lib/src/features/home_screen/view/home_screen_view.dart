@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:token_swarm/src/app/const/heroes.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/routes.dart';
 import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
-import 'package:token_swarm/src/features/home_screen/widgets/number_selector.dart';
-import 'package:token_swarm/src/features/home_screen/widgets/tapped_selector.dart';
-import 'package:token_swarm/src/features/home_screen/widgets/token_viewer.dart';
+import 'package:token_swarm/src/features/home_screen/view/history_view.dart';
+import 'package:token_swarm/src/features/home_screen/view/token_view.dart';
 
 class HomeScreenView extends ConsumerWidget {
   const HomeScreenView({super.key});
@@ -17,9 +15,6 @@ class HomeScreenView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool isTokenSelected = ref.watch(tokenProvider) != null;
-    final prefs = SharedPreferences.getInstance();
-    final historyList =
-        prefs.then((value) => value.getStringList('last_saved'));
 
     return Scaffold(
       appBar: AppBar(
@@ -41,51 +36,7 @@ class HomeScreenView extends ConsumerWidget {
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: isTokenSelected
-            ? Container(
-                key: UniqueKey(),
-                child: const Column(
-                  children: [
-                    IntrinsicHeight(
-                      child: Row(
-                        children: [
-                          Expanded(child: Center(child: NumberSelector())),
-                          VerticalDivider(width: 1.0),
-                          Expanded(child: Center(child: TappedSelector())),
-                        ],
-                      ),
-                    ),
-                    IntrinsicHeight(child: TokenViewer()),
-                  ],
-                ),
-              )
-            : Container(
-                key: UniqueKey(),
-                child: FutureBuilder<List<String>?>(
-                  future: historyList,
-                  builder: (BuildContext context,
-                      AsyncSnapshot<List<String>?> snapshot) {
-                    if (snapshot.hasData) {
-                      return Column(
-                        children: snapshot.data!.map((e) => Text(e)).toList(),
-                      );
-                    }
-                    return const Center(
-                      child: Text('Press + button to add a token'),
-                    );
-                  },
-                )
-                // const Column(
-                //   children: [
-                //     Center(
-                //       child: Text('Press + button to add a token'),
-                //     ),
-                //   ],
-                ),
-      ),
-
-      // ),
+      body: isTokenSelected ? const TokenView() : const HistoryView(),
       bottomNavigationBar: BottomAppBar(
         child: AnimatedOpacity(
           opacity: isTokenSelected ? 1 : 0,

@@ -1,14 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:scryfall_api/scryfall_api.dart';
 
-part "token.freezed.dart";
+part "token_model.freezed.dart";
 
 /// dart run build_runner build
 
 @freezed
-class Token with _$Token {
-  const Token._();
-  factory Token({
+class TokenModel with _$TokenModel {
+  const TokenModel._();
+  factory TokenModel({
     required MtgCard mtgCard,
     required int? power,
     required int? toughness,
@@ -16,16 +16,21 @@ class Token with _$Token {
     @Default(0) int tappedNumber,
     @Default(0) int prevTappedNumber,
     @Default(0) int weakNumber,
-  }) = _Token;
+  }) = _TokenModel;
 
-  factory Token.fromMtgCard({
+  factory TokenModel.fromMtgCard({
     required MtgCard mtgCard,
   }) =>
-      Token(
+      TokenModel(
         mtgCard: mtgCard,
         power: _getValue(mtgCard.power),
         toughness: _getValue(mtgCard.toughness),
       );
+
+  String get id => mtgCard.id;
+  List<CardFace>? get cardFaces => mtgCard.cardFaces;
+  ImageUris? get imageUris => mtgCard.imageUris;
+  String get name => mtgCard.name;
 
   static int? _getValue(String? s) {
     if (s == null) {
