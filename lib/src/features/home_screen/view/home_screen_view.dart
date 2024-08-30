@@ -41,7 +41,7 @@ class HomeScreenView extends ConsumerWidget {
       bottomNavigationBar: BottomAppBar(
         child: AnimatedOpacity(
           opacity: isTokenSelected ? 1 : 0,
-          duration: const Duration(milliseconds: FADE_ANIMATION_MS),
+          duration: const Duration(milliseconds: Timing.fadeAnimation),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [

@@ -59,7 +59,7 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                       alignment: Alignment.center,
                       child: SvgPicture.asset(
                         'assets/icons/Ability icons/Power Toughness/Power_outlined.svg',
-                        height: STATS_DIALOG_ICON_HEIGTH,
+                        height: DialogIcons.statsDialogIconHeight,
                         colorFilter: ColorFilter.mode(
                           Theme.of(context).iconTheme.color!,
                           BlendMode.srcIn,
@@ -72,7 +72,7 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                       alignment: Alignment.center,
                       child: SvgPicture.asset(
                         'assets/icons/Ability icons/Power Toughness/Toughness_outlined.svg',
-                        height: STATS_DIALOG_ICON_HEIGTH,
+                        height: DialogIcons.statsDialogIconHeight,
                         colorFilter: ColorFilter.mode(
                           Theme.of(context).iconTheme.color!,
                           BlendMode.srcIn,
@@ -90,16 +90,16 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                 children: [
                   Expanded(
                     child: NumberPicker(
-                      minValue: STATS_DIALOG_MIN_VALUE,
-                      maxValue: STATS_DIALOG_MAX_VALUE,
+                      minValue: DialogIcons.statsDialogMin,
+                      maxValue: DialogIcons.statsDialogMax,
                       value: _power,
                       onChanged: (value) => setState(() => _power = value),
                     ),
                   ),
                   Expanded(
                     child: NumberPicker(
-                      minValue: STATS_DIALOG_MIN_VALUE,
-                      maxValue: STATS_DIALOG_MAX_VALUE,
+                      minValue: DialogIcons.statsDialogMin,
+                      maxValue: DialogIcons.statsDialogMax,
                       value: _toughness,
                       onChanged: (value) => setState(() => _toughness = value),
                     ),

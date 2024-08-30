@@ -21,11 +21,13 @@ class SelectedTokenConstants {
   static const buttonSizeHorizontal = 18.0;
 }
 
-const ALERT_FONT_SIZE = 18.0;
-const ALERT_ICON_SIZE = 100.0;
-const P_T_FONT_SIZE = 24.0;
-const FADE_ANIMATION_MS = 100;
-const STATS_DIALOG_ICON_HEIGTH = 40.0;
-const STATS_DIALOG_MIN_VALUE = 0;
-const STATS_DIALOG_MAX_VALUE = 99;
-const EDIT_NUMBER_DIALOG_HEIGHT = 18.0;
+class Timing {
+  static const fadeAnimation = 100;
+}
+
+class DialogIcons {
+  static const alertIconSize = 100.0;
+  static const statsDialogIconHeight = 40.0;
+  static const statsDialogMin = 0;
+  static const statsDialogMax = 99;
+}

@@ -23,33 +23,21 @@ class MiniTokenModel with _$MiniTokenModel {
         imageUri: map['image_uri'].toString(),
       );
 
-  factory MiniTokenModel.fromToken(
-    TokenModel token,
-  ) =>
-      MiniTokenModel(
+  factory MiniTokenModel.fromToken(TokenModel token) => MiniTokenModel(
         id: token.id,
         name: token.name,
         imageUri: _getImageUri(token),
       );
 
-  static String _getImageUri(TokenModel token) {
-    print('************ token.cardFaces: ${token.cardFaces}');
-    print('************ token.cardFaces?[0]: ${token.cardFaces?[0]}');
-    print(
-        '************ token.cardFaces?[0].imageUris: ${token.cardFaces?[0].imageUris}');
-    print(
-        '************ token.cardFaces?[0].imageUris?.small: ${token.cardFaces?[0].imageUris?.small}');
-    return token.cardFaces?[0].imageUris?.small.toString() ??
-        token.imageUris?.small.toString() ??
-        '';
-  }
+  static String _getImageUri(TokenModel token) =>
+      token.cardFaces?[0].imageUris?.small.toString() ??
+      token.imageUris?.small.toString() ??
+      '';
 
-  Map<String, Object?> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'image_uri': imageUri,
-      'timestamp': DateTime.now().millisecondsSinceEpoch,
-    };
-  }
+  Map<String, Object?> toMap() => {
+        'id': id,
+        'name': name,
+        'image_uri': imageUri,
+        'timestamp': DateTime.now().millisecondsSinceEpoch,
+      };
 }
