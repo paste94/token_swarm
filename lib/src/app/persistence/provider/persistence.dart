@@ -8,13 +8,29 @@ part 'persistence.g.dart';
 
 @Riverpod(keepAlive: true)
 class Persistence extends _$Persistence {
+  final repository = SqfLiteRepository();
+
   @override
-  SqfLiteRepository build() {
-    final s = SqfLiteRepository();
-    s.init();
-    return s;
+  List<MiniTokenModel> build() {
+    return [];
   }
 
-  void insert(MiniTokenModel token) => state.insert(token);
-  Future<List<MiniTokenModel>> get() async => await state.get();
+  void get() async {
+    final data = await repository.get();
+    state = data;
+  }
+
+  void insert(MiniTokenModel token) async {
+    await repository.insert(token);
+  }
+
+  Future<List<MiniTokenModel>> getData() async {
+    final data = await repository.get();
+    return data;
+  }
+
+  Future<void> delete(String id) async {
+    await repository.delete(id);
+    get();
+  }
 }

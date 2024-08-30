@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:token_swarm/src/app/model/mini_token_model.dart';
+import 'package:token_swarm/src/app/persistence/provider/persistence.dart';
 import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
 
 class HistoryList extends ConsumerStatefulWidget {
@@ -17,20 +18,39 @@ class HistoryList extends ConsumerStatefulWidget {
 }
 
 class _HistoryListState extends ConsumerState<HistoryList> {
-  bool isItemEnabled = true;
+  bool _isItemEnabled = true;
+  Offset _tapPosition = Offset.zero;
+
+  RelativeRect _getPosition() => RelativeRect.fromLTRB(
+        _tapPosition.dx,
+        _tapPosition.dy,
+        MediaQuery.of(context).size.width - _tapPosition.dx,
+        MediaQuery.of(context).size.height - _tapPosition.dy,
+      );
 
   Widget _buildRow(MiniTokenModel token) {
     return InkWell(
       onTap: () async {
-        setState(() => isItemEnabled = false);
+        setState(() => _isItemEnabled = false);
         await ref.read(tokenProvider.notifier).setTokenFromId(token.id);
-        setState(() => isItemEnabled = true);
+        setState(() => _isItemEnabled = true);
       },
-      onLongPress: () {
-        // TODO: Open dialog to delete item
-      },
+      onTapDown: (details) =>
+          setState(() => _tapPosition = details.globalPosition),
+      onLongPress: () => showMenu(
+        context: context,
+        position: _getPosition(),
+        items: [
+          PopupMenuItem(
+            value: 'favorites',
+            child: const Text('Delete'),
+            onTap: () =>
+                ref.read(persistenceProvider.notifier).delete(token.id),
+          ),
+        ],
+      ),
       child: ListTile(
-        enabled: isItemEnabled,
+        enabled: _isItemEnabled,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: CachedNetworkImage(
@@ -62,9 +82,7 @@ class _HistoryListState extends ConsumerState<HistoryList> {
               return _buildRow(widget.data[i]);
             },
             separatorBuilder: (BuildContext context, int index) {
-              return Divider(
-                height: 0,
-              );
+              return const Divider(height: 0);
             },
           ),
         ),

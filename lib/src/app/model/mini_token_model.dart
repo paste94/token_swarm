@@ -29,11 +29,21 @@ class MiniTokenModel with _$MiniTokenModel {
       MiniTokenModel(
         id: token.id,
         name: token.name,
-        imageUri: token.imageUris?.small.toString(),
+        imageUri: _getImageUri(token),
       );
 
-  // Convert a Dog into a Map. The keys must correspond to the names of the
-  // columns in the database.
+  static String _getImageUri(TokenModel token) {
+    print('************ token.cardFaces: ${token.cardFaces}');
+    print('************ token.cardFaces?[0]: ${token.cardFaces?[0]}');
+    print(
+        '************ token.cardFaces?[0].imageUris: ${token.cardFaces?[0].imageUris}');
+    print(
+        '************ token.cardFaces?[0].imageUris?.small: ${token.cardFaces?[0].imageUris?.small}');
+    return token.cardFaces?[0].imageUris?.small.toString() ??
+        token.imageUris?.small.toString() ??
+        '';
+  }
+
   Map<String, Object?> toMap() {
     return {
       'id': id,

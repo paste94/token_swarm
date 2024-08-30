@@ -6,7 +6,7 @@ import 'package:token_swarm/src/app/model/mini_token_model.dart';
 class SqfLiteRepository {
   late final Future<Database> database;
 
-  void init() async {
+  Future<void> init() async {
     WidgetsFlutterBinding.ensureInitialized();
     database = openDatabase(
       join(await getDatabasesPath(), 'history.db'),
@@ -29,11 +29,30 @@ class SqfLiteRepository {
   }
 
   Future<List<MiniTokenModel>> get() async {
-    final db = await database;
+    late final Database db;
+    try {
+      db = await database;
+    } catch (e) {
+      await init();
+      db = await database;
+    }
+
     final List<Map<String, Object?>> historyMaps = await db.query(
       'history',
       orderBy: 'timestamp desc',
     );
-    return historyMaps.map((e) => MiniTokenModel.fromMap(map: e)).toList();
+
+    final data =
+        historyMaps.map((e) => MiniTokenModel.fromMap(map: e)).toList();
+    return data;
+  }
+
+  Future<void> delete(String id) async {
+    final db = await database;
+    await db.delete(
+      'history',
+      where: 'id=?',
+      whereArgs: [id],
+    );
   }
 }
