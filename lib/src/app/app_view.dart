@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:token_swarm/src/app/const/routes.dart';
-import 'package:token_swarm/src/app/persistence/provider/persistence.dart';
 import 'package:token_swarm/src/features/about/about_view.dart';
 import 'package:token_swarm/src/features/home_screen/home_screen.dart';
 import 'package:token_swarm/src/features/search_card/search_card.dart';

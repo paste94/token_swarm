@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:token_swarm/src/app/model/mini_token_model.dart';
 import 'package:token_swarm/src/app/persistence/provider/persistence.dart';
 import 'package:token_swarm/src/features/home_screen/widgets/history_list.dart';
 
