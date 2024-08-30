@@ -8,6 +8,7 @@ import 'package:token_swarm/src/app/const/routes.dart';
 import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
 import 'package:token_swarm/src/features/home_screen/view/history_view.dart';
 import 'package:token_swarm/src/features/home_screen/view/token_view.dart';
+import 'package:token_swarm/src/features/search_card/provider/card_name_provider.dart';
 
 class HomeScreenView extends ConsumerWidget {
   const HomeScreenView({super.key});
@@ -95,7 +96,10 @@ class HomeScreenView extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         heroTag: HeroesStringTokens.searchHeroFab,
-        onPressed: () => context.push(RoutePath.searchCard),
+        onPressed: () {
+          ref.read(searchCardNameProvider.notifier).setState('');
+          context.push(RoutePath.searchCard);
+        },
         tooltip: 'Add New Item',
         elevation: 0.0,
         child: Icon(

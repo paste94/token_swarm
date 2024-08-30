@@ -23,7 +23,7 @@ class SearchCardName extends _$SearchCardName {
   }
 }
 
-@Riverpod(keepAlive: true)
+@Riverpod()
 Future<PaginableList<TokenModel>> fetchCards(ref) async {
   try {
     final cardName = ref.watch(searchCardNameProvider);

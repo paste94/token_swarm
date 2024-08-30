@@ -8,8 +8,14 @@ import 'package:token_swarm/src/features/search_card/provider/card_name_provider
 import 'package:token_swarm/src/features/search_card/provider/exceptions/card_name_exception.dart';
 import 'package:token_swarm/src/features/search_card/widgets/card_list_item.dart';
 
-class CardGridView extends ConsumerWidget {
+class CardGridView extends ConsumerStatefulWidget {
   const CardGridView({super.key});
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _CardGridViewState();
+}
+
+class _CardGridViewState extends ConsumerState<CardGridView> {
   Widget _onData(PaginableList<TokenModel> cardList) => cardList.length > 0
       ? GridView.count(
           crossAxisCount: SearchCardConstants.nCardsForRow,
@@ -38,8 +44,9 @@ class CardGridView extends ConsumerWidget {
       );
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final cardList = ref.watch(fetchCardsProvider);
+    print('************ FETCHED ');
     return cardList.when(
       data: _onData,
       error: _onError,
