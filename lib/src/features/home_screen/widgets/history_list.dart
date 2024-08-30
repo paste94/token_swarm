@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:token_swarm/src/app/const/asset_paths.dart';
 import 'package:token_swarm/src/app/model/mini_token_model.dart';
 import 'package:token_swarm/src/app/persistence/provider/persistence.dart';
 import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HistoryList extends ConsumerStatefulWidget {
   const HistoryList({
@@ -42,8 +44,8 @@ class _HistoryListState extends ConsumerState<HistoryList> {
         position: _getPosition(),
         items: [
           PopupMenuItem(
-            value: 'favorites',
-            child: const Text('Delete'),
+            value: 'delete',
+            child: Text(AppLocalizations.of(context)?.delete ?? 'xxx'),
             onTap: () =>
                 ref.read(persistenceProvider.notifier).delete(token.id),
           ),
@@ -56,7 +58,7 @@ class _HistoryListState extends ConsumerState<HistoryList> {
           child: CachedNetworkImage(
             imageUrl: token.imageUri!,
             progressIndicatorBuilder: (_, __, ___) => const Image(
-              image: AssetImage('assets/img/mtg_rear.jpg'),
+              image: AssetImage(AssetsPaths.mtgRear),
             ),
             errorWidget: (_, __, ___) => const SizedBox(
               child: Icon(Icons.image_not_supported),
@@ -73,7 +75,7 @@ class _HistoryListState extends ConsumerState<HistoryList> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('Last used'),
+        Text(AppLocalizations.of(context)?.lastUsed ?? 'xxx'),
         Expanded(
           child: ListView.separated(
             itemCount: widget.data.length,

@@ -1,0 +1,38 @@
+{
+  "appName":"Token Swarm",
+
+  "@HOME PAGE": "",
+  "pressBtnToAdd": "Tocca + per aggiungere un token",
+  "lastUsed": "Storico",
+
+  "@SELECTED TOKEN PAGE": "",
+  "total":"Totale",
+  "tapped":"Tappate",
+    "@DIALOGS":"",
+    "howManyTokensQuestion": "Quanti token?",
+    "howManyTappedQuestion": "Quanti tappati?",
+    "seelctStats": "Seleziona",
+    "valueCannotBeEmpty": "Il valore non può essere vuoto",
+
+  "@SEARCH_PAGE" :"",
+  "searchCard": "Cerca",
+  "noCardsFound": "Token non trovati",
+  "attention": "Attenzione!",
+  "noCardsFoundDetails": "Non sono stati trovati token con questo nome",
+  "noInternet": "Connessione ad internet non presente",
+  "unknownError": "Errore sconosciuto",
+  "deleteTokenQuestion": "Cancellare il token?",
+  "deleteTokenQuestionDetails": "Si desidera eliminare definitivamente il token?",
+
+  "@ABOUT PAGE":"",
+  "about": "Informazioni",
+
+  "@BUTTONS":"",
+  "cancel": "Annulla",
+  "delete": "Elimina",
+  "confirm": "Conferma",
+  "addToken": "Aggiungi un nuovo token",
+  "select":"Seleziona",
+
+  "@ENDFILE":""
+}

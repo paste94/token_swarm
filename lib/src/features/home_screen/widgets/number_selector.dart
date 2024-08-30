@@ -4,6 +4,7 @@ import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
 import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
 import 'package:token_swarm/src/features/home_screen/widgets/dialogs/edit_number_dialog.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NumberSelector extends ConsumerWidget {
   const NumberSelector({super.key});
@@ -13,8 +14,8 @@ class NumberSelector extends ConsumerWidget {
     var tokenNumber = ref.watch(tokenProvider)?.tokenNumber;
     return Column(
       children: [
-        const IntrinsicHeight(
-          child: Text('Tot'),
+        IntrinsicHeight(
+          child: Text(AppLocalizations.of(context)?.total ?? 'xxx'),
         ),
         IntrinsicHeight(
           child: Row(

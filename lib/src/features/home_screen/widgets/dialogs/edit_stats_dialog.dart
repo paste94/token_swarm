@@ -3,10 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:token_swarm/src/app/const/asset_paths.dart';
 import 'package:token_swarm/src/app/const/heroes.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
 import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditStatsDialog extends ConsumerStatefulWidget {
   const EditStatsDialog({super.key});
@@ -38,11 +40,11 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
             mainAxisSize: MainAxisSize.min,
             children: [
               // Title
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Select stats',
+                    AppLocalizations.of(context)?.seelctStats ?? 'xxx',
                     style: MyTypography.dialogTitle,
                   ),
                 ],
@@ -58,7 +60,7 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                     child: Align(
                       alignment: Alignment.center,
                       child: SvgPicture.asset(
-                        'assets/icons/Ability icons/Power Toughness/Power_outlined.svg',
+                        AssetsPaths.powerIcon,
                         height: DialogIcons.statsDialogIconHeight,
                         colorFilter: ColorFilter.mode(
                           Theme.of(context).iconTheme.color!,
@@ -71,7 +73,7 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                     child: Align(
                       alignment: Alignment.center,
                       child: SvgPicture.asset(
-                        'assets/icons/Ability icons/Power Toughness/Toughness_outlined.svg',
+                        AssetsPaths.toughnessIcon,
                         height: DialogIcons.statsDialogIconHeight,
                         colorFilter: ColorFilter.mode(
                           Theme.of(context).iconTheme.color!,
@@ -115,7 +117,7 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                 children: [
                   TextButton(
                     onPressed: () => context.pop(),
-                    child: const Text('Cancel'),
+                    child: Text(AppLocalizations.of(context)?.cancel ?? 'xxx'),
                   ),
                   const VerticalDivider(
                     width: ConstPadding.padding,
@@ -127,7 +129,7 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                       ref.read(tokenProvider.notifier).setToughness(_toughness);
                       context.pop();
                     },
-                    child: const Text('Accept'),
+                    child: Text(AppLocalizations.of(context)?.confirm ?? 'xxx'),
                   ),
                 ],
               )

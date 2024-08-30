@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
 import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditTokenNumberDialog extends ConsumerStatefulWidget {
   const EditTokenNumberDialog({super.key});
@@ -34,10 +35,10 @@ class _EditTokenNumberDialogState extends ConsumerState<EditTokenNumberDialog> {
           mainAxisSize: MainAxisSize.min,
           children: [
             // Title
-            const Row(
+            Row(
               children: [
                 Text(
-                  'How many tokens?',
+                  AppLocalizations.of(context)?.howManyTokensQuestion ?? 'xxx',
                   style: MyTypography.dialogTitle,
                 ),
               ],
@@ -66,7 +67,7 @@ class _EditTokenNumberDialogState extends ConsumerState<EditTokenNumberDialog> {
               children: [
                 TextButton(
                   onPressed: () => context.pop(),
-                  child: const Text('Cancel'),
+                  child: Text(AppLocalizations.of(context)?.cancel ?? 'xxx'),
                 ),
                 const VerticalDivider(
                   width: ConstPadding.padding,
@@ -75,13 +76,15 @@ class _EditTokenNumberDialogState extends ConsumerState<EditTokenNumberDialog> {
                 TextButton(
                   onPressed: () {
                     if (_numberController.text == '') {
-                      setState(() => _error = 'Value cannot be empty');
+                      setState(() => _error =
+                          AppLocalizations.of(context)?.valueCannotBeEmpty ??
+                              'xxx');
                     }
                     int newVal = int.parse(_numberController.text);
                     ref.read(tokenProvider.notifier).setTokenNumber(newVal);
                     context.pop();
                   },
-                  child: const Text('Accept'),
+                  child: Text(AppLocalizations.of(context)?.confirm ?? 'xxx'),
                 ),
               ],
             )

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
 import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditTappedNumberDialog extends ConsumerStatefulWidget {
   const EditTappedNumberDialog({super.key});
@@ -35,10 +36,10 @@ class _EditTappedNumberDialogState
           mainAxisSize: MainAxisSize.min,
           children: [
             // Title
-            const Row(
+            Row(
               children: [
                 Text(
-                  'How many tapped?',
+                  AppLocalizations.of(context)?.howManyTappedQuestion ?? 'xxx',
                   style: MyTypography.dialogTitle,
                 ),
               ],
@@ -67,7 +68,9 @@ class _EditTappedNumberDialogState
               children: [
                 TextButton(
                   onPressed: () => context.pop(),
-                  child: const Text('Cancel'),
+                  child: Text(
+                    AppLocalizations.of(context)?.cancel ?? 'xxx',
+                  ),
                 ),
                 const VerticalDivider(
                   width: ConstPadding.padding,
@@ -76,13 +79,15 @@ class _EditTappedNumberDialogState
                 TextButton(
                   onPressed: () {
                     if (_numberController.text == '') {
-                      setState(() => _error = 'Value cannot be empty');
+                      setState(() => _error =
+                          AppLocalizations.of(context)?.valueCannotBeEmpty ??
+                              'xxx');
                     }
                     int newVal = int.parse(_numberController.text);
                     ref.read(tokenProvider.notifier).setTappedNumber(newVal);
                     context.pop();
                   },
-                  child: const Text('Accept'),
+                  child: Text(AppLocalizations.of(context)?.confirm ?? 'xxx'),
                 ),
               ],
             )

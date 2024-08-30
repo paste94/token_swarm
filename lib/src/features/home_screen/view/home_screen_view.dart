@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:token_swarm/src/app/const/asset_paths.dart';
 import 'package:token_swarm/src/app/const/heroes.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/routes.dart';
@@ -9,6 +10,7 @@ import 'package:token_swarm/src/features/home_screen/provider/token_provider.dar
 import 'package:token_swarm/src/features/home_screen/view/history_view.dart';
 import 'package:token_swarm/src/features/home_screen/view/token_view.dart';
 import 'package:token_swarm/src/features/search_card/provider/card_name_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreenView extends ConsumerWidget {
   const HomeScreenView({super.key});
@@ -19,13 +21,13 @@ class HomeScreenView extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: Text(AppLocalizations.of(context)?.appName ?? 'xxx'),
         actions: [
           PopupMenuButton(
             itemBuilder: (context) => [
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: 0,
-                child: Text('About'),
+                child: Text(AppLocalizations.of(context)?.about ?? 'xxx'),
               )
             ],
             onSelected: (value) {
@@ -50,22 +52,29 @@ class HomeScreenView extends ConsumerWidget {
                     ? () => showDialog(
                           context: context,
                           builder: (builder) => AlertDialog(
-                              title: const Text('Delete token?'),
-                              content: const SingleChildScrollView(
+                              title: Text(AppLocalizations.of(context)
+                                      ?.deleteTokenQuestion ??
+                                  'xxx'),
+                              content: SingleChildScrollView(
                                 child: ListBody(
                                   children: <Widget>[
-                                    Text(
-                                        'Do you really want to delete this token?'),
+                                    Text(AppLocalizations.of(context)
+                                            ?.deleteTokenQuestionDetails ??
+                                        'xxx'),
                                   ],
                                 ),
                               ),
                               actions: <Widget>[
                                 TextButton(
-                                  child: const Text('Cancel'),
+                                  child: Text(
+                                      AppLocalizations.of(context)?.cancel ??
+                                          'xxx'),
                                   onPressed: () => Navigator.of(context).pop(),
                                 ),
                                 TextButton(
-                                  child: const Text('Delete'),
+                                  child: Text(
+                                      AppLocalizations.of(context)?.delete ??
+                                          'xxx'),
                                   onPressed: () => ref
                                       .read(tokenProvider.notifier)
                                       .removeToken()
@@ -79,7 +88,7 @@ class HomeScreenView extends ConsumerWidget {
               ),
               IconButton(
                 icon: SvgPicture.asset(
-                  'assets/icons/Mana/Q_reversed.svg',
+                  AssetsPaths.untapIcon,
                   height: 19,
                   colorFilter: ColorFilter.mode(
                     Theme.of(context).iconTheme.color!,
@@ -100,7 +109,7 @@ class HomeScreenView extends ConsumerWidget {
           ref.read(searchCardNameProvider.notifier).setState('');
           context.push(RoutePath.searchCard);
         },
-        tooltip: 'Add New Item',
+        tooltip: AppLocalizations.of(context)?.addToken ?? 'xxx',
         elevation: 0.0,
         child: Icon(
           isTokenSelected ? Icons.refresh : Icons.add,

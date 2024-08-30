@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:token_swarm/src/app/persistence/provider/persistence.dart';
 import 'package:token_swarm/src/features/home_screen/widgets/history_list.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HistoryView extends ConsumerStatefulWidget {
   const HistoryView({super.key});
@@ -24,7 +25,9 @@ class _HistoryViewState extends ConsumerState<HistoryView> {
     return Container(
       child: historyList.isNotEmpty
           ? HistoryList(data: historyList)
-          : const Center(child: Text('Press + button to add a token')),
+          : Center(
+              child:
+                  Text(AppLocalizations.of(context)?.pressBtnToAdd ?? 'xxx')),
     );
   }
 }

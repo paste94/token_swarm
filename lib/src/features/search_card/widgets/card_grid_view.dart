@@ -7,6 +7,7 @@ import 'package:token_swarm/src/app/model/token_model.dart';
 import 'package:token_swarm/src/features/search_card/provider/card_name_provider.dart';
 import 'package:token_swarm/src/features/search_card/provider/exceptions/card_name_exception.dart';
 import 'package:token_swarm/src/features/search_card/widgets/card_list_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CardGridView extends ConsumerStatefulWidget {
   const CardGridView({super.key});
@@ -24,9 +25,9 @@ class _CardGridViewState extends ConsumerState<CardGridView> {
               cardList.data.map((token) => CardListItem(token: token)).toList(),
         )
       : AlertCard(
-          iconText: 'No cards found!',
-          title: 'Attention!',
-          text: 'Search did not make any result :(',
+          iconText: AppLocalizations.of(context)?.noCardsFound ?? 'xxx',
+          title: AppLocalizations.of(context)?.attention ?? 'xxx',
+          text: AppLocalizations.of(context)?.noCardsFoundDetails ?? 'xxx',
           color: Colors.green[300],
           icon: Icons.search_off,
           iconColor: Colors.black54,
@@ -35,9 +36,11 @@ class _CardGridViewState extends ConsumerState<CardGridView> {
   Widget _onLoading() => const Center(child: CircularProgressIndicator());
 
   Widget _onError(err, s) => AlertCard(
-        iconText: 'No internet!',
-        title: 'Attention!',
-        text: err is CardNameException ? err.message : 'Unknown error occurred',
+        iconText: AppLocalizations.of(context)?.noInternet ?? 'xxx',
+        title: AppLocalizations.of(context)?.attention ?? 'xxx',
+        text: err is CardNameException
+            ? err.message
+            : AppLocalizations.of(context)?.unknownError ?? 'xxx',
         color: Colors.red[300],
         icon: Icons.cloud_off,
         iconColor: Colors.white,
@@ -46,7 +49,6 @@ class _CardGridViewState extends ConsumerState<CardGridView> {
   @override
   Widget build(BuildContext context) {
     final cardList = ref.watch(fetchCardsProvider);
-    print('************ FETCHED ');
     return cardList.when(
       data: _onData,
       error: _onError,

@@ -6,7 +6,7 @@ part of 'persistence.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$persistenceHash() => r'a2d9356f24adc6b73a9ab24e3dfff7e58ec95c41';
+String _$persistenceHash() => r'751ad0a5113cc1ac1fd3284d8c5e880404d24466';
 
 /// dart run build_runner build
 ///

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:token_swarm/src/app/const/routes.dart';
 import 'package:token_swarm/src/features/about/about_view.dart';
 import 'package:token_swarm/src/features/home_screen/home_screen.dart';
 import 'package:token_swarm/src/features/search_card/search_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+// flutter gen-l10n
 
 class AppView extends ConsumerWidget {
   AppView({super.key});
@@ -31,6 +35,8 @@ class AppView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       routerConfig: _router,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
         iconTheme: const IconThemeData(
           color: Colors.black54, // Custom default color for icons
