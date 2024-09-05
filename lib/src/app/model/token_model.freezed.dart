@@ -16,9 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TokenModel {
-  MtgCard get mtgCard => throw _privateConstructorUsedError;
   int? get power => throw _privateConstructorUsedError;
   int? get toughness => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  List<CardFace>? get cardFaces => throw _privateConstructorUsedError;
+  ImageUris? get imageUris => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   int get tokenNumber => throw _privateConstructorUsedError;
   int get tappedNumber => throw _privateConstructorUsedError;
   int get prevTappedNumber => throw _privateConstructorUsedError;
@@ -36,9 +39,12 @@ abstract class $TokenModelCopyWith<$Res> {
       _$TokenModelCopyWithImpl<$Res, TokenModel>;
   @useResult
   $Res call(
-      {MtgCard mtgCard,
-      int? power,
+      {int? power,
       int? toughness,
+      String id,
+      List<CardFace>? cardFaces,
+      ImageUris? imageUris,
+      String name,
       int tokenNumber,
       int tappedNumber,
       int prevTappedNumber,
@@ -58,19 +64,18 @@ class _$TokenModelCopyWithImpl<$Res, $Val extends TokenModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mtgCard = null,
     Object? power = freezed,
     Object? toughness = freezed,
+    Object? id = null,
+    Object? cardFaces = freezed,
+    Object? imageUris = freezed,
+    Object? name = null,
     Object? tokenNumber = null,
     Object? tappedNumber = null,
     Object? prevTappedNumber = null,
     Object? weakNumber = null,
   }) {
     return _then(_value.copyWith(
-      mtgCard: null == mtgCard
-          ? _value.mtgCard
-          : mtgCard // ignore: cast_nullable_to_non_nullable
-              as MtgCard,
       power: freezed == power
           ? _value.power
           : power // ignore: cast_nullable_to_non_nullable
@@ -79,6 +84,22 @@ class _$TokenModelCopyWithImpl<$Res, $Val extends TokenModel>
           ? _value.toughness
           : toughness // ignore: cast_nullable_to_non_nullable
               as int?,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      cardFaces: freezed == cardFaces
+          ? _value.cardFaces
+          : cardFaces // ignore: cast_nullable_to_non_nullable
+              as List<CardFace>?,
+      imageUris: freezed == imageUris
+          ? _value.imageUris
+          : imageUris // ignore: cast_nullable_to_non_nullable
+              as ImageUris?,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       tokenNumber: null == tokenNumber
           ? _value.tokenNumber
           : tokenNumber // ignore: cast_nullable_to_non_nullable
@@ -108,9 +129,12 @@ abstract class _$$TokenModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {MtgCard mtgCard,
-      int? power,
+      {int? power,
       int? toughness,
+      String id,
+      List<CardFace>? cardFaces,
+      ImageUris? imageUris,
+      String name,
       int tokenNumber,
       int tappedNumber,
       int prevTappedNumber,
@@ -128,19 +152,18 @@ class __$$TokenModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mtgCard = null,
     Object? power = freezed,
     Object? toughness = freezed,
+    Object? id = null,
+    Object? cardFaces = freezed,
+    Object? imageUris = freezed,
+    Object? name = null,
     Object? tokenNumber = null,
     Object? tappedNumber = null,
     Object? prevTappedNumber = null,
     Object? weakNumber = null,
   }) {
     return _then(_$TokenModelImpl(
-      mtgCard: null == mtgCard
-          ? _value.mtgCard
-          : mtgCard // ignore: cast_nullable_to_non_nullable
-              as MtgCard,
       power: freezed == power
           ? _value.power
           : power // ignore: cast_nullable_to_non_nullable
@@ -149,6 +172,22 @@ class __$$TokenModelImplCopyWithImpl<$Res>
           ? _value.toughness
           : toughness // ignore: cast_nullable_to_non_nullable
               as int?,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      cardFaces: freezed == cardFaces
+          ? _value._cardFaces
+          : cardFaces // ignore: cast_nullable_to_non_nullable
+              as List<CardFace>?,
+      imageUris: freezed == imageUris
+          ? _value.imageUris
+          : imageUris // ignore: cast_nullable_to_non_nullable
+              as ImageUris?,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       tokenNumber: null == tokenNumber
           ? _value.tokenNumber
           : tokenNumber // ignore: cast_nullable_to_non_nullable
@@ -173,21 +212,39 @@ class __$$TokenModelImplCopyWithImpl<$Res>
 
 class _$TokenModelImpl extends _TokenModel {
   _$TokenModelImpl(
-      {required this.mtgCard,
-      required this.power,
+      {required this.power,
       required this.toughness,
+      required this.id,
+      required final List<CardFace>? cardFaces,
+      required this.imageUris,
+      required this.name,
       this.tokenNumber = 0,
       this.tappedNumber = 0,
       this.prevTappedNumber = 0,
       this.weakNumber = 0})
-      : super._();
+      : _cardFaces = cardFaces,
+        super._();
 
-  @override
-  final MtgCard mtgCard;
   @override
   final int? power;
   @override
   final int? toughness;
+  @override
+  final String id;
+  final List<CardFace>? _cardFaces;
+  @override
+  List<CardFace>? get cardFaces {
+    final value = _cardFaces;
+    if (value == null) return null;
+    if (_cardFaces is EqualUnmodifiableListView) return _cardFaces;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final ImageUris? imageUris;
+  @override
+  final String name;
   @override
   @JsonKey()
   final int tokenNumber;
@@ -203,7 +260,7 @@ class _$TokenModelImpl extends _TokenModel {
 
   @override
   String toString() {
-    return 'TokenModel(mtgCard: $mtgCard, power: $power, toughness: $toughness, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber, prevTappedNumber: $prevTappedNumber, weakNumber: $weakNumber)';
+    return 'TokenModel(power: $power, toughness: $toughness, id: $id, cardFaces: $cardFaces, imageUris: $imageUris, name: $name, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber, prevTappedNumber: $prevTappedNumber, weakNumber: $weakNumber)';
   }
 
   @override
@@ -211,10 +268,15 @@ class _$TokenModelImpl extends _TokenModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TokenModelImpl &&
-            (identical(other.mtgCard, mtgCard) || other.mtgCard == mtgCard) &&
             (identical(other.power, power) || other.power == power) &&
             (identical(other.toughness, toughness) ||
                 other.toughness == toughness) &&
+            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality()
+                .equals(other._cardFaces, _cardFaces) &&
+            (identical(other.imageUris, imageUris) ||
+                other.imageUris == imageUris) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.tokenNumber, tokenNumber) ||
                 other.tokenNumber == tokenNumber) &&
             (identical(other.tappedNumber, tappedNumber) ||
@@ -226,8 +288,18 @@ class _$TokenModelImpl extends _TokenModel {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, mtgCard, power, toughness,
-      tokenNumber, tappedNumber, prevTappedNumber, weakNumber);
+  int get hashCode => Object.hash(
+      runtimeType,
+      power,
+      toughness,
+      id,
+      const DeepCollectionEquality().hash(_cardFaces),
+      imageUris,
+      name,
+      tokenNumber,
+      tappedNumber,
+      prevTappedNumber,
+      weakNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -238,9 +310,12 @@ class _$TokenModelImpl extends _TokenModel {
 
 abstract class _TokenModel extends TokenModel {
   factory _TokenModel(
-      {required final MtgCard mtgCard,
-      required final int? power,
+      {required final int? power,
       required final int? toughness,
+      required final String id,
+      required final List<CardFace>? cardFaces,
+      required final ImageUris? imageUris,
+      required final String name,
       final int tokenNumber,
       final int tappedNumber,
       final int prevTappedNumber,
@@ -248,11 +323,17 @@ abstract class _TokenModel extends TokenModel {
   _TokenModel._() : super._();
 
   @override
-  MtgCard get mtgCard;
-  @override
   int? get power;
   @override
   int? get toughness;
+  @override
+  String get id;
+  @override
+  List<CardFace>? get cardFaces;
+  @override
+  ImageUris? get imageUris;
+  @override
+  String get name;
   @override
   int get tokenNumber;
   @override

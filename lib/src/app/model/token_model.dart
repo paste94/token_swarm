@@ -9,28 +9,26 @@ part "token_model.freezed.dart";
 class TokenModel with _$TokenModel {
   const TokenModel._();
   factory TokenModel({
-    required MtgCard mtgCard,
     required int? power,
     required int? toughness,
+    required String id,
+    required List<CardFace>? cardFaces,
+    required ImageUris? imageUris,
+    required String name,
     @Default(0) int tokenNumber,
     @Default(0) int tappedNumber,
     @Default(0) int prevTappedNumber,
     @Default(0) int weakNumber,
   }) = _TokenModel;
 
-  factory TokenModel.fromMtgCard({
-    required MtgCard mtgCard,
-  }) =>
-      TokenModel(
-        mtgCard: mtgCard,
+  factory TokenModel.fromMtgCard(MtgCard mtgCard) => TokenModel(
         power: _getValue(mtgCard.power),
         toughness: _getValue(mtgCard.toughness),
+        id: mtgCard.id,
+        cardFaces: mtgCard.cardFaces,
+        imageUris: mtgCard.imageUris,
+        name: mtgCard.name,
       );
-
-  String get id => mtgCard.id;
-  List<CardFace>? get cardFaces => mtgCard.cardFaces;
-  ImageUris? get imageUris => mtgCard.imageUris;
-  String get name => mtgCard.name;
 
   static int? _getValue(String? s) {
     if (s == null) {

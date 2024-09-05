@@ -26,8 +26,9 @@ class Token extends _$Token {
 
   Future<void> setTokenFromId(String id) async {
     final card = await apiClient.getCardById(id);
-    final token = TokenModel.fromMtgCard(mtgCard: card);
+    final token = TokenModel.fromMtgCard(card);
     setToken(token);
+    // setToken(await apiClient.getCardById(id) as TokenModel);
   }
 
   void setTokenNumber(int newVal) {

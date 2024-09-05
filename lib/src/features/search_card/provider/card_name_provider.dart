@@ -34,7 +34,7 @@ Future<PaginableList<TokenModel>> fetchCards(ref) async {
     final filteredCardList = PaginableList(
       data: cardList.data
           .where((element) => element.typeLine.contains('Token'))
-          .map((e) => TokenModel.fromMtgCard(mtgCard: e))
+          .map((e) => TokenModel.fromMtgCard(e))
           .toList(),
       hasMore: true,
     );
