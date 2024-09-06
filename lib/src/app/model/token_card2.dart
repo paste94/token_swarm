@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:scryfall_api/scryfall_api.dart';
 
-part 'token_card.freezed.dart';
+part 'token_card2.freezed.dart';
 
 /// dart run build_runner build
 

@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:scryfall_api/scryfall_api.dart';
 import 'package:token_swarm/src/app/model/token_preview.dart';
-import 'package:token_swarm/src/app/model/token_card.dart';
+import 'package:token_swarm/src/app/model/token_card2.dart';
 import 'package:token_swarm/src/app/persistence/provider/persistence.dart';
 
 part 'token_provider.g.dart';

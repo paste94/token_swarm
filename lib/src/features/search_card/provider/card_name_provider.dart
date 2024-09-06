@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:scryfall_api/scryfall_api.dart';
-import 'package:token_swarm/src/app/model/token_card.dart';
+import 'package:token_swarm/src/app/model/token_card2.dart';
 import 'package:token_swarm/src/features/search_card/provider/exceptions/card_name_exception.dart';
 
 part 'card_name_provider.g.dart';

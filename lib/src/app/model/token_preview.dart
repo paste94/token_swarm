@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:token_swarm/src/app/model/token_card.dart';
+import 'package:token_swarm/src/app/model/token_card2.dart';
 
 part "token_preview.freezed.dart";
 
