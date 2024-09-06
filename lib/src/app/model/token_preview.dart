@@ -1,35 +1,35 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:token_swarm/src/app/model/token_model.dart';
+import 'package:token_swarm/src/app/model/token_card.dart';
 
-part "mini_token_model.freezed.dart";
+part "token_preview.freezed.dart";
 
 /// dart run build_runner build
 
 @freezed
-class MiniTokenModel with _$MiniTokenModel {
-  const MiniTokenModel._();
-  factory MiniTokenModel({
+class TokenPreview with _$TokenPreview {
+  const TokenPreview._();
+  factory TokenPreview({
     required String id,
     required String name,
     String? imageUri,
-  }) = _MiniTokenModel;
+  }) = _TokenPreview;
 
-  factory MiniTokenModel.fromMap({
+  factory TokenPreview.fromMap({
     required Map<String, Object?> map,
   }) =>
-      MiniTokenModel(
+      TokenPreview(
         id: map['id'].toString(),
         name: map['name'].toString(),
         imageUri: map['image_uri'].toString(),
       );
 
-  factory MiniTokenModel.fromToken(TokenModel token) => MiniTokenModel(
+  factory TokenPreview.fromToken(TokenCard token) => TokenPreview(
         id: token.id,
         name: token.name,
         imageUri: _getImageUri(token),
       );
 
-  static String _getImageUri(TokenModel token) =>
+  static String _getImageUri(TokenCard token) =>
       token.cardFaces?[0].imageUris?.small.toString() ??
       token.imageUris?.small.toString() ??
       '';

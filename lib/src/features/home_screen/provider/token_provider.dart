@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:scryfall_api/scryfall_api.dart';
-import 'package:token_swarm/src/app/model/mini_token_model.dart';
-import 'package:token_swarm/src/app/model/token_model.dart';
+import 'package:token_swarm/src/app/model/token_preview.dart';
+import 'package:token_swarm/src/app/model/token_card.dart';
 import 'package:token_swarm/src/app/persistence/provider/persistence.dart';
 
 part 'token_provider.g.dart';
@@ -13,20 +13,20 @@ class Token extends _$Token {
   final apiClient = ScryfallApiClient();
 
   @override
-  TokenModel? build() {
+  TokenCard? build() {
     return null;
   }
 
-  void setToken(TokenModel token) {
+  void setToken(TokenCard token) {
     state = token;
     ref
         .read(persistenceProvider.notifier)
-        .insert(MiniTokenModel.fromToken(token));
+        .insert(TokenPreview.fromToken(token));
   }
 
   Future<void> setTokenFromId(String id) async {
     final card = await apiClient.getCardById(id);
-    final token = TokenModel.fromMtgCard(card);
+    final token = TokenCard.fromMtgCard(card);
     setToken(token);
     // setToken(await apiClient.getCardById(id) as TokenModel);
   }

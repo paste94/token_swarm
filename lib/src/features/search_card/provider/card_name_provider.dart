@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:scryfall_api/scryfall_api.dart';
-import 'package:token_swarm/src/app/model/token_model.dart';
+import 'package:token_swarm/src/app/model/token_card.dart';
 import 'package:token_swarm/src/features/search_card/provider/exceptions/card_name_exception.dart';
 
 part 'card_name_provider.g.dart';
@@ -24,7 +24,7 @@ class SearchCardName extends _$SearchCardName {
 }
 
 @Riverpod()
-Future<PaginableList<TokenModel>> fetchCards(ref) async {
+Future<PaginableList<TokenCard>> fetchCards(ref) async {
   try {
     final cardName = ref.watch(searchCardNameProvider);
     if (cardName.isEmpty || cardName.length < 2) {
@@ -34,7 +34,7 @@ Future<PaginableList<TokenModel>> fetchCards(ref) async {
     final filteredCardList = PaginableList(
       data: cardList.data
           .where((element) => element.typeLine.contains('Token'))
-          .map((e) => TokenModel.fromMtgCard(e))
+          .map((e) => TokenCard.fromMtgCard(e))
           .toList(),
       hasMore: true,
     );

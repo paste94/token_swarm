@@ -6,14 +6,14 @@ part of 'persistence.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$persistenceHash() => r'751ad0a5113cc1ac1fd3284d8c5e880404d24466';
+String _$persistenceHash() => r'826484ba868eb90b932ba93043e267431b1964c8';
 
 /// dart run build_runner build
 ///
 /// Copied from [Persistence].
 @ProviderFor(Persistence)
 final persistenceProvider =
-    NotifierProvider<Persistence, List<MiniTokenModel>>.internal(
+    NotifierProvider<Persistence, List<TokenPreview>>.internal(
   Persistence.new,
   name: r'persistenceProvider',
   debugGetCreateSourceHash:
@@ -22,6 +22,6 @@ final persistenceProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$Persistence = Notifier<List<MiniTokenModel>>;
+typedef _$Persistence = Notifier<List<TokenPreview>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

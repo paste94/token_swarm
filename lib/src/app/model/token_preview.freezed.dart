@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'mini_token_model.dart';
+part of 'token_preview.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,29 +15,29 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$MiniTokenModel {
+mixin _$TokenPreview {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get imageUri => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $MiniTokenModelCopyWith<MiniTokenModel> get copyWith =>
+  $TokenPreviewCopyWith<TokenPreview> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MiniTokenModelCopyWith<$Res> {
-  factory $MiniTokenModelCopyWith(
-          MiniTokenModel value, $Res Function(MiniTokenModel) then) =
-      _$MiniTokenModelCopyWithImpl<$Res, MiniTokenModel>;
+abstract class $TokenPreviewCopyWith<$Res> {
+  factory $TokenPreviewCopyWith(
+          TokenPreview value, $Res Function(TokenPreview) then) =
+      _$TokenPreviewCopyWithImpl<$Res, TokenPreview>;
   @useResult
   $Res call({String id, String name, String? imageUri});
 }
 
 /// @nodoc
-class _$MiniTokenModelCopyWithImpl<$Res, $Val extends MiniTokenModel>
-    implements $MiniTokenModelCopyWith<$Res> {
-  _$MiniTokenModelCopyWithImpl(this._value, this._then);
+class _$TokenPreviewCopyWithImpl<$Res, $Val extends TokenPreview>
+    implements $TokenPreviewCopyWith<$Res> {
+  _$TokenPreviewCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -69,22 +69,22 @@ class _$MiniTokenModelCopyWithImpl<$Res, $Val extends MiniTokenModel>
 }
 
 /// @nodoc
-abstract class _$$MiniTokenModelImplCopyWith<$Res>
-    implements $MiniTokenModelCopyWith<$Res> {
-  factory _$$MiniTokenModelImplCopyWith(_$MiniTokenModelImpl value,
-          $Res Function(_$MiniTokenModelImpl) then) =
-      __$$MiniTokenModelImplCopyWithImpl<$Res>;
+abstract class _$$TokenPreviewImplCopyWith<$Res>
+    implements $TokenPreviewCopyWith<$Res> {
+  factory _$$TokenPreviewImplCopyWith(
+          _$TokenPreviewImpl value, $Res Function(_$TokenPreviewImpl) then) =
+      __$$TokenPreviewImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String name, String? imageUri});
 }
 
 /// @nodoc
-class __$$MiniTokenModelImplCopyWithImpl<$Res>
-    extends _$MiniTokenModelCopyWithImpl<$Res, _$MiniTokenModelImpl>
-    implements _$$MiniTokenModelImplCopyWith<$Res> {
-  __$$MiniTokenModelImplCopyWithImpl(
-      _$MiniTokenModelImpl _value, $Res Function(_$MiniTokenModelImpl) _then)
+class __$$TokenPreviewImplCopyWithImpl<$Res>
+    extends _$TokenPreviewCopyWithImpl<$Res, _$TokenPreviewImpl>
+    implements _$$TokenPreviewImplCopyWith<$Res> {
+  __$$TokenPreviewImplCopyWithImpl(
+      _$TokenPreviewImpl _value, $Res Function(_$TokenPreviewImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -94,7 +94,7 @@ class __$$MiniTokenModelImplCopyWithImpl<$Res>
     Object? name = null,
     Object? imageUri = freezed,
   }) {
-    return _then(_$MiniTokenModelImpl(
+    return _then(_$TokenPreviewImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -113,8 +113,8 @@ class __$$MiniTokenModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MiniTokenModelImpl extends _MiniTokenModel {
-  _$MiniTokenModelImpl({required this.id, required this.name, this.imageUri})
+class _$TokenPreviewImpl extends _TokenPreview {
+  _$TokenPreviewImpl({required this.id, required this.name, this.imageUri})
       : super._();
 
   @override
@@ -126,14 +126,14 @@ class _$MiniTokenModelImpl extends _MiniTokenModel {
 
   @override
   String toString() {
-    return 'MiniTokenModel(id: $id, name: $name, imageUri: $imageUri)';
+    return 'TokenPreview(id: $id, name: $name, imageUri: $imageUri)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MiniTokenModelImpl &&
+            other is _$TokenPreviewImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.imageUri, imageUri) ||
@@ -146,17 +146,16 @@ class _$MiniTokenModelImpl extends _MiniTokenModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MiniTokenModelImplCopyWith<_$MiniTokenModelImpl> get copyWith =>
-      __$$MiniTokenModelImplCopyWithImpl<_$MiniTokenModelImpl>(
-          this, _$identity);
+  _$$TokenPreviewImplCopyWith<_$TokenPreviewImpl> get copyWith =>
+      __$$TokenPreviewImplCopyWithImpl<_$TokenPreviewImpl>(this, _$identity);
 }
 
-abstract class _MiniTokenModel extends MiniTokenModel {
-  factory _MiniTokenModel(
+abstract class _TokenPreview extends TokenPreview {
+  factory _TokenPreview(
       {required final String id,
       required final String name,
-      final String? imageUri}) = _$MiniTokenModelImpl;
-  _MiniTokenModel._() : super._();
+      final String? imageUri}) = _$TokenPreviewImpl;
+  _TokenPreview._() : super._();
 
   @override
   String get id;
@@ -166,6 +165,6 @@ abstract class _MiniTokenModel extends MiniTokenModel {
   String? get imageUri;
   @override
   @JsonKey(ignore: true)
-  _$$MiniTokenModelImplCopyWith<_$MiniTokenModelImpl> get copyWith =>
+  _$$TokenPreviewImplCopyWith<_$TokenPreviewImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

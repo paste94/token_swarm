@@ -6,12 +6,12 @@ part of 'card_name_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fetchCardsHash() => r'06dc275e9cbc3d8b51bc08bf519ba72103d1f35b';
+String _$fetchCardsHash() => r'fceea90e8d3666c7926bf2c593d47cc3fe4818a0';
 
 /// See also [fetchCards].
 @ProviderFor(fetchCards)
 final fetchCardsProvider =
-    AutoDisposeFutureProvider<PaginableList<TokenModel>>.internal(
+    AutoDisposeFutureProvider<PaginableList<TokenCard>>.internal(
   fetchCards,
   name: r'fetchCardsProvider',
   debugGetCreateSourceHash:
@@ -20,7 +20,7 @@ final fetchCardsProvider =
   allTransitiveDependencies: null,
 );
 
-typedef FetchCardsRef = AutoDisposeFutureProviderRef<PaginableList<TokenModel>>;
+typedef FetchCardsRef = AutoDisposeFutureProviderRef<PaginableList<TokenCard>>;
 String _$searchCardNameHash() => r'2f820d049be10ad2a54a7ab5f2b2c688b7df18d3';
 
 /// See also [SearchCardName].

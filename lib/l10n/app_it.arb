@@ -20,6 +20,7 @@
   "attention": "Attenzione!",
   "noCardsFoundDetails": "Non sono stati trovati token con questo nome",
   "noInternet": "Connessione ad internet non presente",
+  "noInternetDetails": "E' necessario collegarsi a internet per proseguire",
   "unknownError": "Errore sconosciuto",
   "deleteTokenQuestion": "Cancellare il token?",
   "deleteTokenQuestionDetails": "Si desidera eliminare definitivamente il token?",

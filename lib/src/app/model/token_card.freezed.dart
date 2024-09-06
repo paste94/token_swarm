@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'token_model.dart';
+part of 'token_card.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$TokenModel {
+mixin _$TokenCard {
   int? get power => throw _privateConstructorUsedError;
   int? get toughness => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
@@ -28,15 +28,14 @@ mixin _$TokenModel {
   int get weakNumber => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $TokenModelCopyWith<TokenModel> get copyWith =>
+  $TokenCardCopyWith<TokenCard> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TokenModelCopyWith<$Res> {
-  factory $TokenModelCopyWith(
-          TokenModel value, $Res Function(TokenModel) then) =
-      _$TokenModelCopyWithImpl<$Res, TokenModel>;
+abstract class $TokenCardCopyWith<$Res> {
+  factory $TokenCardCopyWith(TokenCard value, $Res Function(TokenCard) then) =
+      _$TokenCardCopyWithImpl<$Res, TokenCard>;
   @useResult
   $Res call(
       {int? power,
@@ -52,9 +51,9 @@ abstract class $TokenModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TokenModelCopyWithImpl<$Res, $Val extends TokenModel>
-    implements $TokenModelCopyWith<$Res> {
-  _$TokenModelCopyWithImpl(this._value, this._then);
+class _$TokenCardCopyWithImpl<$Res, $Val extends TokenCard>
+    implements $TokenCardCopyWith<$Res> {
+  _$TokenCardCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -121,11 +120,11 @@ class _$TokenModelCopyWithImpl<$Res, $Val extends TokenModel>
 }
 
 /// @nodoc
-abstract class _$$TokenModelImplCopyWith<$Res>
-    implements $TokenModelCopyWith<$Res> {
-  factory _$$TokenModelImplCopyWith(
-          _$TokenModelImpl value, $Res Function(_$TokenModelImpl) then) =
-      __$$TokenModelImplCopyWithImpl<$Res>;
+abstract class _$$TokenCardImplCopyWith<$Res>
+    implements $TokenCardCopyWith<$Res> {
+  factory _$$TokenCardImplCopyWith(
+          _$TokenCardImpl value, $Res Function(_$TokenCardImpl) then) =
+      __$$TokenCardImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -142,11 +141,11 @@ abstract class _$$TokenModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$TokenModelImplCopyWithImpl<$Res>
-    extends _$TokenModelCopyWithImpl<$Res, _$TokenModelImpl>
-    implements _$$TokenModelImplCopyWith<$Res> {
-  __$$TokenModelImplCopyWithImpl(
-      _$TokenModelImpl _value, $Res Function(_$TokenModelImpl) _then)
+class __$$TokenCardImplCopyWithImpl<$Res>
+    extends _$TokenCardCopyWithImpl<$Res, _$TokenCardImpl>
+    implements _$$TokenCardImplCopyWith<$Res> {
+  __$$TokenCardImplCopyWithImpl(
+      _$TokenCardImpl _value, $Res Function(_$TokenCardImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -163,7 +162,7 @@ class __$$TokenModelImplCopyWithImpl<$Res>
     Object? prevTappedNumber = null,
     Object? weakNumber = null,
   }) {
-    return _then(_$TokenModelImpl(
+    return _then(_$TokenCardImpl(
       power: freezed == power
           ? _value.power
           : power // ignore: cast_nullable_to_non_nullable
@@ -210,8 +209,8 @@ class __$$TokenModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TokenModelImpl extends _TokenModel {
-  _$TokenModelImpl(
+class _$TokenCardImpl extends _TokenCard {
+  _$TokenCardImpl(
       {required this.power,
       required this.toughness,
       required this.id,
@@ -260,14 +259,14 @@ class _$TokenModelImpl extends _TokenModel {
 
   @override
   String toString() {
-    return 'TokenModel(power: $power, toughness: $toughness, id: $id, cardFaces: $cardFaces, imageUris: $imageUris, name: $name, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber, prevTappedNumber: $prevTappedNumber, weakNumber: $weakNumber)';
+    return 'TokenCard(power: $power, toughness: $toughness, id: $id, cardFaces: $cardFaces, imageUris: $imageUris, name: $name, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber, prevTappedNumber: $prevTappedNumber, weakNumber: $weakNumber)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TokenModelImpl &&
+            other is _$TokenCardImpl &&
             (identical(other.power, power) || other.power == power) &&
             (identical(other.toughness, toughness) ||
                 other.toughness == toughness) &&
@@ -304,12 +303,12 @@ class _$TokenModelImpl extends _TokenModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TokenModelImplCopyWith<_$TokenModelImpl> get copyWith =>
-      __$$TokenModelImplCopyWithImpl<_$TokenModelImpl>(this, _$identity);
+  _$$TokenCardImplCopyWith<_$TokenCardImpl> get copyWith =>
+      __$$TokenCardImplCopyWithImpl<_$TokenCardImpl>(this, _$identity);
 }
 
-abstract class _TokenModel extends TokenModel {
-  factory _TokenModel(
+abstract class _TokenCard extends TokenCard {
+  factory _TokenCard(
       {required final int? power,
       required final int? toughness,
       required final String id,
@@ -319,8 +318,8 @@ abstract class _TokenModel extends TokenModel {
       final int tokenNumber,
       final int tappedNumber,
       final int prevTappedNumber,
-      final int weakNumber}) = _$TokenModelImpl;
-  _TokenModel._() : super._();
+      final int weakNumber}) = _$TokenCardImpl;
+  _TokenCard._() : super._();
 
   @override
   int? get power;
@@ -344,6 +343,6 @@ abstract class _TokenModel extends TokenModel {
   int get weakNumber;
   @override
   @JsonKey(ignore: true)
-  _$$TokenModelImplCopyWith<_$TokenModelImpl> get copyWith =>
+  _$$TokenCardImplCopyWith<_$TokenCardImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

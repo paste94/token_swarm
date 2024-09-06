@@ -3,14 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:token_swarm/src/app/common_widgets/mtg_card_image_viewer.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
-import 'package:token_swarm/src/app/model/token_model.dart';
+import 'package:token_swarm/src/app/model/token_card.dart';
 import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CardListItem extends ConsumerStatefulWidget {
   const CardListItem({super.key, required this.token});
 
-  final TokenModel token;
+  final TokenCard token;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _CardListItemState();

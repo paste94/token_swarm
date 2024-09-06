@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:token_swarm/src/app/model/mini_token_model.dart';
+import 'package:token_swarm/src/app/model/token_preview.dart';
 import 'package:token_swarm/src/app/persistence/repository.dart';
 
 part 'persistence.g.dart';
@@ -11,7 +11,7 @@ class Persistence extends _$Persistence {
   final repository = SqfLiteRepository();
 
   @override
-  List<MiniTokenModel> build() {
+  List<TokenPreview> build() {
     return [];
   }
 
@@ -20,11 +20,11 @@ class Persistence extends _$Persistence {
     state = data;
   }
 
-  void insert(MiniTokenModel token) async {
+  void insert(TokenPreview token) async {
     await repository.insert(token);
   }
 
-  Future<List<MiniTokenModel>> getData() async {
+  Future<List<TokenPreview>> getData() async {
     final data = await repository.get();
     return data;
   }

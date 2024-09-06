@@ -20,6 +20,7 @@
   "attention": "Attention!",
   "noCardsFoundDetails": "Search did not make any result",
   "noInternet": "No internet!",
+  "noInternetDetails": "Please check your internet connection and retry",
   "unknownError": "Unknown error occurred",
   "deleteTokenQuestion": "Delete token?",
   "deleteTokenQuestionDetails": "Do you really want to delete this token?",

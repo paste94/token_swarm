@@ -2,12 +2,12 @@
 import 'package:mockito/mockito.dart';
 import 'package:scryfall_api/scryfall_api.dart';
 import 'package:test/test.dart';
-import 'package:token_swarm/src/app/model/token_model.dart';
+import 'package:token_swarm/src/app/model/token_card.dart';
 
 void main() {
   group('Constructors testing', () {
-    test('Creating TokenModel from MtgCard 1/2 creature', () {
-      final token = TokenModel.fromMtgCard(MockMtgCard(
+    test('Creating TokenCard from MtgCard 1/2 creature', () {
+      final token = TokenCard.fromMtgCard(MockMtgCard(
         power: '1',
         toughness: '2',
       ));
@@ -16,15 +16,15 @@ void main() {
       expect(token.toughness, 2);
     });
 
-    test('Creating TokenModel from MtgCard with no creature', () {
-      final token = TokenModel.fromMtgCard(MockMtgCard());
+    test('Creating TokenCard from MtgCard with no creature', () {
+      final token = TokenCard.fromMtgCard(MockMtgCard());
 
       expect(token.power, null);
       expect(token.toughness, null);
     });
 
-    test('Creating TokenModel from MtgCard with 0/0 creature', () {
-      final token = TokenModel.fromMtgCard(MockMtgCard(
+    test('Creating TokenCard from MtgCard with 0/0 creature', () {
+      final token = TokenCard.fromMtgCard(MockMtgCard(
         power: '0',
         toughness: '0',
       ));
@@ -33,8 +33,8 @@ void main() {
       expect(token.toughness, 0);
     });
 
-    test('Creating TokenModel from MtgCard with X/X creature', () {
-      final token = TokenModel.fromMtgCard(
+    test('Creating TokenCard from MtgCard with X/X creature', () {
+      final token = TokenCard.fromMtgCard(
         MockMtgCard(
           power: 'X',
           toughness: 'X',

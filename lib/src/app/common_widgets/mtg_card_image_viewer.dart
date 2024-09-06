@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:token_swarm/src/app/const/asset_paths.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
-import 'package:token_swarm/src/app/model/token_model.dart';
+import 'package:token_swarm/src/app/model/token_card.dart';
 
 class MtgCardImageViewer extends ConsumerStatefulWidget {
   const MtgCardImageViewer({
@@ -11,7 +11,7 @@ class MtgCardImageViewer extends ConsumerStatefulWidget {
     this.myCard,
     this.borderRadius = BorderRadius.zero,
   });
-  final TokenModel? myCard;
+  final TokenCard? myCard;
   final BorderRadiusGeometry borderRadius;
 
   @override

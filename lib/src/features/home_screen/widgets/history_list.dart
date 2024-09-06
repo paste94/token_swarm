@@ -1,19 +1,16 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:token_swarm/src/app/const/asset_paths.dart';
-import 'package:token_swarm/src/app/model/mini_token_model.dart';
+import 'package:token_swarm/src/app/model/token_preview.dart';
 import 'package:token_swarm/src/app/persistence/provider/persistence.dart';
-import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
 
 class HistoryList extends ConsumerStatefulWidget {
-  const HistoryList({
-    super.key,
-    required this.data,
-  });
-
-  final List<MiniTokenModel> data;
+  const HistoryList({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _HistoryListState();
@@ -30,12 +27,35 @@ class _HistoryListState extends ConsumerState<HistoryList> {
         MediaQuery.of(context).size.height - _tapPosition.dy,
       );
 
-  Widget _buildRow(MiniTokenModel token) {
+  SnackBar _snackBar(String message) => SnackBar(
+        content: Text(message),
+        action: SnackBarAction(
+          label: 'Close',
+          onPressed: () {},
+        ),
+      );
+
+  onSuccess(_) => setState(() => _isItemEnabled = true);
+
+  onError(error, _) {
+    if (error is SocketException) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          _snackBar(AppLocalizations.of(context)?.noInternetDetails ?? 'xxx'));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(_snackBar(error.toString()));
+    }
+    setState(() => _isItemEnabled = true);
+  }
+
+  Widget _buildRow(TokenPreview token) {
     return InkWell(
-      onTap: () async {
+      onTap: () {
         setState(() => _isItemEnabled = false);
-        await ref.read(tokenProvider.notifier).setTokenFromId(token.id);
-        setState(() => _isItemEnabled = true);
+        ref
+            .read(tokenProvider.notifier)
+            .setTokenFromId(token.id)
+            .then(onSuccess)
+            .onError(onError);
       },
       onTapDown: (details) =>
           setState(() => _tapPosition = details.globalPosition),
@@ -73,19 +93,16 @@ class _HistoryListState extends ConsumerState<HistoryList> {
 
   @override
   Widget build(BuildContext context) {
+    final d = ref.watch(persistenceProvider);
     return Column(
       children: [
         Text(AppLocalizations.of(context)?.lastUsed ?? 'xxx'),
         Expanded(
           child: ListView.separated(
-            itemCount: widget.data.length,
-            itemBuilder: (BuildContext context, int i) {
-              // return const Divider(height: 0);
-              return _buildRow(widget.data[i]);
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return const Divider(height: 0);
-            },
+            itemCount: d.length,
+            itemBuilder: (BuildContext context, int i) => _buildRow(d[i]),
+            separatorBuilder: (BuildContext context, int index) =>
+                const Divider(height: 0),
           ),
         ),
       ],

@@ -24,7 +24,7 @@ class _HistoryViewState extends ConsumerState<HistoryView> {
 
     return Container(
       child: historyList.isNotEmpty
-          ? HistoryList(data: historyList)
+          ? const HistoryList()
           : Center(
               child:
                   Text(AppLocalizations.of(context)?.pressBtnToAdd ?? 'xxx')),

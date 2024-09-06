@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:token_swarm/src/app/model/mini_token_model.dart';
+import 'package:token_swarm/src/app/model/token_preview.dart';
 
 class SqfLiteRepository {
   late final Future<Database> database;
@@ -19,7 +19,7 @@ class SqfLiteRepository {
     );
   }
 
-  Future<void> insert(MiniTokenModel token) async {
+  Future<void> insert(TokenPreview token) async {
     final db = await database;
     await db.insert(
       'history',
@@ -28,7 +28,7 @@ class SqfLiteRepository {
     );
   }
 
-  Future<List<MiniTokenModel>> get() async {
+  Future<List<TokenPreview>> get() async {
     late final Database db;
     try {
       db = await database;
@@ -42,8 +42,7 @@ class SqfLiteRepository {
       orderBy: 'timestamp desc',
     );
 
-    final data =
-        historyMaps.map((e) => MiniTokenModel.fromMap(map: e)).toList();
+    final data = historyMaps.map((e) => TokenPreview.fromMap(map: e)).toList();
     return data;
   }
 

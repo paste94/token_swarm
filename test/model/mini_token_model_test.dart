@@ -2,7 +2,7 @@
 import 'package:mockito/mockito.dart';
 import 'package:scryfall_api/scryfall_api.dart';
 import 'package:test/test.dart';
-import 'package:token_swarm/src/app/model/token_model.dart';
+import 'package:token_swarm/src/app/model/token_card.dart';
 
 void main() {
   group('Constructors testing', () {
