@@ -17,8 +17,9 @@ class TokenCard with _$TokenCard {
     required String name,
     @Default(0) int tokenNumber,
     @Default(0) int tappedNumber,
+    @Default(0) int untappedNumber,
     @Default(0) int prevTappedNumber,
-    @Default(0) int weakNumber,
+    @Default(0) int sickNumber,
   }) = _TokenCard;
 
   factory TokenCard.fromMtgCard(MtgCard mtgCard) => TokenCard(

@@ -81,7 +81,7 @@ class _EditTokenNumberDialogState extends ConsumerState<EditTokenNumberDialog> {
                               'xxx');
                     }
                     int newVal = int.parse(_numberController.text);
-                    ref.read(tokenProvider.notifier).setTokenNumber(newVal);
+                    // ref.read(tokenProvider.notifier).setTokenNumber(newVal);
                     context.pop();
                   },
                   child: Text(AppLocalizations.of(context)?.confirm ?? 'xxx'),

@@ -24,8 +24,9 @@ mixin _$TokenCard {
   String get name => throw _privateConstructorUsedError;
   int get tokenNumber => throw _privateConstructorUsedError;
   int get tappedNumber => throw _privateConstructorUsedError;
+  int get untappedNumber => throw _privateConstructorUsedError;
   int get prevTappedNumber => throw _privateConstructorUsedError;
-  int get weakNumber => throw _privateConstructorUsedError;
+  int get sickNumber => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TokenCardCopyWith<TokenCard> get copyWith =>
@@ -46,8 +47,9 @@ abstract class $TokenCardCopyWith<$Res> {
       String name,
       int tokenNumber,
       int tappedNumber,
+      int untappedNumber,
       int prevTappedNumber,
-      int weakNumber});
+      int sickNumber});
 }
 
 /// @nodoc
@@ -71,8 +73,9 @@ class _$TokenCardCopyWithImpl<$Res, $Val extends TokenCard>
     Object? name = null,
     Object? tokenNumber = null,
     Object? tappedNumber = null,
+    Object? untappedNumber = null,
     Object? prevTappedNumber = null,
-    Object? weakNumber = null,
+    Object? sickNumber = null,
   }) {
     return _then(_value.copyWith(
       power: freezed == power
@@ -107,13 +110,17 @@ class _$TokenCardCopyWithImpl<$Res, $Val extends TokenCard>
           ? _value.tappedNumber
           : tappedNumber // ignore: cast_nullable_to_non_nullable
               as int,
+      untappedNumber: null == untappedNumber
+          ? _value.untappedNumber
+          : untappedNumber // ignore: cast_nullable_to_non_nullable
+              as int,
       prevTappedNumber: null == prevTappedNumber
           ? _value.prevTappedNumber
           : prevTappedNumber // ignore: cast_nullable_to_non_nullable
               as int,
-      weakNumber: null == weakNumber
-          ? _value.weakNumber
-          : weakNumber // ignore: cast_nullable_to_non_nullable
+      sickNumber: null == sickNumber
+          ? _value.sickNumber
+          : sickNumber // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -136,8 +143,9 @@ abstract class _$$TokenCardImplCopyWith<$Res>
       String name,
       int tokenNumber,
       int tappedNumber,
+      int untappedNumber,
       int prevTappedNumber,
-      int weakNumber});
+      int sickNumber});
 }
 
 /// @nodoc
@@ -159,8 +167,9 @@ class __$$TokenCardImplCopyWithImpl<$Res>
     Object? name = null,
     Object? tokenNumber = null,
     Object? tappedNumber = null,
+    Object? untappedNumber = null,
     Object? prevTappedNumber = null,
-    Object? weakNumber = null,
+    Object? sickNumber = null,
   }) {
     return _then(_$TokenCardImpl(
       power: freezed == power
@@ -195,13 +204,17 @@ class __$$TokenCardImplCopyWithImpl<$Res>
           ? _value.tappedNumber
           : tappedNumber // ignore: cast_nullable_to_non_nullable
               as int,
+      untappedNumber: null == untappedNumber
+          ? _value.untappedNumber
+          : untappedNumber // ignore: cast_nullable_to_non_nullable
+              as int,
       prevTappedNumber: null == prevTappedNumber
           ? _value.prevTappedNumber
           : prevTappedNumber // ignore: cast_nullable_to_non_nullable
               as int,
-      weakNumber: null == weakNumber
-          ? _value.weakNumber
-          : weakNumber // ignore: cast_nullable_to_non_nullable
+      sickNumber: null == sickNumber
+          ? _value.sickNumber
+          : sickNumber // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -219,8 +232,9 @@ class _$TokenCardImpl extends _TokenCard {
       required this.name,
       this.tokenNumber = 0,
       this.tappedNumber = 0,
+      this.untappedNumber = 0,
       this.prevTappedNumber = 0,
-      this.weakNumber = 0})
+      this.sickNumber = 0})
       : _cardFaces = cardFaces,
         super._();
 
@@ -252,14 +266,17 @@ class _$TokenCardImpl extends _TokenCard {
   final int tappedNumber;
   @override
   @JsonKey()
+  final int untappedNumber;
+  @override
+  @JsonKey()
   final int prevTappedNumber;
   @override
   @JsonKey()
-  final int weakNumber;
+  final int sickNumber;
 
   @override
   String toString() {
-    return 'TokenCard(power: $power, toughness: $toughness, id: $id, cardFaces: $cardFaces, imageUris: $imageUris, name: $name, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber, prevTappedNumber: $prevTappedNumber, weakNumber: $weakNumber)';
+    return 'TokenCard(power: $power, toughness: $toughness, id: $id, cardFaces: $cardFaces, imageUris: $imageUris, name: $name, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber, untappedNumber: $untappedNumber, prevTappedNumber: $prevTappedNumber, sickNumber: $sickNumber)';
   }
 
   @override
@@ -280,10 +297,12 @@ class _$TokenCardImpl extends _TokenCard {
                 other.tokenNumber == tokenNumber) &&
             (identical(other.tappedNumber, tappedNumber) ||
                 other.tappedNumber == tappedNumber) &&
+            (identical(other.untappedNumber, untappedNumber) ||
+                other.untappedNumber == untappedNumber) &&
             (identical(other.prevTappedNumber, prevTappedNumber) ||
                 other.prevTappedNumber == prevTappedNumber) &&
-            (identical(other.weakNumber, weakNumber) ||
-                other.weakNumber == weakNumber));
+            (identical(other.sickNumber, sickNumber) ||
+                other.sickNumber == sickNumber));
   }
 
   @override
@@ -297,8 +316,9 @@ class _$TokenCardImpl extends _TokenCard {
       name,
       tokenNumber,
       tappedNumber,
+      untappedNumber,
       prevTappedNumber,
-      weakNumber);
+      sickNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -317,8 +337,9 @@ abstract class _TokenCard extends TokenCard {
       required final String name,
       final int tokenNumber,
       final int tappedNumber,
+      final int untappedNumber,
       final int prevTappedNumber,
-      final int weakNumber}) = _$TokenCardImpl;
+      final int sickNumber}) = _$TokenCardImpl;
   _TokenCard._() : super._();
 
   @override
@@ -338,9 +359,11 @@ abstract class _TokenCard extends TokenCard {
   @override
   int get tappedNumber;
   @override
+  int get untappedNumber;
+  @override
   int get prevTappedNumber;
   @override
-  int get weakNumber;
+  int get sickNumber;
   @override
   @JsonKey(ignore: true)
   _$$TokenCardImplCopyWith<_$TokenCardImpl> get copyWith =>

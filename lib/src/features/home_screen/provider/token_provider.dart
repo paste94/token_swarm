@@ -31,85 +31,85 @@ class Token extends _$Token {
     // setToken(await apiClient.getCardById(id) as TokenModel);
   }
 
-  void setTokenNumber(int newVal) {
-    if (state == null) {
-      return;
-    }
-    state = state!.copyWith(
-      tokenNumber: newVal,
-    );
-  }
+  // void setTokenNumber(int newVal) {
+  //   if (state == null) {
+  //     return;
+  //   }
+  //   state = state!.copyWith(
+  //     tokenNumber: newVal,
+  //   );
+  // }
 
-  void setTappedNumber(int newVal) {
-    if (state == null) {
-      return;
-    }
-    if (newVal > state!.tokenNumber) {
-      newVal = state!.tokenNumber;
-    }
-    state = state!.copyWith(
-      tappedNumber: newVal,
-    );
-  }
+  // void setTappedNumber(int newVal) {
+  //   if (state == null) {
+  //     return;
+  //   }
+  //   if (newVal > state!.tokenNumber) {
+  //     newVal = state!.tokenNumber;
+  //   }
+  //   state = state!.copyWith(
+  //     tappedNumber: newVal,
+  //   );
+  // }
 
   /// Increases the number of tapped tokens given a number of tokens to tap
-  void increaseTapped(int val) {
-    if (state == null) {
-      return;
-    }
-    if (state!.tappedNumber + val <= state!.tokenNumber) {
-      state = state!.copyWith(
-        tappedNumber: state!.tappedNumber + val,
-      );
-    }
-  }
+  // void increaseTapped(int val) {
+  //   if (state == null) {
+  //     return;
+  //   }
+  //   if (state!.tappedNumber + val <= state!.tokenNumber) {
+  //     state = state!.copyWith(
+  //       tappedNumber: state!.tappedNumber + val,
+  //     );
+  //   }
+  // }
 
   /// Decreases the number of tapped tokens given a number of tokens to untap
-  void decreaseTapped(int val) {
-    if (state == null || state!.tappedNumber == 0) {
-      return;
-    }
-    final newVal = state!.tappedNumber - val;
-    state = state!.copyWith(
-      tappedNumber: newVal >= 0 ? newVal : 0,
-    );
-  }
+  // void decreaseTapped(int val) {
+  //   if (state == null || state!.tappedNumber == 0) {
+  //     return;
+  //   }
+  //   final newVal = state!.tappedNumber - val;
+  //   state = state!.copyWith(
+  //     tappedNumber: newVal >= 0 ? newVal : 0,
+  //   );
+  // }
 
   /// Increases the number of tokens given a number of tokens to add
-  void increaseNumber(int val) {
-    if (state == null) {
-      return;
-    }
-    state = state!.copyWith(
-      tokenNumber: state!.tokenNumber + val,
-    );
-  }
+  // void increaseNumber(int val) {
+  //   if (state == null) {
+  //     return;
+  //   }
+  //   state = state!.copyWith(
+  //     tokenNumber: state!.tokenNumber + val,
+  //   );
+  // }
 
   /// Decreases the number of tokens given a number of tokens to remove
-  void decreaseNumber(int val) {
-    if (state == null || state!.tokenNumber == 0) {
-      return;
-    }
-    final newVal = state!.tokenNumber - val < 0 ? 0 : state!.tokenNumber - val;
-    state = state!.copyWith(
-      tokenNumber: newVal,
-    );
-    if (newVal < state!.tappedNumber) {
-      state = state!.copyWith(
-        tappedNumber: newVal,
-      );
-    }
-  }
+  // void decreaseNumber(int val) {
+  //   if (state == null || state!.tokenNumber == 0) {
+  //     return;
+  //   }
+  //   final newVal = state!.tokenNumber - val < 0 ? 0 : state!.tokenNumber - val;
+  //   state = state!.copyWith(
+  //     tokenNumber: newVal,
+  //   );
+  //   if (newVal < state!.tappedNumber) {
+  //     state = state!.copyWith(
+  //       tappedNumber: newVal,
+  //     );
+  //   }
+  // }
 
-  void newTurn() {
-    if (state == null) {
-      return;
-    }
-    state = state!.copyWith(
-      tappedNumber: 0,
-      weakNumber: 0,
-    );
-  }
+  // void newTurn() {
+  //   if (state == null) {
+  //     return;
+  //   }
+  //   state = state!.copyWith(
+  //     tappedNumber: 0,
+  //     sickNumber: 0,
+  //   );
+  // }
 
   void setPower(int newVal) {
     if (state == null) {
@@ -129,7 +129,95 @@ class Token extends _$Token {
     state = null;
   }
 
+  void addSick({int number = 1}) {
+    print('AAA');
+    if (state == null) {
+      return;
+    }
+    state = state!.copyWith(
+      sickNumber: state!.sickNumber + number,
+      tokenNumber: state!.tokenNumber + number,
+    );
+  }
+
+  void addUntapped({int number = 1}) {
+    if (state == null) {
+      return;
+    }
+    state = state!.copyWith(
+      untappedNumber: state!.untappedNumber + number,
+      tokenNumber: state!.tokenNumber + number,
+    );
+  }
+
+  void removeSick({int number = 1}) {
+    if (state == null) {
+      return;
+    }
+    if (state!.sickNumber - number >= 0) {
+      state = state!.copyWith(
+        sickNumber: state!.sickNumber - number,
+        tokenNumber: state!.tokenNumber - number,
+      );
+    }
+  }
+
+  void removeUntapped({int number = 1}) {
+    if (state == null) {
+      return;
+    }
+    if (state!.untappedNumber - number >= 0) {
+      state = state!.copyWith(
+        untappedNumber: state!.untappedNumber - number,
+        tokenNumber: state!.tokenNumber - number,
+      );
+    }
+  }
+
+  void upkeep() {
+    if (state == null) {
+      return;
+    }
+    int n = state!.sickNumber + state!.tappedNumber;
+    state = state!.copyWith(
+      sickNumber: 0,
+      tappedNumber: 0,
+      untappedNumber: state!.untappedNumber + n,
+    );
+  }
+
   void untapAll() {
-    state = state!.copyWith(tappedNumber: 0);
+    if (state == null) {
+      return;
+    }
+    int n = state!.tappedNumber;
+    state = state!.copyWith(
+      tappedNumber: 0,
+      untappedNumber: state!.untappedNumber + n,
+    );
+  }
+
+  void tap({int number = 1}) {
+    if (state == null) {
+      return;
+    }
+    if (state!.untappedNumber - number >= 0) {
+      state = state!.copyWith(
+        untappedNumber: state!.untappedNumber - number,
+        tappedNumber: state!.tappedNumber + number,
+      );
+    }
+  }
+
+  void untap({int number = 1}) {
+    if (state == null) {
+      return;
+    }
+    if (state!.tappedNumber - number >= 0) {
+      state = state!.copyWith(
+        tappedNumber: state!.tappedNumber - number,
+        untappedNumber: state!.untappedNumber + number,
+      );
+    }
   }
 }

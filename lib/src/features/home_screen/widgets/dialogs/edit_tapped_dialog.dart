@@ -84,7 +84,7 @@ class _EditTappedNumberDialogState
                               'xxx');
                     }
                     int newVal = int.parse(_numberController.text);
-                    ref.read(tokenProvider.notifier).setTappedNumber(newVal);
+                    // ref.read(tokenProvider.notifier).setTappedNumber(newVal);
                     context.pop();
                   },
                   child: Text(AppLocalizations.of(context)?.confirm ?? 'xxx'),

@@ -22,16 +22,16 @@ class TappedSelector extends ConsumerWidget {
             children: [
               IntrinsicWidth(
                 child: IconButton(
-                  icon: const Icon(Icons.remove),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: SelectedTokenConstants.buttonSizeVertical,
-                    horizontal: SelectedTokenConstants.buttonSizeHorizontal,
-                  ),
-                  iconSize: SelectedTokenConstants.iconSize,
-                  color: Theme.of(context).primaryColor,
-                  onPressed: () =>
-                      ref.read(tokenProvider.notifier).decreaseTapped(1),
-                ),
+                    icon: const Icon(Icons.remove),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: SelectedTokenConstants.buttonSizeVertical,
+                      horizontal: SelectedTokenConstants.buttonSizeHorizontal,
+                    ),
+                    iconSize: SelectedTokenConstants.iconSize,
+                    color: Theme.of(context).primaryColor,
+                    onPressed: () => {}
+                    // ref.read(tokenProvider.notifier).decreaseTapped(1),
+                    ),
               ),
               Expanded(
                 child: GestureDetector(
@@ -48,16 +48,17 @@ class TappedSelector extends ConsumerWidget {
               ),
               IntrinsicWidth(
                 child: IconButton(
-                  icon: const Icon(Icons.add),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: SelectedTokenConstants.buttonSizeVertical,
-                    horizontal: SelectedTokenConstants.buttonSizeHorizontal,
-                  ),
-                  iconSize: SelectedTokenConstants.iconSize,
-                  color: Theme.of(context).primaryColor,
-                  onPressed: () =>
-                      ref.read(tokenProvider.notifier).increaseTapped(1),
-                ),
+                    icon: const Icon(Icons.add),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: SelectedTokenConstants.buttonSizeVertical,
+                      horizontal: SelectedTokenConstants.buttonSizeHorizontal,
+                    ),
+                    iconSize: SelectedTokenConstants.iconSize,
+                    color: Theme.of(context).primaryColor,
+                    onPressed: () => {}
+                    // ref.read(tokenProvider.notifier).increaseTapped(1),
+
+                    ),
               ),
             ],
           ),
