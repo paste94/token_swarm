@@ -4,7 +4,7 @@ import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
 import 'package:token_swarm/src/features/home_screen/widgets/bottom_navigation_bar/delete_button.dart';
 import 'package:token_swarm/src/features/home_screen/widgets/bottom_navigation_bar/tap_button.dart';
-import 'package:token_swarm/src/features/home_screen/widgets/bottom_navigation_bar/untap_button.dart';
+import 'package:token_swarm/src/features/home_screen/widgets/bottom_navigation_bar/new_turn_button.dart';
 
 class MyBottomAppBar extends ConsumerWidget {
   const MyBottomAppBar({super.key});
@@ -21,7 +21,7 @@ class MyBottomAppBar extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             DeleteButton(),
-            TapButton(),
+            // TapButton(),
             UntapButton(),
           ],
         ),

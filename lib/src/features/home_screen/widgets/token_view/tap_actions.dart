@@ -14,6 +14,7 @@ class TapActions extends ConsumerWidget {
         Expanded(
           child: IconButton(
             onPressed: () => ref.read(tokenProvider.notifier).tap(),
+            tooltip: "Tap",
             icon: SvgPicture.asset(
               AssetsPaths.tapIcon,
               height: 19,
@@ -27,6 +28,7 @@ class TapActions extends ConsumerWidget {
         Expanded(
           child: IconButton(
             onPressed: () => ref.read(tokenProvider.notifier).untap(),
+            tooltip: "Untap",
             icon: SvgPicture.asset(
               AssetsPaths.untapIcon,
               height: 19,

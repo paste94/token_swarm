@@ -150,6 +150,16 @@ class Token extends _$Token {
     );
   }
 
+  void addTapped({int number = 1}) {
+    if (state == null) {
+      return;
+    }
+    state = state!.copyWith(
+      tappedNumber: state!.tappedNumber + number,
+      tokenNumber: state!.tokenNumber + number,
+    );
+  }
+
   void removeSick({int number = 1}) {
     if (state == null) {
       return;
@@ -169,6 +179,18 @@ class Token extends _$Token {
     if (state!.untappedNumber - number >= 0) {
       state = state!.copyWith(
         untappedNumber: state!.untappedNumber - number,
+        tokenNumber: state!.tokenNumber - number,
+      );
+    }
+  }
+
+  void removeTapped({int number = 1}) {
+    if (state == null) {
+      return;
+    }
+    if (state!.tappedNumber - number >= 0) {
+      state = state!.copyWith(
+        tappedNumber: state!.tappedNumber - number,
         tokenNumber: state!.tokenNumber - number,
       );
     }
