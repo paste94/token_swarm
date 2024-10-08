@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
 import 'package:token_swarm/src/app/provider/token_provider.dart';
-import 'package:token_swarm/src/features/home_screen/widgets/dialogs/edit_number_dialog.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NumberSelector extends ConsumerWidget {
@@ -35,11 +34,12 @@ class NumberSelector extends ConsumerWidget {
               ),
               Expanded(
                 child: GestureDetector(
-                  onTap: () => showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const EditTokenNumberDialog();
-                      }),
+                  onTap: () => {},
+                  // showDialog(
+                  //     context: context,
+                  //     builder: (context) {
+                  //       return const EditTokenNumberDialog();
+                  //     }),
                   child: Text(
                     '$tokenNumber',
                     textAlign: TextAlign.center,

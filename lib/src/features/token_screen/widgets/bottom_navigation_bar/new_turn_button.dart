@@ -7,12 +7,9 @@ class UntapButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool isTokenSelected = ref.watch(tokenProvider) != null;
-
     return IconButton(
       icon: const Icon(Icons.fast_forward_rounded),
-      onPressed:
-          isTokenSelected ? ref.read(tokenProvider.notifier).untapAll : null,
+      onPressed: ref.read(tokenProvider.notifier).newTurn,
       tooltip: 'New turn',
     );
   }
