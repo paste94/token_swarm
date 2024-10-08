@@ -8,7 +8,7 @@ class ConstPadding {
 
 class SearchCardConstants {
   static const nCardsForRow = 2;
-  static const cardAspectRatio = 0.45;
+  static const cardAspectRatio = 0.55;
   static const cardBorderRadius = 12.0;
   static const avatarButtonSize = 17.0;
   static const alertFontSize = 18.0;

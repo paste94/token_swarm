@@ -3,11 +3,13 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:token_swarm/src/app/const/asset_paths.dart';
+import 'package:token_swarm/src/app/routes/routes.dart';
 import 'package:token_swarm/src/app/model/token_preview.dart';
 import 'package:token_swarm/src/app/persistence/provider/persistence.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
+import 'package:token_swarm/src/app/provider/token_provider.dart';
 
 class HistoryList extends ConsumerStatefulWidget {
   const HistoryList({super.key});
@@ -35,7 +37,10 @@ class _HistoryListState extends ConsumerState<HistoryList> {
         ),
       );
 
-  onSuccess(_) => setState(() => _isItemEnabled = true);
+  onSuccess(_) {
+    setState(() => _isItemEnabled = true);
+    context.push(RoutePath.token);
+  }
 
   onError(error, _) {
     if (error is SocketException) {

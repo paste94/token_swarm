@@ -3,19 +3,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:token_swarm/src/app/const/heroes.dart';
 import 'package:token_swarm/src/app/routes/routes.dart';
-import 'package:token_swarm/src/app/persistence/provider/persistence.dart';
-import 'package:token_swarm/src/features/home_screen/widgets/history_list.dart';
-import 'package:token_swarm/src/features/search_card/provider/card_name_provider.dart';
+import 'package:token_swarm/src/app/provider/token_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:token_swarm/src/features/search_card/provider/card_name_provider.dart';
+import 'package:token_swarm/src/features/token_screen/widgets/token_widgets.dart';
 
-class HomeScreenView extends ConsumerWidget {
-  const HomeScreenView({super.key});
+class TokenScreenView extends ConsumerWidget {
+  const TokenScreenView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var token = ref.watch(tokenProvider)!;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)?.appName ?? 'xxx'),
+        title: Text(token.name),
         actions: [
           PopupMenuButton(
             itemBuilder: (context) => [
@@ -33,8 +35,16 @@ class HomeScreenView extends ConsumerWidget {
           )
         ],
       ),
-      body: const HistoryView(),
-      bottomNavigationBar: const BottomAppBar(),
+      body: const Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          IntrinsicHeight(child: SummaryCard()),
+          Expanded(child: SickCard()),
+          Expanded(child: UntappedCard()),
+          IntrinsicHeight(child: ActionsCard()),
+          Expanded(child: TappedCard()),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         heroTag: HeroesStringTokens.fabToken,
         onPressed: () {
@@ -46,34 +56,6 @@ class HomeScreenView extends ConsumerWidget {
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
-    );
-  }
-}
-
-class HistoryView extends ConsumerStatefulWidget {
-  const HistoryView({super.key});
-
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _HistoryViewState();
-}
-
-class _HistoryViewState extends ConsumerState<HistoryView> {
-  @override
-  void initState() {
-    ref.read(persistenceProvider.notifier).get();
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final historyList = ref.watch(persistenceProvider);
-
-    return Container(
-      child: historyList.isNotEmpty
-          ? const HistoryList()
-          : Center(
-              child:
-                  Text(AppLocalizations.of(context)?.pressBtnToAdd ?? 'xxx')),
     );
   }
 }

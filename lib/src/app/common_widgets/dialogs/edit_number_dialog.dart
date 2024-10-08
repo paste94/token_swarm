@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
-import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
+import 'package:token_swarm/src/app/provider/token_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditTokenNumberDialog extends ConsumerStatefulWidget {
@@ -80,7 +80,7 @@ class _EditTokenNumberDialogState extends ConsumerState<EditTokenNumberDialog> {
                           AppLocalizations.of(context)?.valueCannotBeEmpty ??
                               'xxx');
                     }
-                    int newVal = int.parse(_numberController.text);
+                    // int newVal = int.parse(_numberController.text);
                     // ref.read(tokenProvider.notifier).setTokenNumber(newVal);
                     context.pop();
                   },

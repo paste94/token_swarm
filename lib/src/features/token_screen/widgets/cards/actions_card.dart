@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:token_swarm/src/app/const/asset_paths.dart';
-import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
+import 'package:token_swarm/src/app/provider/token_provider.dart';
 
-class TapActions extends ConsumerWidget {
-  const TapActions({super.key});
+class ActionsCard extends ConsumerWidget {
+  const ActionsCard({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

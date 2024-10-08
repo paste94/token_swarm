@@ -1,4 +1,4 @@
 class HeroesStringTokens {
-  static const searchHeroFab = 'SEARCH_TOKEN_HERO_FAB';
+  static const fabToken = 'FAB_TOKEN';
   static const powerToughnessDialog = 'P_T_DIALOG';
 }

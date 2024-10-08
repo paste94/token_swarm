@@ -5,7 +5,7 @@ import 'package:token_swarm/src/app/const/asset_paths.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
 import 'package:token_swarm/src/features/home_screen/home_widgets.dart';
-import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
+import 'package:token_swarm/src/app/provider/token_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TapButton extends ConsumerWidget {

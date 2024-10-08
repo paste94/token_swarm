@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
+import 'package:token_swarm/src/app/provider/token_provider.dart';
 
 class UntapButton extends ConsumerWidget {
   const UntapButton({super.key});

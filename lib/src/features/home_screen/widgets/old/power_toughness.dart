@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:token_swarm/src/app/const/heroes.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
-import 'package:token_swarm/src/features/home_screen/provider/token_provider.dart';
-import 'package:token_swarm/src/features/home_screen/widgets/dialogs/edit_stats_dialog.dart';
+import 'package:token_swarm/src/app/provider/token_provider.dart';
+import 'package:token_swarm/src/features/home_screen/home_widgets.dart';
 
 class PowerToughness extends ConsumerWidget {
   const PowerToughness({super.key});

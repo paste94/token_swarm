@@ -15,10 +15,11 @@ class SearchCardView extends ConsumerWidget {
         title: Text(AppLocalizations.of(context)?.searchCard ?? 'xxx'),
       ),
       body: const Hero(
-        tag: HeroesStringTokens.searchHeroFab,
+        tag: HeroesStringTokens.fabToken,
         child: Column(
           children: [
             IntrinsicHeight(child: CardSearchBar()),
+            Divider(color: Colors.transparent),
             Expanded(child: CardGridView()),
           ],
         ),
