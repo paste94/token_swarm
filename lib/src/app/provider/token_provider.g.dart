@@ -6,7 +6,7 @@ part of 'token_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$tokenHash() => r'94990e382bcfac49b7c7e1c7bf0b32be84f6409f';
+String _$tokenHash() => r'1f20b29f52a7d27fcd022f859d91885e1b5be28d';
 
 /// dart run build_runner build
 ///

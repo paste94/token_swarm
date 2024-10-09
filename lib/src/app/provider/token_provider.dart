@@ -20,7 +20,7 @@ class Token extends _$Token {
   void setToken(TokenCard token) {
     state = token;
     ref
-        .read(persistenceProvider.notifier)
+        .read(historyListProvider.notifier)
         .insert(TokenPreview.fromToken(token));
   }
 

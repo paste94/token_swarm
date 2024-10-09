@@ -6,22 +6,22 @@ part of 'persistence.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$persistenceHash() => r'826484ba868eb90b932ba93043e267431b1964c8';
+String _$historyListHash() => r'58dde35edc68794a783b413b9bfc47344a07db0e';
 
 /// dart run build_runner build
 ///
-/// Copied from [Persistence].
-@ProviderFor(Persistence)
-final persistenceProvider =
-    NotifierProvider<Persistence, List<TokenPreview>>.internal(
-  Persistence.new,
-  name: r'persistenceProvider',
+/// Copied from [HistoryList].
+@ProviderFor(HistoryList)
+final historyListProvider =
+    AutoDisposeAsyncNotifierProvider<HistoryList, List<TokenPreview>>.internal(
+  HistoryList.new,
+  name: r'historyListProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$persistenceHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$historyListHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$Persistence = Notifier<List<TokenPreview>>;
+typedef _$HistoryList = AutoDisposeAsyncNotifier<List<TokenPreview>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

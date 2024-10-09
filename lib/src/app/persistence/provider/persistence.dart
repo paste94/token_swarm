@@ -6,31 +6,33 @@ part 'persistence.g.dart';
 
 /// dart run build_runner build
 
-@Riverpod(keepAlive: true)
-class Persistence extends _$Persistence {
+@riverpod
+class HistoryList extends _$HistoryList {
   final repository = SqfLiteRepository();
 
   @override
-  List<TokenPreview> build() {
-    return [];
+  FutureOr<List<TokenPreview>> build() async {
+    return _fetchHistory();
   }
 
-  void get() async {
-    final data = await repository.get();
-    state = data;
-  }
-
-  void insert(TokenPreview token) async {
-    await repository.insert(token);
-  }
-
-  Future<List<TokenPreview>> getData() async {
+  Future<List<TokenPreview>> _fetchHistory() async {
     final data = await repository.get();
     return data;
   }
 
+  Future<void> insert(TokenPreview token) async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await repository.insert(token);
+      return _fetchHistory();
+    });
+  }
+
   Future<void> delete(String id) async {
-    await repository.delete(id);
-    get();
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await repository.delete(id);
+      return _fetchHistory();
+    });
   }
 }
