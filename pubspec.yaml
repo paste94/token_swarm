@@ -78,6 +78,7 @@ flutter:
     - assets/img/
     - assets/icons/Mana/
     - assets/icons/Ability icons/Power Toughness/
+    - assets/icons/Ability icons/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
