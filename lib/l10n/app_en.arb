@@ -1,4 +1,5 @@
 {
+  "@COMPILE": "flutter gen-l10n",
   "appName":"Token Swarm",
 
   "@HOME PAGE": "",
@@ -34,6 +35,7 @@
   "confirm": "Confirm",
   "addToken": "Add new token",
   "select":"Select",
+  "alwaysOnDisplay": "Always on display",
 
   "@ENDFILE":""
 }

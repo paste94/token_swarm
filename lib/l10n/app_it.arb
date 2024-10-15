@@ -1,4 +1,5 @@
 {
+  "@COMPILE": "flutter gen-l10n",
   "appName":"Token Swarm",
 
   "@HOME PAGE": "",
@@ -34,6 +35,7 @@
   "confirm": "Conferma",
   "addToken": "Aggiungi un nuovo token",
   "select":"Seleziona",
+  "alwaysOnDisplay": "Mantieni schermo acceso",
 
   "@ENDFILE":""
 }
