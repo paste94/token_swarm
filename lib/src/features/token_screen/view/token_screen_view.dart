@@ -6,7 +6,7 @@ import 'package:token_swarm/src/app/const/heroes.dart';
 import 'package:token_swarm/src/app/routes/routes.dart';
 import 'package:token_swarm/src/app/provider/token_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:token_swarm/src/features/search_card/provider/card_name_provider.dart';
+import 'package:token_swarm/src/features/S200_search_card/provider/card_name_provider.dart';
 import 'package:token_swarm/src/features/token_screen/widgets/bottom_navigation_bar/token_bottom_app_bar.dart';
 import 'package:token_swarm/src/features/token_screen/widgets/token_widgets.dart';
 

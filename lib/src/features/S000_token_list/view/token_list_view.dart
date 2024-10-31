@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:token_swarm/src/app/common_widgets/settings_menu_buttons.dart';
 import 'package:token_swarm/src/app/const/heroes.dart';
 import 'package:token_swarm/src/app/routes/routes.dart';
-import 'package:token_swarm/src/features/home_screen/widgets/history_view.dart';
 import 'package:token_swarm/src/features/S200_search_card/provider/card_name_provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class HomeScreenView extends ConsumerWidget {
-  const HomeScreenView({super.key});
+class TokenListView extends ConsumerWidget {
+  const TokenListView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,7 +19,7 @@ class HomeScreenView extends ConsumerWidget {
           SettingsMenuButtons(),
         ],
       ),
-      body: const HistoryView(),
+      body: const Placeholder(),
       bottomNavigationBar: const BottomAppBar(),
       floatingActionButton: FloatingActionButton(
         heroTag: HeroesStringTokens.fabToken,

@@ -4,9 +4,9 @@ import 'package:scryfall_api/scryfall_api.dart';
 import 'package:token_swarm/src/app/common_widgets/alert_card.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/model/token_card2.dart';
-import 'package:token_swarm/src/features/search_card/provider/card_name_provider.dart';
-import 'package:token_swarm/src/features/search_card/provider/exceptions/card_name_exception.dart';
-import 'package:token_swarm/src/features/search_card/widgets/card_list_item.dart';
+import 'package:token_swarm/src/features/S200_search_card/provider/card_name_provider.dart';
+import 'package:token_swarm/src/features/S200_search_card/provider/exceptions/card_name_exception.dart';
+import 'package:token_swarm/src/features/S200_search_card/widgets/card_list_item.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CardGridView extends ConsumerStatefulWidget {
