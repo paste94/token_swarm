@@ -17,7 +17,7 @@ class UntappedCard extends ConsumerWidget {
       semanticContainer: false,
       child: Row(
         children: [
-          TokenImageViewer(token: ref.watch(tokenProvider)!),
+          // TokenImageViewer(token: ref.watch(tokenProvider)!),
           const Expanded(child: Center(child: Text('Untapped'))),
           Column(
             children: [

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scryfall_api/scryfall_api.dart';
 import 'package:token_swarm/src/app/common_widgets/alert_card.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
-import 'package:token_swarm/src/app/model/token_card2.dart';
+import 'package:token_swarm/src/app/db/model/token_card_db.dart';
 import 'package:token_swarm/src/features/S200_search_card/provider/card_name_provider.dart';
 import 'package:token_swarm/src/features/S200_search_card/provider/exceptions/card_name_exception.dart';
 import 'package:token_swarm/src/features/S200_search_card/widgets/card_list_item.dart';
@@ -17,7 +17,7 @@ class CardGridView extends ConsumerStatefulWidget {
 }
 
 class _CardGridViewState extends ConsumerState<CardGridView> {
-  Widget _onData(PaginableList<TokenCard> cardList) => cardList.length > 0
+  Widget _onData(PaginableList<TokenCardDb> cardList) => cardList.length > 0
       ? GridView.count(
           crossAxisCount: SearchCardConstants.nCardsForRow,
           childAspectRatio: SearchCardConstants.cardAspectRatio,

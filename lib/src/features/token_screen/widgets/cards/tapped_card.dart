@@ -26,7 +26,7 @@ class TappedCard extends ConsumerWidget {
                 width: parentHeight,
                 child: RotatedBox(
                   quarterTurns: 1,
-                  child: TokenImageViewer(token: ref.watch(tokenProvider)!),
+                  // child: TokenImageViewer(token: ref.watch(tokenProvider)!),
                 ),
               );
             },

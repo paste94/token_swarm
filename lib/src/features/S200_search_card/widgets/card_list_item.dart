@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:token_swarm/src/app/common_widgets/token_image_viewer.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
+import 'package:token_swarm/src/app/db/model/token_card_db.dart';
+import 'package:token_swarm/src/app/db/provider/token_card_db_list_provider.dart';
 import 'package:token_swarm/src/app/model/token_card2.dart';
 import 'package:token_swarm/src/app/provider/token_provider.dart';
 import 'package:token_swarm/src/app/routes/routes.dart';
@@ -11,7 +13,7 @@ import 'package:token_swarm/src/app/routes/routes.dart';
 class CardListItem extends ConsumerStatefulWidget {
   const CardListItem({super.key, required this.token});
 
-  final TokenCard token;
+  final TokenCardDb token;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _CardListItemState();
@@ -26,23 +28,25 @@ class _CardListItemState extends ConsumerState<CardListItem> {
           widget.token.name,
           style: MyTypography.h3,
           textAlign: TextAlign.center,
-          maxLines: 2,
+          maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
       );
 
+  void _onCardTap() {
+    try {
+      ref.read(tokenCardDbListProvider.notifier).insertCard(widget.token);
+      context.pop();
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        try {
-          ref.read(tokenProvider.notifier).setToken(widget.token);
-          context.replace(RoutePath.token);
-        } catch (e) {
-          final snackBar = SnackBar(content: Text(e.toString()));
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        }
-      },
+      onTap: _onCardTap,
       child: Card(
         shape: RoundedRectangleBorder(
           side: BorderSide(

@@ -22,7 +22,7 @@ class SickCard extends ConsumerWidget {
               Colors.grey,
               BlendMode.saturation,
             ),
-            child: TokenImageViewer(token: ref.watch(tokenProvider)!),
+            // child: TokenImageViewer(token: ref.watch(tokenProvider)!),
           ),
           const Expanded(child: Center(child: Text('Sick'))),
           Column(

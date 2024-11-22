@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:token_swarm/src/app/common_widgets/settings_menu_buttons.dart';
 import 'package:token_swarm/src/app/const/heroes.dart';
 import 'package:token_swarm/src/app/routes/routes.dart';
+import 'package:token_swarm/src/features/S000_token_list/widgets/token_list.dart';
 import 'package:token_swarm/src/features/S200_search_card/provider/card_name_provider.dart';
 
 class TokenListView extends ConsumerWidget {
@@ -19,7 +20,7 @@ class TokenListView extends ConsumerWidget {
           SettingsMenuButtons(),
         ],
       ),
-      body: const Placeholder(),
+      body: const TokenList(),
       bottomNavigationBar: const BottomAppBar(),
       floatingActionButton: FloatingActionButton(
         heroTag: HeroesStringTokens.fabToken,
