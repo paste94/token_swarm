@@ -18,7 +18,6 @@ class TokenTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // TokenCardDb token = ref.watch(tokenCardDbListProvider).value![index];
     final cardListNotifier = ref.read(tokenCardDbListProvider.notifier);
 
     return Card(
