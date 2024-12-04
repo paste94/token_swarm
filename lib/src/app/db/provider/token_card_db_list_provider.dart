@@ -18,6 +18,7 @@ class TokenCardDbList extends _$TokenCardDbList {
   Future<List<TokenCardDb>> _fetch() async {
     try {
       List<Map<String, dynamic>> result = await TokenCardRepository.query();
+      log.info(result);
       final tasks = result.map((data) => TokenCardDb.fromMap(data)).toList();
       return tasks;
     } catch (e, stackTrace) {
@@ -34,6 +35,14 @@ class TokenCardDbList extends _$TokenCardDbList {
     });
   }
 
+  Future<void> deleteCard(TokenCardDb token) async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await TokenCardRepository.delete(token);
+      return _fetch();
+    });
+  }
+
   Future<void> addUntapped({
     required TokenCardDb token,
     int number = 1,
@@ -41,14 +50,11 @@ class TokenCardDbList extends _$TokenCardDbList {
     // state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       try {
-        log.info('1');
         await TokenCardRepository.update(
           id: token.id,
           attribute: 'untappedNumber',
           newVal: token.untappedNumber + number,
         );
-        log.info('2');
-
         await TokenCardRepository.update(
           id: token.id,
           attribute: 'tokenNumber',
@@ -57,8 +63,6 @@ class TokenCardDbList extends _$TokenCardDbList {
       } catch (e, stackTrace) {
         log.severe('ERROR: $e \n $stackTrace');
       }
-      log.info('3');
-
       return _fetch();
     });
   }
@@ -75,6 +79,104 @@ class TokenCardDbList extends _$TokenCardDbList {
           await TokenCardRepository.update(
             id: token.id,
             attribute: 'untappedNumber',
+            newVal: newNumber,
+          );
+          await TokenCardRepository.update(
+            id: token.id,
+            attribute: 'tokenNumber',
+            newVal: token.tokenNumber - number,
+          );
+        } catch (e, stackTrace) {
+          log.severe('ERROR: $e \n $stackTrace');
+        }
+        return _fetch();
+      });
+    }
+  }
+
+  Future<void> addTapped({
+    required TokenCardDb token,
+    int number = 1,
+  }) async {
+    state = await AsyncValue.guard(() async {
+      try {
+        await TokenCardRepository.update(
+          id: token.id,
+          attribute: 'tappedNumber',
+          newVal: token.tappedNumber + number,
+        );
+        await TokenCardRepository.update(
+          id: token.id,
+          attribute: 'tokenNumber',
+          newVal: token.tokenNumber + number,
+        );
+      } catch (e, stackTrace) {
+        log.severe('ERROR: $e \n $stackTrace');
+      }
+      return _fetch();
+    });
+  }
+
+  Future<void> removeTapped({
+    required TokenCardDb token,
+    int number = 1,
+  }) async {
+    final newNumber = token.tappedNumber - number;
+    if (newNumber >= 0) {
+      state = await AsyncValue.guard(() async {
+        try {
+          await TokenCardRepository.update(
+            id: token.id,
+            attribute: 'tappedNumber',
+            newVal: newNumber,
+          );
+          await TokenCardRepository.update(
+            id: token.id,
+            attribute: 'tokenNumber',
+            newVal: token.tokenNumber - number,
+          );
+        } catch (e, stackTrace) {
+          log.severe('ERROR: $e \n $stackTrace');
+        }
+        return _fetch();
+      });
+    }
+  }
+
+  Future<void> addSick({
+    required TokenCardDb token,
+    int number = 1,
+  }) async {
+    state = await AsyncValue.guard(() async {
+      try {
+        await TokenCardRepository.update(
+          id: token.id,
+          attribute: 'sickNumber',
+          newVal: token.sickNumber + number,
+        );
+        await TokenCardRepository.update(
+          id: token.id,
+          attribute: 'tokenNumber',
+          newVal: token.tokenNumber + number,
+        );
+      } catch (e, stackTrace) {
+        log.severe('ERROR: $e \n $stackTrace');
+      }
+      return _fetch();
+    });
+  }
+
+  Future<void> removeSick({
+    required TokenCardDb token,
+    int number = 1,
+  }) async {
+    final newNumber = token.sickNumber - number;
+    if (newNumber >= 0) {
+      state = await AsyncValue.guard(() async {
+        try {
+          await TokenCardRepository.update(
+            id: token.id,
+            attribute: 'sickNumber',
             newVal: newNumber,
           );
           await TokenCardRepository.update(

@@ -20,12 +20,14 @@ mixin _$TokenCardDb {
   int? get power => throw _privateConstructorUsedError;
   int? get toughness => throw _privateConstructorUsedError;
   String? get imageUri => throw _privateConstructorUsedError;
+  String? get imageUriArtCrop => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get tokenNumber => throw _privateConstructorUsedError;
   int get tappedNumber => throw _privateConstructorUsedError;
   int get untappedNumber => throw _privateConstructorUsedError;
   int get prevTappedNumber => throw _privateConstructorUsedError;
   int get sickNumber => throw _privateConstructorUsedError;
+  bool get isCreature => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TokenCardDbCopyWith<TokenCardDb> get copyWith =>
@@ -43,12 +45,14 @@ abstract class $TokenCardDbCopyWith<$Res> {
       int? power,
       int? toughness,
       String? imageUri,
+      String? imageUriArtCrop,
       String name,
       int tokenNumber,
       int tappedNumber,
       int untappedNumber,
       int prevTappedNumber,
-      int sickNumber});
+      int sickNumber,
+      bool isCreature});
 }
 
 /// @nodoc
@@ -68,12 +72,14 @@ class _$TokenCardDbCopyWithImpl<$Res, $Val extends TokenCardDb>
     Object? power = freezed,
     Object? toughness = freezed,
     Object? imageUri = freezed,
+    Object? imageUriArtCrop = freezed,
     Object? name = null,
     Object? tokenNumber = null,
     Object? tappedNumber = null,
     Object? untappedNumber = null,
     Object? prevTappedNumber = null,
     Object? sickNumber = null,
+    Object? isCreature = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -92,93 +98,9 @@ class _$TokenCardDbCopyWithImpl<$Res, $Val extends TokenCardDb>
           ? _value.imageUri
           : imageUri // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      tokenNumber: null == tokenNumber
-          ? _value.tokenNumber
-          : tokenNumber // ignore: cast_nullable_to_non_nullable
-              as int,
-      tappedNumber: null == tappedNumber
-          ? _value.tappedNumber
-          : tappedNumber // ignore: cast_nullable_to_non_nullable
-              as int,
-      untappedNumber: null == untappedNumber
-          ? _value.untappedNumber
-          : untappedNumber // ignore: cast_nullable_to_non_nullable
-              as int,
-      prevTappedNumber: null == prevTappedNumber
-          ? _value.prevTappedNumber
-          : prevTappedNumber // ignore: cast_nullable_to_non_nullable
-              as int,
-      sickNumber: null == sickNumber
-          ? _value.sickNumber
-          : sickNumber // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$TokenCardDbImplCopyWith<$Res>
-    implements $TokenCardDbCopyWith<$Res> {
-  factory _$$TokenCardDbImplCopyWith(
-          _$TokenCardDbImpl value, $Res Function(_$TokenCardDbImpl) then) =
-      __$$TokenCardDbImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String id,
-      int? power,
-      int? toughness,
-      String? imageUri,
-      String name,
-      int tokenNumber,
-      int tappedNumber,
-      int untappedNumber,
-      int prevTappedNumber,
-      int sickNumber});
-}
-
-/// @nodoc
-class __$$TokenCardDbImplCopyWithImpl<$Res>
-    extends _$TokenCardDbCopyWithImpl<$Res, _$TokenCardDbImpl>
-    implements _$$TokenCardDbImplCopyWith<$Res> {
-  __$$TokenCardDbImplCopyWithImpl(
-      _$TokenCardDbImpl _value, $Res Function(_$TokenCardDbImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? power = freezed,
-    Object? toughness = freezed,
-    Object? imageUri = freezed,
-    Object? name = null,
-    Object? tokenNumber = null,
-    Object? tappedNumber = null,
-    Object? untappedNumber = null,
-    Object? prevTappedNumber = null,
-    Object? sickNumber = null,
-  }) {
-    return _then(_$TokenCardDbImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      power: freezed == power
-          ? _value.power
-          : power // ignore: cast_nullable_to_non_nullable
-              as int?,
-      toughness: freezed == toughness
-          ? _value.toughness
-          : toughness // ignore: cast_nullable_to_non_nullable
-              as int?,
-      imageUri: freezed == imageUri
-          ? _value.imageUri
-          : imageUri // ignore: cast_nullable_to_non_nullable
+      imageUriArtCrop: freezed == imageUriArtCrop
+          ? _value.imageUriArtCrop
+          : imageUriArtCrop // ignore: cast_nullable_to_non_nullable
               as String?,
       name: null == name
           ? _value.name
@@ -204,6 +126,110 @@ class __$$TokenCardDbImplCopyWithImpl<$Res>
           ? _value.sickNumber
           : sickNumber // ignore: cast_nullable_to_non_nullable
               as int,
+      isCreature: null == isCreature
+          ? _value.isCreature
+          : isCreature // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TokenCardDbImplCopyWith<$Res>
+    implements $TokenCardDbCopyWith<$Res> {
+  factory _$$TokenCardDbImplCopyWith(
+          _$TokenCardDbImpl value, $Res Function(_$TokenCardDbImpl) then) =
+      __$$TokenCardDbImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      int? power,
+      int? toughness,
+      String? imageUri,
+      String? imageUriArtCrop,
+      String name,
+      int tokenNumber,
+      int tappedNumber,
+      int untappedNumber,
+      int prevTappedNumber,
+      int sickNumber,
+      bool isCreature});
+}
+
+/// @nodoc
+class __$$TokenCardDbImplCopyWithImpl<$Res>
+    extends _$TokenCardDbCopyWithImpl<$Res, _$TokenCardDbImpl>
+    implements _$$TokenCardDbImplCopyWith<$Res> {
+  __$$TokenCardDbImplCopyWithImpl(
+      _$TokenCardDbImpl _value, $Res Function(_$TokenCardDbImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? power = freezed,
+    Object? toughness = freezed,
+    Object? imageUri = freezed,
+    Object? imageUriArtCrop = freezed,
+    Object? name = null,
+    Object? tokenNumber = null,
+    Object? tappedNumber = null,
+    Object? untappedNumber = null,
+    Object? prevTappedNumber = null,
+    Object? sickNumber = null,
+    Object? isCreature = null,
+  }) {
+    return _then(_$TokenCardDbImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      power: freezed == power
+          ? _value.power
+          : power // ignore: cast_nullable_to_non_nullable
+              as int?,
+      toughness: freezed == toughness
+          ? _value.toughness
+          : toughness // ignore: cast_nullable_to_non_nullable
+              as int?,
+      imageUri: freezed == imageUri
+          ? _value.imageUri
+          : imageUri // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUriArtCrop: freezed == imageUriArtCrop
+          ? _value.imageUriArtCrop
+          : imageUriArtCrop // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      tokenNumber: null == tokenNumber
+          ? _value.tokenNumber
+          : tokenNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+      tappedNumber: null == tappedNumber
+          ? _value.tappedNumber
+          : tappedNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+      untappedNumber: null == untappedNumber
+          ? _value.untappedNumber
+          : untappedNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+      prevTappedNumber: null == prevTappedNumber
+          ? _value.prevTappedNumber
+          : prevTappedNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+      sickNumber: null == sickNumber
+          ? _value.sickNumber
+          : sickNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+      isCreature: null == isCreature
+          ? _value.isCreature
+          : isCreature // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -216,12 +242,14 @@ class _$TokenCardDbImpl extends _TokenCardDb {
       required this.power,
       required this.toughness,
       required this.imageUri,
+      required this.imageUriArtCrop,
       required this.name,
       this.tokenNumber = 0,
       this.tappedNumber = 0,
       this.untappedNumber = 0,
       this.prevTappedNumber = 0,
-      this.sickNumber = 0})
+      this.sickNumber = 0,
+      this.isCreature = false})
       : super._();
 
   @override
@@ -232,6 +260,8 @@ class _$TokenCardDbImpl extends _TokenCardDb {
   final int? toughness;
   @override
   final String? imageUri;
+  @override
+  final String? imageUriArtCrop;
   @override
   final String name;
   @override
@@ -249,10 +279,13 @@ class _$TokenCardDbImpl extends _TokenCardDb {
   @override
   @JsonKey()
   final int sickNumber;
+  @override
+  @JsonKey()
+  final bool isCreature;
 
   @override
   String toString() {
-    return 'TokenCardDb(id: $id, power: $power, toughness: $toughness, imageUri: $imageUri, name: $name, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber, untappedNumber: $untappedNumber, prevTappedNumber: $prevTappedNumber, sickNumber: $sickNumber)';
+    return 'TokenCardDb(id: $id, power: $power, toughness: $toughness, imageUri: $imageUri, imageUriArtCrop: $imageUriArtCrop, name: $name, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber, untappedNumber: $untappedNumber, prevTappedNumber: $prevTappedNumber, sickNumber: $sickNumber, isCreature: $isCreature)';
   }
 
   @override
@@ -266,6 +299,8 @@ class _$TokenCardDbImpl extends _TokenCardDb {
                 other.toughness == toughness) &&
             (identical(other.imageUri, imageUri) ||
                 other.imageUri == imageUri) &&
+            (identical(other.imageUriArtCrop, imageUriArtCrop) ||
+                other.imageUriArtCrop == imageUriArtCrop) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.tokenNumber, tokenNumber) ||
                 other.tokenNumber == tokenNumber) &&
@@ -276,7 +311,9 @@ class _$TokenCardDbImpl extends _TokenCardDb {
             (identical(other.prevTappedNumber, prevTappedNumber) ||
                 other.prevTappedNumber == prevTappedNumber) &&
             (identical(other.sickNumber, sickNumber) ||
-                other.sickNumber == sickNumber));
+                other.sickNumber == sickNumber) &&
+            (identical(other.isCreature, isCreature) ||
+                other.isCreature == isCreature));
   }
 
   @override
@@ -286,12 +323,14 @@ class _$TokenCardDbImpl extends _TokenCardDb {
       power,
       toughness,
       imageUri,
+      imageUriArtCrop,
       name,
       tokenNumber,
       tappedNumber,
       untappedNumber,
       prevTappedNumber,
-      sickNumber);
+      sickNumber,
+      isCreature);
 
   @JsonKey(ignore: true)
   @override
@@ -306,12 +345,14 @@ abstract class _TokenCardDb extends TokenCardDb {
       required final int? power,
       required final int? toughness,
       required final String? imageUri,
+      required final String? imageUriArtCrop,
       required final String name,
       final int tokenNumber,
       final int tappedNumber,
       final int untappedNumber,
       final int prevTappedNumber,
-      final int sickNumber}) = _$TokenCardDbImpl;
+      final int sickNumber,
+      final bool isCreature}) = _$TokenCardDbImpl;
   _TokenCardDb._() : super._();
 
   @override
@@ -322,6 +363,8 @@ abstract class _TokenCardDb extends TokenCardDb {
   int? get toughness;
   @override
   String? get imageUri;
+  @override
+  String? get imageUriArtCrop;
   @override
   String get name;
   @override
@@ -334,6 +377,8 @@ abstract class _TokenCardDb extends TokenCardDb {
   int get prevTappedNumber;
   @override
   int get sickNumber;
+  @override
+  bool get isCreature;
   @override
   @JsonKey(ignore: true)
   _$$TokenCardDbImplCopyWith<_$TokenCardDbImpl> get copyWith =>
