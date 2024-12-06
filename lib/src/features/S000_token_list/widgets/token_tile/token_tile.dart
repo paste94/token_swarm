@@ -1,12 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:token_swarm/src/app/const/asset_paths.dart';
 import 'package:token_swarm/src/app/db/model/token_card_db.dart';
-import 'package:token_swarm/src/app/db/provider/token_card_db_list_provider.dart';
 import 'package:token_swarm/src/features/S000_token_list/widgets/token_tile/btn_delete_token.dart';
-import 'package:token_swarm/src/features/S000_token_list/widgets/token_tile/number_selector.dart';
+import 'package:token_swarm/src/features/S000_token_list/widgets/token_tile/info_token_number.dart';
 
 class TokenTile extends ConsumerWidget {
   const TokenTile(
@@ -18,7 +16,7 @@ class TokenTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cardListNotifier = ref.read(tokenCardDbListProvider.notifier);
+    // final cardListNotifier = ref.read(tokenCardDbListProvider.notifier);
 
     return Card(
       child: IntrinsicHeight(
@@ -65,59 +63,16 @@ class TokenTile extends ConsumerWidget {
             ),
             Flexible(
               flex: 1,
-              child: NumberSelector(
-                title: 'UNtapped',
-                icon: SvgPicture.asset(
-                  AssetsPaths.mtgCardUntapped,
-                  height: 25,
-                  colorFilter: ColorFilter.mode(
-                    Theme.of(context).iconTheme.color!,
-                    BlendMode.srcIn,
-                  ),
-                ),
-                numberToShow: token.untappedNumber,
-                handleRemove: () =>
-                    cardListNotifier.removeUntapped(token: token),
-                handleAdd: () => cardListNotifier.addUntapped(token: token),
-              ),
+              child: token.text != ''
+                  ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(token.text),
+                    )
+                  : const SizedBox(),
             ),
-            Flexible(
-              flex: 1,
-              child: NumberSelector(
-                title: 'TAPped',
-                icon: SvgPicture.asset(
-                  AssetsPaths.mtgCardTapped,
-                  height: 25,
-                  colorFilter: ColorFilter.mode(
-                    Theme.of(context).iconTheme.color!,
-                    BlendMode.srcIn,
-                  ),
-                ),
-                numberToShow: token.tappedNumber,
-                handleRemove: () => cardListNotifier.removeTapped(token: token),
-                handleAdd: () => cardListNotifier.addTapped(token: token),
-              ),
+            IntrinsicHeight(
+              child: InfoTokenNumber(token),
             ),
-            token.isCreature
-                ? Flexible(
-                    flex: 1,
-                    child: NumberSelector(
-                      title: 'Sick',
-                      icon: SvgPicture.asset(
-                        AssetsPaths.mtgCardUntapped,
-                        height: 25,
-                        colorFilter: ColorFilter.mode(
-                          Theme.of(context).iconTheme.color!,
-                          BlendMode.srcIn,
-                        ),
-                      ),
-                      numberToShow: token.sickNumber,
-                      handleRemove: () =>
-                          cardListNotifier.removeSick(token: token),
-                      handleAdd: () => cardListNotifier.addSick(token: token),
-                    ),
-                  )
-                : const SizedBox(),
           ],
         ),
       ),

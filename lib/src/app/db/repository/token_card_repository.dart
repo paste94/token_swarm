@@ -4,7 +4,7 @@ import 'package:token_swarm/src/app/db/model/token_card_db.dart';
 
 class TokenCardRepository {
   static Database? _db;
-  static const int _version = 2;
+  static const int _version = 1;
   static const String _tableName = "token";
   static final log = Logger('TokenCardRepository');
 
@@ -20,12 +20,14 @@ class TokenCardRepository {
         onUpgrade: (db, prev, next) {
           log.info("Upgrading to V $_version");
           return db.execute(
+            // "DROP TABLE $_tableName;"
             "CREATE TABLE $_tableName("
             "id STRING PRIMARY KEY,"
             "power INTEGER,"
             "toughness INTEGER,"
             "imageUri STRING,"
             "name STRING,"
+            "text STRING,"
             "tokenNumber INTEGER,"
             "tappedNumber INTEGER,"
             "untappedNumber INTEGER,"
@@ -39,20 +41,20 @@ class TokenCardRepository {
         onCreate: (db, version) {
           log.info("Creating a new table $_tableName V $_version");
           return db.execute(
-            "DROP TABLE $_tableName"
             "CREATE TABLE $_tableName("
             "id STRING PRIMARY KEY,"
             "power INTEGER,"
             "toughness INTEGER,"
             "imageUri STRING,"
             "name STRING,"
+            "text STRING,"
             "tokenNumber INTEGER,"
             "tappedNumber INTEGER,"
             "untappedNumber INTEGER,"
             "prevTappedNumber INTEGER,"
             "sickNumber INTEGER,"
             "imageUriArtCrop STRING,"
-            "isCreature BOOLEAN"
+            "isCreature BOOL"
             ")",
           );
         },
