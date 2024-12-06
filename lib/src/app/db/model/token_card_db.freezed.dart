@@ -23,6 +23,7 @@ mixin _$TokenCardDb {
   String? get imageUriArtCrop => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
+  String get typeLine => throw _privateConstructorUsedError;
   int get tokenNumber => throw _privateConstructorUsedError;
   int get tappedNumber => throw _privateConstructorUsedError;
   int get untappedNumber => throw _privateConstructorUsedError;
@@ -49,6 +50,7 @@ abstract class $TokenCardDbCopyWith<$Res> {
       String? imageUriArtCrop,
       String name,
       String text,
+      String typeLine,
       int tokenNumber,
       int tappedNumber,
       int untappedNumber,
@@ -77,6 +79,7 @@ class _$TokenCardDbCopyWithImpl<$Res, $Val extends TokenCardDb>
     Object? imageUriArtCrop = freezed,
     Object? name = null,
     Object? text = null,
+    Object? typeLine = null,
     Object? tokenNumber = null,
     Object? tappedNumber = null,
     Object? untappedNumber = null,
@@ -112,6 +115,10 @@ class _$TokenCardDbCopyWithImpl<$Res, $Val extends TokenCardDb>
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      typeLine: null == typeLine
+          ? _value.typeLine
+          : typeLine // ignore: cast_nullable_to_non_nullable
               as String,
       tokenNumber: null == tokenNumber
           ? _value.tokenNumber
@@ -157,6 +164,7 @@ abstract class _$$TokenCardDbImplCopyWith<$Res>
       String? imageUriArtCrop,
       String name,
       String text,
+      String typeLine,
       int tokenNumber,
       int tappedNumber,
       int untappedNumber,
@@ -183,6 +191,7 @@ class __$$TokenCardDbImplCopyWithImpl<$Res>
     Object? imageUriArtCrop = freezed,
     Object? name = null,
     Object? text = null,
+    Object? typeLine = null,
     Object? tokenNumber = null,
     Object? tappedNumber = null,
     Object? untappedNumber = null,
@@ -218,6 +227,10 @@ class __$$TokenCardDbImplCopyWithImpl<$Res>
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      typeLine: null == typeLine
+          ? _value.typeLine
+          : typeLine // ignore: cast_nullable_to_non_nullable
               as String,
       tokenNumber: null == tokenNumber
           ? _value.tokenNumber
@@ -258,6 +271,7 @@ class _$TokenCardDbImpl extends _TokenCardDb {
       required this.imageUriArtCrop,
       required this.name,
       required this.text,
+      required this.typeLine,
       this.tokenNumber = 0,
       this.tappedNumber = 0,
       this.untappedNumber = 0,
@@ -281,6 +295,8 @@ class _$TokenCardDbImpl extends _TokenCardDb {
   @override
   final String text;
   @override
+  final String typeLine;
+  @override
   @JsonKey()
   final int tokenNumber;
   @override
@@ -301,7 +317,7 @@ class _$TokenCardDbImpl extends _TokenCardDb {
 
   @override
   String toString() {
-    return 'TokenCardDb(id: $id, power: $power, toughness: $toughness, imageUri: $imageUri, imageUriArtCrop: $imageUriArtCrop, name: $name, text: $text, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber, untappedNumber: $untappedNumber, prevTappedNumber: $prevTappedNumber, sickNumber: $sickNumber, isCreature: $isCreature)';
+    return 'TokenCardDb(id: $id, power: $power, toughness: $toughness, imageUri: $imageUri, imageUriArtCrop: $imageUriArtCrop, name: $name, text: $text, typeLine: $typeLine, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber, untappedNumber: $untappedNumber, prevTappedNumber: $prevTappedNumber, sickNumber: $sickNumber, isCreature: $isCreature)';
   }
 
   @override
@@ -319,6 +335,8 @@ class _$TokenCardDbImpl extends _TokenCardDb {
                 other.imageUriArtCrop == imageUriArtCrop) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.text, text) || other.text == text) &&
+            (identical(other.typeLine, typeLine) ||
+                other.typeLine == typeLine) &&
             (identical(other.tokenNumber, tokenNumber) ||
                 other.tokenNumber == tokenNumber) &&
             (identical(other.tappedNumber, tappedNumber) ||
@@ -343,6 +361,7 @@ class _$TokenCardDbImpl extends _TokenCardDb {
       imageUriArtCrop,
       name,
       text,
+      typeLine,
       tokenNumber,
       tappedNumber,
       untappedNumber,
@@ -366,6 +385,7 @@ abstract class _TokenCardDb extends TokenCardDb {
       required final String? imageUriArtCrop,
       required final String name,
       required final String text,
+      required final String typeLine,
       final int tokenNumber,
       final int tappedNumber,
       final int untappedNumber,
@@ -388,6 +408,8 @@ abstract class _TokenCardDb extends TokenCardDb {
   String get name;
   @override
   String get text;
+  @override
+  String get typeLine;
   @override
   int get tokenNumber;
   @override

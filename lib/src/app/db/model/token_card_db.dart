@@ -16,6 +16,7 @@ class TokenCardDb with _$TokenCardDb {
     required String? imageUriArtCrop,
     required String name,
     required String text,
+    required String typeLine,
     @Default(0) int tokenNumber,
     @Default(0) int tappedNumber,
     @Default(0) int untappedNumber,
@@ -33,6 +34,7 @@ class TokenCardDb with _$TokenCardDb {
       imageUriArtCrop: map['imageUriArtCrop'] as String?,
       name: map['name'] as String,
       text: map['text'] as String,
+      typeLine: map['typeLine'] as String,
       tokenNumber: map['tokenNumber'] as int,
       tappedNumber: map['tappedNumber'] as int,
       untappedNumber: map['untappedNumber'] as int,
@@ -52,6 +54,7 @@ class TokenCardDb with _$TokenCardDb {
       name: card.name,
       text: card.oracleText ?? '',
       isCreature: card.typeLine.contains('Creature'),
+      typeLine: card.typeLine,
     );
   }
 
@@ -78,6 +81,7 @@ class TokenCardDb with _$TokenCardDb {
       "prevTappedNumber": prevTappedNumber,
       "sickNumber": sickNumber,
       "isCreature": isCreature,
+      "typeLine": typeLine,
     };
   }
 }
