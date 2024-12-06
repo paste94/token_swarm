@@ -17,66 +17,73 @@ class InfoTokenNumber extends ConsumerStatefulWidget {
 }
 
 class _InfoTokenNumberState extends ConsumerState<InfoTokenNumber> {
-  bool _isVisible = true;
-
   @override
   Widget build(BuildContext context) {
     final cardListNotifier = ref.read(tokenCardDbListProvider.notifier);
 
-    return Column(
+    return ExpansionTile(
+      title: Text('Tot number: ${widget.token.tokenNumber}'),
       children: [
-        ExpansionTile(
-          title: Text('Tot number: ${widget.token.tokenNumber}'),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            NumberSelector(
-              title: 'UNtapped',
-              icon: SvgPicture.asset(
-                AssetsPaths.mtgCardUntapped,
-                height: 25,
-                colorFilter: ColorFilter.mode(
-                  Theme.of(context).iconTheme.color!,
-                  BlendMode.srcIn,
-                ),
-              ),
-              numberToShow: widget.token.untappedNumber,
-              handleRemove: () =>
-                  cardListNotifier.removeUntapped(token: widget.token),
-              handleAdd: () =>
-                  cardListNotifier.addUntapped(token: widget.token),
-            ),
-            NumberSelector(
-              title: 'TAPped',
-              icon: SvgPicture.asset(
-                AssetsPaths.mtgCardTapped,
-                height: 25,
-                colorFilter: ColorFilter.mode(
-                  Theme.of(context).iconTheme.color!,
-                  BlendMode.srcIn,
-                ),
-              ),
-              numberToShow: widget.token.tappedNumber,
-              handleRemove: () =>
-                  cardListNotifier.removeTapped(token: widget.token),
-              handleAdd: () => cardListNotifier.addTapped(token: widget.token),
-            ),
-            widget.token.isCreature
-                ? NumberSelector(
-                    title: 'Sick',
+            IntrinsicWidth(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  NumberSelector(
+                    title: 'UNtapped',
                     icon: SvgPicture.asset(
                       AssetsPaths.mtgCardUntapped,
-                      height: 25,
+                      height: 30,
                       colorFilter: ColorFilter.mode(
                         Theme.of(context).iconTheme.color!,
                         BlendMode.srcIn,
                       ),
                     ),
-                    numberToShow: widget.token.sickNumber,
+                    numberToShow: widget.token.untappedNumber,
                     handleRemove: () =>
-                        cardListNotifier.removeSick(token: widget.token),
+                        cardListNotifier.removeUntapped(token: widget.token),
                     handleAdd: () =>
-                        cardListNotifier.addSick(token: widget.token),
-                  )
-                : const SizedBox(),
+                        cardListNotifier.addUntapped(token: widget.token),
+                  ),
+                  NumberSelector(
+                    title: 'TAPped',
+                    icon: SvgPicture.asset(
+                      AssetsPaths.mtgCardTapped,
+                      height: 30,
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(context).iconTheme.color!,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                    numberToShow: widget.token.tappedNumber,
+                    handleRemove: () =>
+                        cardListNotifier.removeTapped(token: widget.token),
+                    handleAdd: () =>
+                        cardListNotifier.addTapped(token: widget.token),
+                  ),
+                  widget.token.isCreature
+                      ? NumberSelector(
+                          title: 'Sick',
+                          icon: SvgPicture.asset(
+                            AssetsPaths.mtgCardUntapped,
+                            height: 30,
+                            colorFilter: ColorFilter.mode(
+                              Theme.of(context).iconTheme.color!,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                          numberToShow: widget.token.sickNumber,
+                          handleRemove: () =>
+                              cardListNotifier.removeSick(token: widget.token),
+                          handleAdd: () =>
+                              cardListNotifier.addSick(token: widget.token),
+                        )
+                      : const SizedBox(),
+                ],
+              ),
+            ),
           ],
         ),
       ],

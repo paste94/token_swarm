@@ -91,11 +91,16 @@ class TokenCardRepository {
     log.info("update fuction called");
     return await _db!
         .update(_tableName, {attribute: newVal}, where: "id='$id'");
+  }
 
-    // _db!.rawUpdate('''
-    //   UPDATE $_tableName
-    //   SET ?=?
-    //   WHERE id=?
-    // ''', [attribute, newVal, id]);
+  static Future<int> newTurn() async {
+    log.info("update fuction called");
+
+    return await _db!.rawUpdate('''
+      UPDATE $_tableName 
+      SET untappedNumber=tokenNumber, 
+          tappedNumber=0,
+          sickNumber=0
+    ''');
   }
 }

@@ -19,51 +19,48 @@ class NumberSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Card.outlined(
-      child: IntrinsicWidth(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Flexible(
-              flex: 2,
-              child: Tooltip(
-                message: title,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: icon,
+    return IntrinsicWidth(
+      child: Card.outlined(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 8, bottom: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Flexible(
+                flex: 2,
+                child: Tooltip(
+                  message: title,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: icon,
+                  ),
                 ),
               ),
-            ),
-            Flexible(
-              flex: 4,
-              child: IconButton.filledTonal(
-                onPressed: handleRemove,
-                icon: const Icon(Icons.remove),
+              Flexible(
+                flex: 2,
+                child: IconButton.filledTonal(
+                  onPressed: handleRemove,
+                  icon: const Icon(Icons.remove),
+                ),
               ),
-            ),
-            const Flexible(
-              flex: 1,
-              child: SizedBox(width: 16),
-            ),
-            Flexible(
-              flex: 4,
-              child: Text(
-                '$numberToShow',
-                style: Theme.of(context).textTheme.bodyLarge,
+              const SizedBox(width: 16),
+              Flexible(
+                flex: 2,
+                child: Text(
+                  '$numberToShow',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
               ),
-            ),
-            const Flexible(
-              flex: 1,
-              child: SizedBox(width: 16),
-            ),
-            Flexible(
-              flex: 4,
-              child: IconButton.filledTonal(
-                onPressed: handleAdd,
-                icon: const Icon(Icons.add),
+              const SizedBox(width: 16),
+              Flexible(
+                flex: 2,
+                child: IconButton.filledTonal(
+                  onPressed: handleAdd,
+                  icon: const Icon(Icons.add),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

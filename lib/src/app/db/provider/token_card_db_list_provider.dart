@@ -191,4 +191,11 @@ class TokenCardDbList extends _$TokenCardDbList {
       });
     }
   }
+
+  Future<void> newTurn() async {
+    state = await AsyncValue.guard(() async {
+      await TokenCardRepository.newTurn();
+      return _fetch();
+    });
+  }
 }
