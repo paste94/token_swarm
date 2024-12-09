@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:token_swarm/src/app/db/provider/token_card_db_list_provider.dart';
-import 'package:token_swarm/src/features/S010_aggregate_info/model/aggregate_info.dart';
+import 'package:token_swarm/src/features/S010_aggregate_info/model/info.dart';
 import 'package:token_swarm/src/features/S010_aggregate_info/provider/aggregate_info_provider.dart';
 
 class InfoTable extends ConsumerStatefulWidget {
@@ -13,43 +13,32 @@ class InfoTable extends ConsumerStatefulWidget {
 }
 
 class _InfoTableState extends ConsumerState<InfoTable> {
-  // Stato per ordinamento
-  int? _sortColumnIndex;
-  bool _isAscending = true;
-
-  void _onSort(columnIndex, ascending) {
-    setState(() {
-      _sortColumnIndex = columnIndex;
-      _isAscending = ascending;
-    });
-  }
-
   final log = Logger('InfoTable');
+
+  void _onSort(index, asc) {
+    log.info('SORT $index, $asc');
+    ref.read(sortIndexProvider.notifier).set(index);
+    ref.read(ascendingProvider.notifier).set(asc);
+    ref.read(aggregateInfoProvider.notifier).sortObjects();
+  }
 
   @override
   Widget build(BuildContext context) {
-    List<AggregateInfo> entries = aggregateInfoProvider(ref);
+    List<Info> entries = ref.watch(aggregateInfoProvider);
+    int? sortIndex = ref.watch(sortIndexProvider);
+    bool isAscending = ref.watch(ascendingProvider);
 
-    if (_sortColumnIndex != null) {
-      if (_sortColumnIndex == 0) {
-        // Ordina per chiave
-        entries.sort((a, b) =>
-            _isAscending ? a.type.compareTo(b.type) : b.type.compareTo(a.type));
-        log.info(entries);
-      } else if (_sortColumnIndex == 1) {
-        // Ordina per valore
-        entries.sort((a, b) => _isAscending
-            ? a.count.compareTo(b.count)
-            : b.count.compareTo(a.count));
-        log.info(entries);
-      }
+    void togglePinned(Info elem) {
+      log.info('TOGGLE');
+      setState(() {});
+      ref.read(aggregateInfoProvider.notifier).togglePinned(elem);
     }
 
     return SingleChildScrollView(
       child: entries.isNotEmpty
           ? DataTable(
-              sortColumnIndex: _sortColumnIndex,
-              sortAscending: _isAscending,
+              sortColumnIndex: sortIndex,
+              sortAscending: isAscending,
               columns: [
                 DataColumn(
                   onSort: _onSort,
@@ -72,13 +61,35 @@ class _InfoTableState extends ConsumerState<InfoTable> {
                   ),
                 ),
               ],
-              rows: entries.map((entry) {
-                return DataRow(cells: [
-                  DataCell(Text(entry.type)),
-                  DataCell(Text(entry.count.toString())),
-                  DataCell(Text(entry.pinned.toString())),
-                ]);
-              }).toList(),
+              rows: entries
+                  .map((e) => DataRow(cells: [
+                        DataCell(Text(e.type)),
+                        DataCell(Text(e.count.toString())),
+                        DataCell(Checkbox(
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              togglePinned(e);
+                            }
+                          },
+                          value: e.pinned,
+                        )),
+                      ]))
+                  .toList(),
+              // List.generate(entries.length, (index) {
+              //   log.info('GENERATE');
+              //   return DataRow(cells: [
+              //     DataCell(Text(entries[index].type)),
+              //     DataCell(Text(entries[index].count.toString())),
+              //     DataCell(Checkbox(
+              //       onChanged: (bool? value) {
+              //         if (value != null) {
+              //           togglePinned(index);
+              //         }
+              //       },
+              //       value: entries[index].pinned,
+              //     )),
+              //   ]);
+              // }).toList(),
             )
           : const Padding(
               padding: EdgeInsets.all(64.0),
