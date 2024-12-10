@@ -34,7 +34,9 @@ class AggregateInfo extends _$AggregateInfo {
   FutureOr<List<Info>> build() async {
     log.info('BUILD');
     await TokenCardRepository.initDB();
-    return await _fetch();
+    final data = await _fetch();
+    sortObjects(data);
+    return data;
   }
 
   Future<List<Info>> _fetch() async {
@@ -107,15 +109,16 @@ class AggregateInfo extends _$AggregateInfo {
         );
         return _fetch();
       });
-      sortObjects();
+      sortObjects(state.value);
     }
   }
 
-  void sortObjects() {
-    if (state.value != null) {
+  void sortObjects([List<Info>? data]) {
+    data ??= state.value;
+    if (data != null) {
       int? sortIndex = ref.read(sortIndexProvider);
       bool isAscending = ref.read(ascendingProvider);
-      state.value!.sort((a, b) {
+      data.sort((a, b) {
         if (a.pinned != b.pinned) {
           return a.pinned ? -1 : 1;
         }
