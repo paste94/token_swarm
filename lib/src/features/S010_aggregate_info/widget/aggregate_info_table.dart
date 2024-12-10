@@ -29,7 +29,6 @@ class _InfoTableState extends ConsumerState<InfoTable> {
     bool isAscending = ref.watch(ascendingProvider);
 
     void togglePinned(Info elem) {
-      log.info('TOGGLE');
       setState(() {});
       ref.read(aggregateInfoProvider.notifier).togglePinned(elem);
     }
@@ -63,18 +62,30 @@ class _InfoTableState extends ConsumerState<InfoTable> {
                 ),
               ],
               rows: data
-                  .map((e) => DataRow(cells: [
+                  .map(
+                    (e) => DataRow(
+                      color: MaterialStateProperty.resolveWith((state) {
+                        return e.pinned
+                            ? Theme.of(context).colorScheme.primaryContainer
+                            : Theme.of(context).colorScheme.background;
+                      }),
+                      cells: [
                         DataCell(Text(e.type)),
                         DataCell(Text(e.count.toString())),
-                        DataCell(Checkbox(
-                          onChanged: (bool? value) {
-                            if (value != null) {
-                              togglePinned(e);
-                            }
-                          },
-                          value: e.pinned,
-                        )),
-                      ]))
+                        DataCell(
+                          InkWell(
+                            onTap: () => togglePinned(e),
+                            child: Opacity(
+                              opacity: e.pinned ? 1 : 0.25,
+                              child: const Icon(
+                                Icons.push_pin,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                   .toList(),
             )
           : const Padding(

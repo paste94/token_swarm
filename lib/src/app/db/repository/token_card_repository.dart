@@ -69,8 +69,19 @@ class TokenCardRepository {
   static Future<int> insertAggInfo(String type, bool pinned) async {
     log.info(
         "Insert function called on ${TableNames.aggTableName}: $type, $pinned");
-    return await _db!
-        .insert(TableNames.aggTableName, {'type': type, 'pinned': pinned});
+    try {
+      return await _db!
+          .insert(TableNames.aggTableName, {'type': type, 'pinned': pinned});
+    } on DatabaseException catch (e) {
+      if (e.isUniqueConstraintError()) {
+        return 0;
+      }
+      log.severe(e);
+      return 0;
+    } catch (e) {
+      log.severe(e);
+      return 0;
+    }
   }
 
   static Future<List<Map<String, dynamic>>> queryToken() async {
