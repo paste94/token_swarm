@@ -6,7 +6,7 @@ part of 'aggregate_info_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sortIndexHash() => r'0df685d90a938b8c8a957b2c4c1e025d94381f6a';
+String _$sortIndexHash() => r'f6eb31505ba05c92123f1393823b4728ca01ae36';
 
 /// See also [SortIndex].
 @ProviderFor(SortIndex)
@@ -20,7 +20,7 @@ final sortIndexProvider = AutoDisposeNotifierProvider<SortIndex, int?>.internal(
 );
 
 typedef _$SortIndex = AutoDisposeNotifier<int?>;
-String _$ascendingHash() => r'009a1d974d5ca04ee07220b6aa97976fdf79dc50';
+String _$ascendingHash() => r'194c67426e3ce09fc04bc7848ffa94406bb8cfd6';
 
 /// See also [Ascending].
 @ProviderFor(Ascending)
@@ -34,12 +34,12 @@ final ascendingProvider = AutoDisposeNotifierProvider<Ascending, bool>.internal(
 );
 
 typedef _$Ascending = AutoDisposeNotifier<bool>;
-String _$aggregateInfoHash() => r'317001e8b70d8c5efbd68b6321874c2ba2556fe8';
+String _$aggregateInfoHash() => r'fdc1c1e034fa95ef3f74453be4b0479fd82a4dff';
 
 /// See also [AggregateInfo].
 @ProviderFor(AggregateInfo)
 final aggregateInfoProvider =
-    AutoDisposeNotifierProvider<AggregateInfo, List<Info>>.internal(
+    AutoDisposeAsyncNotifierProvider<AggregateInfo, List<Info>>.internal(
   AggregateInfo.new,
   name: r'aggregateInfoProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -49,6 +49,6 @@ final aggregateInfoProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$AggregateInfo = AutoDisposeNotifier<List<Info>>;
+typedef _$AggregateInfo = AutoDisposeAsyncNotifier<List<Info>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

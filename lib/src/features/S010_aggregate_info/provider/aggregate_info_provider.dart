@@ -1,7 +1,7 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:token_swarm/src/app/db/provider/token_card_db_list_provider.dart';
+import 'package:token_swarm/src/app/db/repository/token_card_repository.dart';
 import 'package:token_swarm/src/features/S010_aggregate_info/model/info.dart';
 
 part 'aggregate_info_provider.g.dart';
@@ -31,13 +31,16 @@ class AggregateInfo extends _$AggregateInfo {
   final log = Logger('aggregateInfoProvider');
 
   @override
-  List<Info> build() {
-    log.info('BOULD');
-    return getInfo();
+  FutureOr<List<Info>> build() async {
+    log.info('BUILD');
+    await TokenCardRepository.initDB();
+    return await _fetch();
   }
 
-  List<Info> getInfo() {
+  Future<List<Info>> _fetch() async {
     List<Info> l = [];
+    final settingsData = await TokenCardRepository.queryAggInfo();
+
     try {
       final list = ref.read(tokenCardDbListProvider).value;
       if (list != null) {
@@ -65,41 +68,67 @@ class AggregateInfo extends _$AggregateInfo {
               count += token.tokenNumber;
             }
           }
-          l.add(Info(type: t, count: count, pinned: false));
+          log.info(settingsData);
+          bool pinned = settingsData
+                      .where((element) => element['type'] == t)
+                      .firstOrNull?['pinned'] ==
+                  1
+              ? true
+              : false;
+          l.add(
+            Info(
+              type: t,
+              count: count,
+              pinned: pinned,
+            ),
+          );
         }
       }
+
+      for (final elem in l) {
+        TokenCardRepository.insertAggInfo(elem.type, elem.pinned);
+      }
+
       return l;
-    } catch (e) {
-      log.severe(e);
+    } catch (e, stackTrace) {
+      print(stackTrace);
       return l;
     }
   }
 
-  void togglePinned(Info elem) {
-    int index = state.indexWhere((item) => item.type == elem.type);
-
-    var s = state;
-    s[index].pinned = !s[index].pinned;
-    state = s;
-    log.info(state);
+  Future<void> togglePinned(Info elem) async {
+    if (state.value != null) {
+      log.info('[togglePinned]: $elem');
+      state = await AsyncValue.guard(() async {
+        await TokenCardRepository.updateAggInfo(
+          type: elem.type,
+          attribute: 'pinned',
+          newVal: !elem.pinned,
+        );
+        return _fetch();
+      });
+      sortObjects();
+    }
   }
 
   void sortObjects() {
-    int? sortIndex = ref.read(sortIndexProvider);
-    bool isAscending = ref.read(ascendingProvider);
-    state.sort((a, b) {
-      if (a.pinned != b.pinned) {
-        return a.pinned ? -1 : 1;
-      }
-      if (sortIndex == 0) {
-        return isAscending
-            ? a.type.compareTo(b.type)
-            : b.type.compareTo(a.type);
-      } else {
-        return isAscending
-            ? a.count.compareTo(b.count)
-            : b.count.compareTo(a.count);
-      }
-    });
+    if (state.value != null) {
+      int? sortIndex = ref.read(sortIndexProvider);
+      bool isAscending = ref.read(ascendingProvider);
+      state.value!.sort((a, b) {
+        if (a.pinned != b.pinned) {
+          return a.pinned ? -1 : 1;
+        }
+        if (sortIndex == 0) {
+          return isAscending
+              ? a.type.compareTo(b.type)
+              : b.type.compareTo(a.type);
+        } else {
+          return isAscending
+              ? a.count.compareTo(b.count)
+              : b.count.compareTo(a.count);
+        }
+      });
+    }
   }
 }

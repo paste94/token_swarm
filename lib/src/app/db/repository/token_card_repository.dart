@@ -2,105 +2,136 @@ import 'package:logging/logging.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:token_swarm/src/app/db/model/token_card_db.dart';
 
+class TableNames {
+  static const String tokenTableName = "token";
+  static const String aggTableName = "aggregate_info_settings";
+}
+
 class TokenCardRepository {
   static Database? _db;
   static const int _version = 1;
-  static const String _tableName = "token";
   static final log = Logger('TokenCardRepository');
+
+  static Future _createDb(Database db) async {
+    log.info('Table created');
+    await db.execute('DROP TABLE If EXISTS ${TableNames.tokenTableName}');
+    await db.execute('DROP TABLE If EXISTS ${TableNames.aggTableName}');
+    await db.execute(
+      "CREATE TABLE ${TableNames.tokenTableName}("
+      "internal_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+      "id STRING,"
+      "power INTEGER,"
+      "toughness INTEGER,"
+      "imageUri STRING,"
+      "name STRING,"
+      "text STRING,"
+      "typeLine STRING,"
+      "tokenNumber INTEGER,"
+      "tappedNumber INTEGER,"
+      "untappedNumber INTEGER,"
+      "prevTappedNumber INTEGER,"
+      "sickNumber INTEGER,"
+      "imageUriArtCrop STRING,"
+      "isCreature INTEGER"
+      ")",
+    );
+    await db.execute(
+      "CREATE TABLE ${TableNames.aggTableName}("
+      "type STRING PRIMARY KEY,"
+      "pinned INTEGER"
+      ")",
+    );
+  }
 
   static Future<void> initDB() async {
     if (_db != null) {
       return;
     }
     try {
-      String path = '${await getDatabasesPath()}task.db';
+      String path = '${await getDatabasesPath()}tokens.db';
       _db = await openDatabase(
         path,
         version: _version,
-        onUpgrade: (db, prev, next) {
-          log.info("Upgrading to V $_version");
-          return db.execute(
-            // "DROP TABLE $_tableName;"
-            "CREATE TABLE $_tableName("
-            "internal_id INTEGER PRIMARY KEY AUTOINCREMENT,"
-            "id STRING,"
-            "power INTEGER,"
-            "toughness INTEGER,"
-            "imageUri STRING,"
-            "name STRING,"
-            "text STRING,"
-            "typeLine STRING,"
-            "tokenNumber INTEGER,"
-            "tappedNumber INTEGER,"
-            "untappedNumber INTEGER,"
-            "prevTappedNumber INTEGER,"
-            "sickNumber INTEGER,"
-            "imageUriArtCrop STRING,"
-            "isCreature BOOL"
-            ")",
-          );
-        },
-        onCreate: (db, version) {
-          log.info("Creating a new table $_tableName V $_version");
-          return db.execute(
-            "CREATE TABLE $_tableName("
-            "id STRING PRIMARY KEY,"
-            "power INTEGER,"
-            "toughness INTEGER,"
-            "imageUri STRING,"
-            "name STRING,"
-            "text STRING,"
-            "typeLine STRING,"
-            "tokenNumber INTEGER,"
-            "tappedNumber INTEGER,"
-            "untappedNumber INTEGER,"
-            "prevTappedNumber INTEGER,"
-            "sickNumber INTEGER,"
-            "imageUriArtCrop STRING,"
-            "isCreature BOOL"
-            ")",
-          );
-        },
+        onCreate: (db, version) => _createDb(db),
+        onUpgrade: (db, oldVersion, newVersion) =>
+            oldVersion < _version ? _createDb(db) : null,
       );
     } catch (e, stackTrace) {
       log.severe("Error $e, \n $stackTrace");
     }
   }
 
-  static Future<int> insert(TokenCardDb? token) async {
+  static Future<int> insertToken(TokenCardDb? token) async {
     log.info("Insert function called on $token");
-    return await _db!.insert(_tableName, token!.toMap());
+    return await _db!.insert(TableNames.tokenTableName, token!.toMap());
   }
 
-  static Future<List<Map<String, dynamic>>> query() async {
-    log.info("query fuction called");
-    return await _db!.query(_tableName);
+  static Future<int> insertAggInfo(String type, bool pinned) async {
+    log.info(
+        "Insert function called on ${TableNames.aggTableName}: $type, $pinned");
+    return await _db!
+        .insert(TableNames.aggTableName, {'type': type, 'pinned': pinned});
   }
 
-  static delete(TokenCardDb token) async {
-    log.info("delete fuction called");
+  static Future<List<Map<String, dynamic>>> queryToken() async {
+    log.info("query fuction called on table TOKEN");
+    return await _db!.query(TableNames.tokenTableName);
+  }
+
+  static Future<List<Map<String, dynamic>>> queryAggInfo() async {
+    log.info("query fuction called on table AGGREGATE INFO");
+    return await _db!.query(TableNames.aggTableName);
+  }
+
+  static deleteToken(TokenCardDb token) async {
+    log.info("delete fuction called on TOKEN");
     await _db!.delete(
-      _tableName,
+      TableNames.tokenTableName,
       where: "id=?",
       whereArgs: [token.id],
     );
   }
 
-  static Future<int> update({
+  static deleteAggInfo(String type) async {
+    log.info("delete fuction called on table AGGREGATE INFO");
+    await _db!.delete(
+      TableNames.aggTableName,
+      where: "type=?",
+      whereArgs: [type],
+    );
+  }
+
+  static Future<int> updateToken({
     required String id,
     required String attribute,
     required dynamic newVal,
   }) async {
     log.info("update fuction called");
-    return await _db!
-        .update(_tableName, {attribute: newVal}, where: "id='$id'");
+    return await _db!.update(
+      TableNames.tokenTableName,
+      {attribute: newVal},
+      where: "id='$id'",
+    );
+  }
+
+  static Future<int> updateAggInfo({
+    required String type,
+    required String attribute,
+    required dynamic newVal,
+  }) async {
+    log.info("update fuction called");
+    return await _db!.update(
+      TableNames.aggTableName,
+      {attribute: newVal},
+      where: "type='$type'",
+    );
   }
 
   static Future<int> newTurn() async {
     log.info("update fuction called");
 
     return await _db!.rawUpdate('''
-      UPDATE $_tableName 
+      UPDATE $TableNames.tokenTableName 
       SET untappedNumber=tokenNumber, 
           tappedNumber=0,
           sickNumber=0

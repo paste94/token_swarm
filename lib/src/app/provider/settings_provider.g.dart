@@ -6,7 +6,7 @@ part of 'settings_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$alwaysOnDisplayHash() => r'db5c381d80ecee3f38a5dfda407456ecb7fd6f2e';
+String _$alwaysOnDisplayHash() => r'489fb0ccb7e1bbf585a40731dd6de165862b1eeb';
 
 /// dart run build_runner build
 ///

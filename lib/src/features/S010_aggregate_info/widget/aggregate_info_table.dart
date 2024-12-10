@@ -24,7 +24,7 @@ class _InfoTableState extends ConsumerState<InfoTable> {
 
   @override
   Widget build(BuildContext context) {
-    List<Info> entries = ref.watch(aggregateInfoProvider);
+    final entries = ref.watch(aggregateInfoProvider);
     int? sortIndex = ref.watch(sortIndexProvider);
     bool isAscending = ref.watch(ascendingProvider);
 
@@ -35,7 +35,8 @@ class _InfoTableState extends ConsumerState<InfoTable> {
     }
 
     return SingleChildScrollView(
-      child: entries.isNotEmpty
+        child: entries.when(
+      data: (data) => data.isNotEmpty
           ? DataTable(
               sortColumnIndex: sortIndex,
               sortAscending: isAscending,
@@ -54,14 +55,14 @@ class _InfoTableState extends ConsumerState<InfoTable> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-                DataColumn(
-                  label: const Text(
+                const DataColumn(
+                  label: Text(
                     'Pinned',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
-              rows: entries
+              rows: data
                   .map((e) => DataRow(cells: [
                         DataCell(Text(e.type)),
                         DataCell(Text(e.count.toString())),
@@ -75,26 +76,13 @@ class _InfoTableState extends ConsumerState<InfoTable> {
                         )),
                       ]))
                   .toList(),
-              // List.generate(entries.length, (index) {
-              //   log.info('GENERATE');
-              //   return DataRow(cells: [
-              //     DataCell(Text(entries[index].type)),
-              //     DataCell(Text(entries[index].count.toString())),
-              //     DataCell(Checkbox(
-              //       onChanged: (bool? value) {
-              //         if (value != null) {
-              //           togglePinned(index);
-              //         }
-              //       },
-              //       value: entries[index].pinned,
-              //     )),
-              //   ]);
-              // }).toList(),
             )
           : const Padding(
               padding: EdgeInsets.all(64.0),
               child: Center(child: Text('Nothing to show here!')),
             ),
-    );
+      error: (error, stackTrace) => Text(error.toString()),
+      loading: () => const Center(child: CircularProgressIndicator()),
+    ));
   }
 }
