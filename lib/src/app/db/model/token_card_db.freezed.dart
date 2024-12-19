@@ -30,6 +30,7 @@ mixin _$TokenCardDb {
   int get prevTappedNumber => throw _privateConstructorUsedError;
   int get sickNumber => throw _privateConstructorUsedError;
   bool get isCreature => throw _privateConstructorUsedError;
+  bool get isSicknessActive => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TokenCardDbCopyWith<TokenCardDb> get copyWith =>
@@ -56,7 +57,8 @@ abstract class $TokenCardDbCopyWith<$Res> {
       int untappedNumber,
       int prevTappedNumber,
       int sickNumber,
-      bool isCreature});
+      bool isCreature,
+      bool isSicknessActive});
 }
 
 /// @nodoc
@@ -86,6 +88,7 @@ class _$TokenCardDbCopyWithImpl<$Res, $Val extends TokenCardDb>
     Object? prevTappedNumber = null,
     Object? sickNumber = null,
     Object? isCreature = null,
+    Object? isSicknessActive = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -144,6 +147,10 @@ class _$TokenCardDbCopyWithImpl<$Res, $Val extends TokenCardDb>
           ? _value.isCreature
           : isCreature // ignore: cast_nullable_to_non_nullable
               as bool,
+      isSicknessActive: null == isSicknessActive
+          ? _value.isSicknessActive
+          : isSicknessActive // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -170,7 +177,8 @@ abstract class _$$TokenCardDbImplCopyWith<$Res>
       int untappedNumber,
       int prevTappedNumber,
       int sickNumber,
-      bool isCreature});
+      bool isCreature,
+      bool isSicknessActive});
 }
 
 /// @nodoc
@@ -198,6 +206,7 @@ class __$$TokenCardDbImplCopyWithImpl<$Res>
     Object? prevTappedNumber = null,
     Object? sickNumber = null,
     Object? isCreature = null,
+    Object? isSicknessActive = null,
   }) {
     return _then(_$TokenCardDbImpl(
       id: null == id
@@ -256,6 +265,10 @@ class __$$TokenCardDbImplCopyWithImpl<$Res>
           ? _value.isCreature
           : isCreature // ignore: cast_nullable_to_non_nullable
               as bool,
+      isSicknessActive: null == isSicknessActive
+          ? _value.isSicknessActive
+          : isSicknessActive // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -277,7 +290,8 @@ class _$TokenCardDbImpl extends _TokenCardDb {
       this.untappedNumber = 0,
       this.prevTappedNumber = 0,
       this.sickNumber = 0,
-      this.isCreature = false})
+      this.isCreature = false,
+      this.isSicknessActive = false})
       : super._();
 
   @override
@@ -314,10 +328,13 @@ class _$TokenCardDbImpl extends _TokenCardDb {
   @override
   @JsonKey()
   final bool isCreature;
+  @override
+  @JsonKey()
+  final bool isSicknessActive;
 
   @override
   String toString() {
-    return 'TokenCardDb(id: $id, power: $power, toughness: $toughness, imageUri: $imageUri, imageUriArtCrop: $imageUriArtCrop, name: $name, text: $text, typeLine: $typeLine, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber, untappedNumber: $untappedNumber, prevTappedNumber: $prevTappedNumber, sickNumber: $sickNumber, isCreature: $isCreature)';
+    return 'TokenCardDb(id: $id, power: $power, toughness: $toughness, imageUri: $imageUri, imageUriArtCrop: $imageUriArtCrop, name: $name, text: $text, typeLine: $typeLine, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber, untappedNumber: $untappedNumber, prevTappedNumber: $prevTappedNumber, sickNumber: $sickNumber, isCreature: $isCreature, isSicknessActive: $isSicknessActive)';
   }
 
   @override
@@ -348,7 +365,9 @@ class _$TokenCardDbImpl extends _TokenCardDb {
             (identical(other.sickNumber, sickNumber) ||
                 other.sickNumber == sickNumber) &&
             (identical(other.isCreature, isCreature) ||
-                other.isCreature == isCreature));
+                other.isCreature == isCreature) &&
+            (identical(other.isSicknessActive, isSicknessActive) ||
+                other.isSicknessActive == isSicknessActive));
   }
 
   @override
@@ -367,7 +386,8 @@ class _$TokenCardDbImpl extends _TokenCardDb {
       untappedNumber,
       prevTappedNumber,
       sickNumber,
-      isCreature);
+      isCreature,
+      isSicknessActive);
 
   @JsonKey(ignore: true)
   @override
@@ -391,7 +411,8 @@ abstract class _TokenCardDb extends TokenCardDb {
       final int untappedNumber,
       final int prevTappedNumber,
       final int sickNumber,
-      final bool isCreature}) = _$TokenCardDbImpl;
+      final bool isCreature,
+      final bool isSicknessActive}) = _$TokenCardDbImpl;
   _TokenCardDb._() : super._();
 
   @override
@@ -422,6 +443,8 @@ abstract class _TokenCardDb extends TokenCardDb {
   int get sickNumber;
   @override
   bool get isCreature;
+  @override
+  bool get isSicknessActive;
   @override
   @JsonKey(ignore: true)
   _$$TokenCardDbImplCopyWith<_$TokenCardDbImpl> get copyWith =>

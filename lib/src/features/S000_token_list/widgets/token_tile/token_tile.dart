@@ -70,7 +70,8 @@ class TokenTile extends ConsumerWidget {
                     )
                   : const SizedBox(),
             ),
-            IntrinsicHeight(
+            Flexible(
+              flex: 0,
               child: InfoTokenNumber(token),
             ),
           ],

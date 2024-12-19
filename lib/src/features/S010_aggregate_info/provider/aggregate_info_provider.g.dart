@@ -34,7 +34,7 @@ final ascendingProvider = AutoDisposeNotifierProvider<Ascending, bool>.internal(
 );
 
 typedef _$Ascending = AutoDisposeNotifier<bool>;
-String _$aggregateInfoHash() => r'fdc1c1e034fa95ef3f74453be4b0479fd82a4dff';
+String _$aggregateInfoHash() => r'c1773a0fe89168387f05bdaa17c5beded0d88c33';
 
 /// See also [AggregateInfo].
 @ProviderFor(AggregateInfo)

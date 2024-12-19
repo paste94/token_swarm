@@ -22,7 +22,47 @@ class _InfoTokenNumberState extends ConsumerState<InfoTokenNumber> {
     final cardListNotifier = ref.read(tokenCardDbListProvider.notifier);
 
     return ExpansionTile(
-      title: Text('Tot number: ${widget.token.tokenNumber}'),
+      title: Row(
+        children: [
+          SvgPicture.asset(
+            AssetsPaths.mtgCardUntapped,
+            height: 25,
+            colorFilter: ColorFilter.mode(
+              Theme.of(context).iconTheme.color!,
+              BlendMode.srcIn,
+            ),
+          ),
+          SizedBox(width: 8),
+          Text('${widget.token.untappedNumber}'),
+          SizedBox(width: 32),
+          SvgPicture.asset(
+            AssetsPaths.mtgCardTapped,
+            height: 25,
+            colorFilter: ColorFilter.mode(
+              Theme.of(context).iconTheme.color!,
+              BlendMode.srcIn,
+            ),
+          ),
+          SizedBox(width: 8),
+          Text('${widget.token.tappedNumber}'),
+          SizedBox(width: 32),
+          widget.token.isCreature
+              ? SvgPicture.asset(
+                  AssetsPaths.mtgCardUntapped,
+                  height: 25,
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).iconTheme.color!.withOpacity(0.25),
+                    BlendMode.srcIn,
+                  ),
+                )
+              : SizedBox(),
+          SizedBox(width: 8),
+          widget.token.isCreature
+              ? Text('${widget.token.sickNumber}')
+              : SizedBox(),
+        ],
+      ),
+      // Text('Tot number: ${widget.token.tokenNumber}'),
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -63,25 +103,85 @@ class _InfoTokenNumberState extends ConsumerState<InfoTokenNumber> {
                     handleAdd: () =>
                         cardListNotifier.addTapped(token: widget.token),
                   ),
-                  widget.token.isCreature
-                      ? NumberSelector(
-                          title: 'Sick',
-                          icon: SvgPicture.asset(
-                            AssetsPaths.mtgCardUntapped,
-                            height: 30,
+                  if (widget.token.isSicknessActive)
+                    NumberSelector(
+                      title: 'Sick',
+                      icon: SvgPicture.asset(
+                        AssetsPaths.mtgCardUntapped,
+                        height: 30,
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).iconTheme.color!.withOpacity(0.25),
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                      numberToShow: widget.token.sickNumber,
+                      handleRemove: () =>
+                          cardListNotifier.removeSick(token: widget.token),
+                      handleAdd: () =>
+                          cardListNotifier.addSick(token: widget.token),
+                    )
+                ],
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    // SizedBox(height: 32),
+                    SizedBox(
+                      width: double.infinity,
+                      child: FilledButton.tonalIcon(
+                        onPressed: () => ref
+                            .read(tokenCardDbListProvider.notifier)
+                            .tap(token: widget.token),
+                        label: Text('Tap'),
+                        icon: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 8,
+                            top: 16,
+                            bottom: 16,
+                          ),
+                          child: SvgPicture.asset(
+                            AssetsPaths.tapIcon,
+                            height: 25,
                             colorFilter: ColorFilter.mode(
                               Theme.of(context).iconTheme.color!,
                               BlendMode.srcIn,
                             ),
                           ),
-                          numberToShow: widget.token.sickNumber,
-                          handleRemove: () =>
-                              cardListNotifier.removeSick(token: widget.token),
-                          handleAdd: () =>
-                              cardListNotifier.addSick(token: widget.token),
-                        )
-                      : const SizedBox(),
-                ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: widget.token.isSicknessActive ? 32 : 8,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: FilledButton.tonalIcon(
+                        onPressed: () => ref
+                            .read(tokenCardDbListProvider.notifier)
+                            .untap(token: widget.token),
+                        label: Text('Untap'),
+                        icon: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 8,
+                            top: 16,
+                            bottom: 16,
+                          ),
+                          child: SvgPicture.asset(
+                            AssetsPaths.untapIcon,
+                            height: 25,
+                            colorFilter: ColorFilter.mode(
+                              Theme.of(context).iconTheme.color!,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

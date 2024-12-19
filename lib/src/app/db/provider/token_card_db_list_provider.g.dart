@@ -6,7 +6,7 @@ part of 'token_card_db_list_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$tokenCardDbListHash() => r'67375bba35b6b7bbc3e4e89bc0a43aedf1f59319';
+String _$tokenCardDbListHash() => r'85fe84566d4b9969150d6fbb45f163120844ccdc';
 
 /// See also [TokenCardDbList].
 @ProviderFor(TokenCardDbList)

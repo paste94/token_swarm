@@ -23,6 +23,7 @@ class TokenCardDb with _$TokenCardDb {
     @Default(0) int prevTappedNumber,
     @Default(0) int sickNumber,
     @Default(false) bool isCreature,
+    @Default(false) bool isSicknessActive,
   }) = _TokenCardDb;
 
   factory TokenCardDb.fromMap(Map<String, dynamic> map) {
@@ -41,6 +42,7 @@ class TokenCardDb with _$TokenCardDb {
       prevTappedNumber: map['prevTappedNumber'] as int,
       sickNumber: map['sickNumber'] as int,
       isCreature: map['isCreature'] as int == 1,
+      isSicknessActive: map['isSicknessActive'] as int == 1,
     );
   }
 
@@ -55,6 +57,7 @@ class TokenCardDb with _$TokenCardDb {
       text: card.oracleText ?? '',
       isCreature: card.typeLine.contains('Creature'),
       typeLine: card.typeLine,
+      isSicknessActive: card.typeLine.contains('Creature'),
     );
   }
 
@@ -81,6 +84,7 @@ class TokenCardDb with _$TokenCardDb {
       "prevTappedNumber": prevTappedNumber,
       "sickNumber": sickNumber,
       "isCreature": isCreature,
+      "isSicknessActive": isSicknessActive,
       "typeLine": typeLine,
     };
   }

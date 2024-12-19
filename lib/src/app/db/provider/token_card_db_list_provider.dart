@@ -193,6 +193,36 @@ class TokenCardDbList extends _$TokenCardDbList {
     }
   }
 
+  Future<void> tap({
+    required TokenCardDb token,
+  }) async {
+    if (token.untappedNumber > 0) {
+      state = await AsyncValue.guard(() async {
+        try {
+          await TokenCardRepository.tap(token.id);
+        } catch (e, stackTrace) {
+          log.severe('ERROR: $e \n $stackTrace');
+        }
+        return _fetch();
+      });
+    }
+  }
+
+  Future<void> untap({
+    required TokenCardDb token,
+  }) async {
+    if (token.tappedNumber > 0) {
+      state = await AsyncValue.guard(() async {
+        try {
+          await TokenCardRepository.untap(token.id);
+        } catch (e, stackTrace) {
+          log.severe('ERROR: $e \n $stackTrace');
+        }
+        return _fetch();
+      });
+    }
+  }
+
   Future<void> newTurn() async {
     state = await AsyncValue.guard(() async {
       await TokenCardRepository.newTurn();

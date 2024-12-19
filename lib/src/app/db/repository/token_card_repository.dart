@@ -1,6 +1,7 @@
 import 'package:logging/logging.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:token_swarm/src/app/db/model/token_card_db.dart';
+import 'package:token_swarm/src/app/provider/token_provider.dart';
 
 class TableNames {
   static const String tokenTableName = "token";
@@ -9,7 +10,7 @@ class TableNames {
 
 class TokenCardRepository {
   static Database? _db;
-  static const int _version = 1;
+  static const int _version = 2;
   static final log = Logger('TokenCardRepository');
 
   static Future _createDb(Database db) async {
@@ -32,7 +33,8 @@ class TokenCardRepository {
       "prevTappedNumber INTEGER,"
       "sickNumber INTEGER,"
       "imageUriArtCrop STRING,"
-      "isCreature INTEGER"
+      "isCreature INTEGER,"
+      "isSicknessActive INTEGER"
       ")",
     );
     await db.execute(
@@ -142,10 +144,32 @@ class TokenCardRepository {
     log.info("update fuction called");
 
     return await _db!.rawUpdate('''
-      UPDATE $TableNames.tokenTableName 
+      UPDATE ${TableNames.tokenTableName} 
       SET untappedNumber=tokenNumber, 
           tappedNumber=0,
           sickNumber=0
+    ''');
+  }
+
+  static Future<int> tap(String tokenId) async {
+    log.info("update fuction called");
+
+    return await _db!.rawUpdate('''
+      UPDATE ${TableNames.tokenTableName} 
+      SET untappedNumber=untappedNumber-1, 
+          tappedNumber=tappedNumber+1
+      WHERE id='$tokenId'
+    ''');
+  }
+
+  static Future<int> untap(String tokenId) async {
+    log.info("update fuction called");
+
+    return await _db!.rawUpdate('''
+      UPDATE ${TableNames.tokenTableName} 
+      SET untappedNumber=untappedNumber+1, 
+          tappedNumber=tappedNumber-1
+      WHERE id='$tokenId'
     ''');
   }
 }
