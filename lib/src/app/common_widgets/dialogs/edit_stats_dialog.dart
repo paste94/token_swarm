@@ -3,12 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:token_swarm/l10n/generated/app_localizations.dart';
 import 'package:token_swarm/src/app/const/asset_paths.dart';
 import 'package:token_swarm/src/app/const/heroes.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
 import 'package:token_swarm/src/app/provider/token_provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditStatsDialog extends ConsumerStatefulWidget {
   const EditStatsDialog({super.key});
@@ -44,7 +44,7 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    AppLocalizations.of(context)?.seelctStats ?? 'xxx',
+                    Loc.of(context).seelctStats,
                     style: MyTypography.dialogTitle,
                   ),
                 ],
@@ -117,7 +117,7 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                 children: [
                   TextButton(
                     onPressed: () => context.pop(),
-                    child: Text(AppLocalizations.of(context)?.cancel ?? 'xxx'),
+                    child: Text(Loc.of(context).cancel),
                   ),
                   const VerticalDivider(
                     width: ConstPadding.padding,
@@ -129,7 +129,7 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                       ref.read(tokenProvider.notifier).setToughness(_toughness);
                       context.pop();
                     },
-                    child: Text(AppLocalizations.of(context)?.confirm ?? 'xxx'),
+                    child: Text(Loc.of(context).confirm),
                   ),
                 ],
               )

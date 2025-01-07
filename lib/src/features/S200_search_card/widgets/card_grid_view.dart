@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scryfall_api/scryfall_api.dart';
+import 'package:token_swarm/l10n/generated/app_localizations.dart';
 import 'package:token_swarm/src/app/common_widgets/alert_card.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/db/model/token_card_db.dart';
 import 'package:token_swarm/src/features/S200_search_card/provider/card_name_provider.dart';
 import 'package:token_swarm/src/features/S200_search_card/provider/exceptions/card_name_exception.dart';
 import 'package:token_swarm/src/features/S200_search_card/widgets/card_list_item.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CardGridView extends ConsumerStatefulWidget {
   const CardGridView({super.key});
@@ -25,9 +25,9 @@ class _CardGridViewState extends ConsumerState<CardGridView> {
               cardList.data.map((token) => CardListItem(token: token)).toList(),
         )
       : AlertCard(
-          iconText: AppLocalizations.of(context)?.noCardsFound ?? 'xxx',
-          title: AppLocalizations.of(context)?.attention ?? 'xxx',
-          text: AppLocalizations.of(context)?.noCardsFoundDetails ?? 'xxx',
+          iconText: Loc.of(context).noCardsFound,
+          title: Loc.of(context).attention,
+          text: Loc.of(context).noCardsFoundDetails,
           color: Colors.green[300],
           icon: Icons.search_off,
           iconColor: Colors.black54,
@@ -36,11 +36,11 @@ class _CardGridViewState extends ConsumerState<CardGridView> {
   Widget _onLoading() => const Center(child: CircularProgressIndicator());
 
   Widget _onError(err, s) => AlertCard(
-        iconText: AppLocalizations.of(context)?.noInternet ?? 'xxx',
-        title: AppLocalizations.of(context)?.attention ?? 'xxx',
+        iconText: Loc.of(context).noInternet,
+        title: Loc.of(context).attention,
         text: err is CardNameException
             ? err.message
-            : AppLocalizations.of(context)?.unknownError ?? 'xxx',
+            : Loc.of(context).unknownError,
         color: Colors.red[300],
         icon: Icons.cloud_off,
         iconColor: Colors.white,

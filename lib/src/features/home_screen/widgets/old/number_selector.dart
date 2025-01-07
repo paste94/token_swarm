@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:token_swarm/l10n/generated/app_localizations.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
 import 'package:token_swarm/src/app/provider/token_provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NumberSelector extends ConsumerWidget {
   const NumberSelector({super.key});
@@ -14,7 +14,7 @@ class NumberSelector extends ConsumerWidget {
     return Column(
       children: [
         IntrinsicHeight(
-          child: Text(AppLocalizations.of(context)?.total ?? 'xxx'),
+          child: Text(Loc.of(context).total),
         ),
         IntrinsicHeight(
           child: Row(

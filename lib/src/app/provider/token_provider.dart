@@ -44,7 +44,7 @@ class Token extends _$Token {
     state = state!.copyWith(toughness: newVal);
   }
 
-  Future removeToken() async {
+  Future<void> removeToken() async {
     state = null;
   }
 

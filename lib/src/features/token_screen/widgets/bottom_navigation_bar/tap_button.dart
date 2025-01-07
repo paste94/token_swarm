@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:token_swarm/l10n/generated/app_localizations.dart';
 import 'package:token_swarm/src/app/const/asset_paths.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
 import 'package:token_swarm/src/features/home_screen/home_widgets.dart';
 import 'package:token_swarm/src/app/provider/token_provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TapButton extends ConsumerWidget {
   const TapButton({super.key});
@@ -14,19 +14,16 @@ class TapButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool isTokenSelected = ref.watch(tokenProvider) != null;
-    final tappedNumber = ref.watch(tokenProvider)?.tappedNumber;
+    int? tappedNumber = ref.watch(tokenProvider)?.tappedNumber;
 
-    var loc = AppLocalizations.of(context);
-    String dialogCancelBtnTxt = loc?.cancel ?? 'xxx';
-    String dialogConfirmBtnTxt = loc?.confirm ?? 'xxx';
-    String dialogTitle = loc?.seelctStats ?? 'xxx';
+    void pop() => Navigator.of(context).pop();
 
     return IconButton(
       onPressed: isTokenSelected
           ? () => showDialog(
                 context: context,
                 builder: (builder) => AlertDialog(
-                  title: Text(dialogTitle),
+                  title: Text(Loc.of(context).seelctStats),
                   content: Row(
                     children: [
                       IntrinsicWidth(
@@ -77,15 +74,15 @@ class TapButton extends ConsumerWidget {
                   ),
                   actions: [
                     TextButton(
-                      child: Text(dialogCancelBtnTxt),
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: pop,
+                      child: Text(Loc.of(context).cancel),
                     ),
                     TextButton(
-                      child: Text(dialogConfirmBtnTxt),
+                      child: Text(Loc.of(context).confirm),
                       onPressed: () => ref
                           .read(tokenProvider.notifier)
                           .removeToken()
-                          .then((value) => Navigator.of(context).pop()),
+                          .then((value) => pop()),
                     ),
                   ],
                 ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:token_swarm/l10n/generated/app_localizations.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
 import 'package:token_swarm/src/app/provider/token_provider.dart';
 import 'package:token_swarm/src/app/common_widgets/dialogs/edit_tapped_dialog.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TappedSelector extends ConsumerWidget {
   const TappedSelector({super.key});
@@ -15,7 +15,7 @@ class TappedSelector extends ConsumerWidget {
     return Column(
       children: [
         IntrinsicHeight(
-          child: Text(AppLocalizations.of(context)?.tapped ?? 'xxx'),
+          child: Text(Loc.of(context).tapped),
         ),
         IntrinsicHeight(
           child: Row(

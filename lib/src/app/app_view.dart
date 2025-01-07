@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:token_swarm/l10n/generated/app_localizations.dart';
 import 'package:token_swarm/src/app/routes/routes.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // flutter gen-l10n
 
@@ -14,8 +14,8 @@ class AppView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       routerConfig: _router,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: Loc.localizationsDelegates,
+      supportedLocales: Loc.supportedLocales,
       theme: ThemeData(
         iconTheme: const IconThemeData(
           color: Colors.black54,

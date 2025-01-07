@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:token_swarm/l10n/generated/app_localizations.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
 import 'package:token_swarm/src/app/provider/token_provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditTokenNumberDialog extends ConsumerStatefulWidget {
   const EditTokenNumberDialog({super.key});
@@ -38,7 +38,7 @@ class _EditTokenNumberDialogState extends ConsumerState<EditTokenNumberDialog> {
             Row(
               children: [
                 Text(
-                  AppLocalizations.of(context)?.howManyTokensQuestion ?? 'xxx',
+                  Loc.of(context).howManyTokensQuestion,
                   style: MyTypography.dialogTitle,
                 ),
               ],
@@ -67,7 +67,7 @@ class _EditTokenNumberDialogState extends ConsumerState<EditTokenNumberDialog> {
               children: [
                 TextButton(
                   onPressed: () => context.pop(),
-                  child: Text(AppLocalizations.of(context)?.cancel ?? 'xxx'),
+                  child: Text(Loc.of(context).cancel),
                 ),
                 const VerticalDivider(
                   width: ConstPadding.padding,
@@ -76,15 +76,14 @@ class _EditTokenNumberDialogState extends ConsumerState<EditTokenNumberDialog> {
                 TextButton(
                   onPressed: () {
                     if (_numberController.text == '') {
-                      setState(() => _error =
-                          AppLocalizations.of(context)?.valueCannotBeEmpty ??
-                              'xxx');
+                      setState(
+                          () => _error = Loc.of(context).valueCannotBeEmpty);
                     }
                     // int newVal = int.parse(_numberController.text);
                     // ref.read(tokenProvider.notifier).setTokenNumber(newVal);
                     context.pop();
                   },
-                  child: Text(AppLocalizations.of(context)?.confirm ?? 'xxx'),
+                  child: Text(Loc.of(context).confirm),
                 ),
               ],
             )

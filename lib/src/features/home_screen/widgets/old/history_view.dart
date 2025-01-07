@@ -4,11 +4,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:token_swarm/l10n/generated/app_localizations.dart';
 import 'package:token_swarm/src/app/const/asset_paths.dart';
 import 'package:token_swarm/src/app/model/token_preview.dart';
 import 'package:token_swarm/src/app/persistence/provider/persistence.dart';
 import 'package:token_swarm/src/app/provider/token_provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:token_swarm/src/app/routes/routes.dart';
 
 class HistoryView extends ConsumerStatefulWidget {
@@ -40,7 +40,7 @@ class _HistoryViewState extends ConsumerState<HistoryView> {
         ),
       );
 
-  Widget _buildRow(TokenPreview token) => InkWell(
+  Widget _buildRow(context, TokenPreview token) => InkWell(
         onTap: () {
           setState(() => _isItemEnabled = false);
           ref.read(tokenProvider.notifier).setTokenFromId(token.id).then(
@@ -51,8 +51,8 @@ class _HistoryViewState extends ConsumerState<HistoryView> {
           ).onError(
             (error, _) {
               if (error is SocketException) {
-                ScaffoldMessenger.of(context).showSnackBar(_snackBar(
-                    AppLocalizations.of(context)?.noInternetDetails ?? 'xxx'));
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(_snackBar(Loc.of(context).noInternetDetails));
               } else {
                 ScaffoldMessenger.of(context)
                     .showSnackBar(_snackBar(error.toString()));
@@ -69,7 +69,7 @@ class _HistoryViewState extends ConsumerState<HistoryView> {
           items: [
             PopupMenuItem(
               value: 'delete',
-              child: Text(AppLocalizations.of(context)?.delete ?? 'xxx'),
+              child: Text(Loc.of(context).delete),
               onTap: () =>
                   ref.read(historyListProvider.notifier).delete(token.id),
             ),
@@ -102,19 +102,17 @@ class _HistoryViewState extends ConsumerState<HistoryView> {
       data: (data) => data.isNotEmpty
           ? Column(
               children: [
-                Text(AppLocalizations.of(context)?.lastUsed ?? 'xxx'),
+                Text(Loc.of(context).lastUsed),
                 Expanded(
                   child: ListView.separated(
-                    itemBuilder: (context, i) => _buildRow(data[i]),
+                    itemBuilder: (context, i) => _buildRow(context, data[i]),
                     separatorBuilder: (context, i) => const Divider(height: 0),
                     itemCount: data.length,
                   ),
                 )
               ],
             )
-          : Center(
-              child:
-                  Text(AppLocalizations.of(context)?.pressBtnToAdd ?? 'xxx')),
+          : Center(child: Text(Loc.of(context).pressBtnToAdd)),
       error: (data, error) => Center(child: Text(error.toString())),
       loading: () => const Center(child: CircularProgressIndicator()),
     );

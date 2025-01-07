@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:token_swarm/l10n/generated/app_localizations.dart';
 import 'package:token_swarm/src/app/provider/settings_provider.dart';
 import 'package:token_swarm/src/app/routes/routes.dart';
 
@@ -27,14 +27,14 @@ class SettingsMenuButtons extends ConsumerWidget {
       itemBuilder: (context) => [
         PopupMenuItem(
           value: 0,
-          child: Text(AppLocalizations.of(context)?.about ?? 'xxx'),
+          child: Text(Loc.of(context).about),
         ),
         PopupMenuItem(
           value: 1,
           child: InkWell(
             child: Row(
               children: [
-                Text(AppLocalizations.of(context)?.alwaysOnDisplay ?? 'xxx'),
+                Text(Loc.of(context).alwaysOnDisplay),
                 const Expanded(child: Divider(color: Colors.transparent)),
                 checkBox(),
               ],

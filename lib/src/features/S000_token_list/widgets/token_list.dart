@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:token_swarm/l10n/generated/app_localizations.dart';
 import 'package:token_swarm/src/app/db/model/token_card_db.dart';
 import 'package:token_swarm/src/app/db/provider/token_card_db_list_provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:token_swarm/src/features/S000_token_list/widgets/token_tile/token_tile.dart';
 
 class TokenList extends ConsumerWidget {
@@ -13,8 +13,7 @@ class TokenList extends ConsumerWidget {
     final list = ref.watch(tokenCardDbListProvider);
 
     onData(List<TokenCardDb>? data) => data!.isEmpty
-        ? Center(
-            child: Text(AppLocalizations.of(context)?.pressBtnToAdd ?? 'xxx'))
+        ? Center(child: Text(Loc.of(context).pressBtnToAdd))
         : Scrollbar(
             // child: GridView.count(
             //   crossAxisCount: 2,

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:token_swarm/l10n/generated/app_localizations.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
 import 'package:token_swarm/src/app/provider/token_provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditTappedNumberDialog extends ConsumerStatefulWidget {
   const EditTappedNumberDialog({super.key});
@@ -39,7 +39,7 @@ class _EditTappedNumberDialogState
             Row(
               children: [
                 Text(
-                  AppLocalizations.of(context)?.howManyTappedQuestion ?? 'xxx',
+                  Loc.of(context).howManyTappedQuestion,
                   style: MyTypography.dialogTitle,
                 ),
               ],
@@ -69,7 +69,7 @@ class _EditTappedNumberDialogState
                 TextButton(
                   onPressed: () => context.pop(),
                   child: Text(
-                    AppLocalizations.of(context)?.cancel ?? 'xxx',
+                    Loc.of(context).cancel,
                   ),
                 ),
                 const VerticalDivider(
@@ -79,15 +79,15 @@ class _EditTappedNumberDialogState
                 TextButton(
                   onPressed: () {
                     if (_numberController.text == '') {
-                      setState(() => _error =
-                          AppLocalizations.of(context)?.valueCannotBeEmpty ??
-                              'xxx');
+                      setState(
+                        () => _error = Loc.of(context).valueCannotBeEmpty,
+                      );
                     }
                     // int newVal = int.parse(_numberController.text);
                     // ref.read(tokenProvider.notifier).setTappedNumber(newVal);
                     context.pop();
                   },
-                  child: Text(AppLocalizations.of(context)?.confirm ?? 'xxx'),
+                  child: Text(Loc.of(context).confirm),
                 ),
               ],
             )
