@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:token_swarm/src/app/const/asset_paths.dart';
 
 class BtnTokenAction extends ConsumerWidget {
   const BtnTokenAction({

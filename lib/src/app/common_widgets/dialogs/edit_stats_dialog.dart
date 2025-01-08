@@ -10,7 +10,6 @@ import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
 import 'package:token_swarm/src/app/db/model/token_card_db.dart';
 import 'package:token_swarm/src/app/db/provider/token_card_db_list_provider.dart';
-import 'package:token_swarm/src/app/provider/token_provider.dart';
 
 class EditStatsDialog extends ConsumerStatefulWidget {
   const EditStatsDialog({super.key, required this.token});
@@ -139,6 +138,8 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                     onPressed: () => context.pop(),
                     child: Text(Loc.of(context).cancel),
                   ),
+
+                  /// Divider
                   const VerticalDivider(
                     width: ConstPadding.padding,
                     color: Colors.transparent,

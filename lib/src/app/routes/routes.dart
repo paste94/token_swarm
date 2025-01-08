@@ -1,7 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:token_swarm/src/features/S000_token_list/view/token_list_view.dart';
 import 'package:token_swarm/src/features/S300_about/about_view.dart';
-import 'package:token_swarm/src/features/home_screen/home_screen.dart';
 import 'package:token_swarm/src/features/S200_search_card/search_card.dart';
 import 'package:token_swarm/src/features/token_screen/view/token_screen_view.dart';
 

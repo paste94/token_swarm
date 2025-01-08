@@ -6,9 +6,6 @@ import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
 import 'package:token_swarm/src/app/db/model/token_card_db.dart';
 import 'package:token_swarm/src/app/db/provider/token_card_db_list_provider.dart';
-import 'package:token_swarm/src/app/model/token_card2.dart';
-import 'package:token_swarm/src/app/provider/token_provider.dart';
-import 'package:token_swarm/src/app/routes/routes.dart';
 
 class CardListItem extends ConsumerStatefulWidget {
   const CardListItem({super.key, required this.token});

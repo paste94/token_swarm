@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
-import 'package:token_swarm/src/app/db/provider/token_card_db_list_provider.dart';
 import 'package:token_swarm/src/features/S010_aggregate_info/model/info.dart';
 import 'package:token_swarm/src/features/S010_aggregate_info/provider/aggregate_info_provider.dart';
 

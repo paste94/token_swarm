@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:token_swarm/l10n/generated/app_localizations.dart';
 import 'package:token_swarm/src/app/const/asset_paths.dart';
 import 'package:token_swarm/src/app/model/token_preview.dart';

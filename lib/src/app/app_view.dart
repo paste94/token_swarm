@@ -17,6 +17,7 @@ class AppView extends ConsumerWidget {
       localizationsDelegates: Loc.localizationsDelegates,
       supportedLocales: Loc.supportedLocales,
       theme: ThemeData(
+        sliderTheme: SliderThemeData(year2023: false),
         iconTheme: const IconThemeData(
           color: Colors.black54,
         ),

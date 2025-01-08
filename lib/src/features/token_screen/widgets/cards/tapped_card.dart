@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:token_swarm/src/app/common_widgets/token_image_viewer.dart';
 import 'package:token_swarm/src/app/provider/token_provider.dart';
 import 'package:token_swarm/src/features/token_screen/widgets/actions/add_button.dart';
 import 'package:token_swarm/src/features/token_screen/widgets/actions/number_viewer.dart';
