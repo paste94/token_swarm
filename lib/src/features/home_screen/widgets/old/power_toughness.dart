@@ -22,11 +22,11 @@ class PowerToughness extends ConsumerWidget {
             widthFactor: 4.5,
             child: GestureDetector(
               onTap: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const EditStatsDialog();
-                    });
+                // showDialog(
+                //     context: context,
+                // builder: (context) {
+                //   // return const EditStatsDialog();
+                // });
               },
               child: Hero(
                 tag: HeroesStringTokens.powerToughnessDialog,

@@ -49,8 +49,8 @@ class TokenCardDb with _$TokenCardDb {
   factory TokenCardDb.fromMtgCard(MtgCard card) {
     return TokenCardDb(
       id: card.id,
-      power: card.power != null ? int.parse(card.power!) : null,
-      toughness: card.toughness != null ? int.parse(card.toughness!) : null,
+      power: _parsePT(card.power),
+      toughness: _parsePT(card.toughness),
       imageUri: _getImageUri(card),
       imageUriArtCrop: _getImageUriArtCrop(card),
       name: card.name,
@@ -59,6 +59,11 @@ class TokenCardDb with _$TokenCardDb {
       typeLine: card.typeLine,
       isSicknessActive: card.typeLine.contains('Creature'),
     );
+  }
+
+  static int? _parsePT(String? value) {
+    if (value == null) return null;
+    return int.tryParse(value) ?? 0;
   }
 
   static String? _getImageUri(MtgCard card) =>

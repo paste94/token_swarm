@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:scryfall_api/scryfall_api.dart';
 import 'package:token_swarm/src/app/db/model/token_card_db.dart';
@@ -10,6 +11,7 @@ part 'card_name_provider.g.dart';
 /// dart run build_runner build
 
 final apiClient = ScryfallApiClient();
+final log = Logger('SearchCardNameProvider');
 
 @riverpod
 class SearchCardName extends _$SearchCardName {
@@ -39,7 +41,7 @@ Future<PaginableList<TokenCardDb>> fetchCards(ref) async {
       hasMore: true,
     );
     return filteredCardList;
-  } catch (e) {
+  } catch (e, stackTrace) {
     if (e is ScryfallException) {
       return PaginableList(data: [], hasMore: false);
     } else if (e is SocketException) {
@@ -48,7 +50,8 @@ Future<PaginableList<TokenCardDb>> fetchCards(ref) async {
         message: 'Please check your internet connection and retry',
       );
     } else {
-      throw const CardNameException();
+      log.severe(stackTrace);
+      rethrow;
     }
   }
 }

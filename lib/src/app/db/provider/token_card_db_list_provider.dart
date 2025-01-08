@@ -229,4 +229,40 @@ class TokenCardDbList extends _$TokenCardDbList {
       return _fetch();
     });
   }
+
+  Future<void> updatePower({
+    required TokenCardDb token,
+    required int number,
+  }) async {
+    state = await AsyncValue.guard(() async {
+      try {
+        await TokenCardRepository.updateToken(
+          id: token.id,
+          attribute: 'power',
+          newVal: number,
+        );
+        return _fetch();
+      } catch (e, stackTrace) {
+        log.severe('ERROR: $e \n $stackTrace');
+      }
+    });
+  }
+
+  Future<void> updateToughness({
+    required TokenCardDb token,
+    required int number,
+  }) async {
+    state = await AsyncValue.guard(() async {
+      try {
+        await TokenCardRepository.updateToken(
+          id: token.id,
+          attribute: 'toughness',
+          newVal: number,
+        );
+        return _fetch();
+      } catch (e, stackTrace) {
+        log.severe('ERROR: $e \n $stackTrace');
+      }
+    });
+  }
 }

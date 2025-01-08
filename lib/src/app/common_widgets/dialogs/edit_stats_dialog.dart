@@ -8,10 +8,14 @@ import 'package:token_swarm/src/app/const/asset_paths.dart';
 import 'package:token_swarm/src/app/const/heroes.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
+import 'package:token_swarm/src/app/db/model/token_card_db.dart';
+import 'package:token_swarm/src/app/db/provider/token_card_db_list_provider.dart';
 import 'package:token_swarm/src/app/provider/token_provider.dart';
 
 class EditStatsDialog extends ConsumerStatefulWidget {
-  const EditStatsDialog({super.key});
+  const EditStatsDialog({super.key, required this.token});
+
+  final TokenCardDb token;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -25,8 +29,8 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
   @override
   void initState() {
     super.initState();
-    _power = ref.read(tokenProvider)!.power!;
-    _toughness = ref.read(tokenProvider)!.toughness!;
+    _power = widget.token.power!;
+    _toughness = widget.token.toughness!;
   }
 
   @override
@@ -39,7 +43,7 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Title
+              /// Title
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -49,13 +53,17 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                   ),
                 ],
               ),
+
+              /// Divider
               const Divider(
                 height: ConstPadding.doublePadding,
                 color: Colors.transparent,
               ),
-              // Content
+
+              /// Content
               Row(
                 children: [
+                  /// Power icon
                   Expanded(
                     child: Align(
                       alignment: Alignment.center,
@@ -69,6 +77,8 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                       ),
                     ),
                   ),
+
+                  /// Toughness icon
                   Expanded(
                     child: Align(
                       alignment: Alignment.center,
@@ -84,12 +94,17 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                   ),
                 ],
               ),
+
+              /// Divider
               const Divider(
                 height: ConstPadding.padding,
                 color: Colors.transparent,
               ),
+
+              /// Number pickers
               Row(
                 children: [
+                  /// Power picker
                   Expanded(
                     child: NumberPicker(
                       minValue: DialogIcons.statsDialogMin,
@@ -98,6 +113,8 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                       onChanged: (value) => setState(() => _power = value),
                     ),
                   ),
+
+                  /// Toughness picker
                   Expanded(
                     child: NumberPicker(
                       minValue: DialogIcons.statsDialogMin,
@@ -108,6 +125,8 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                   ),
                 ],
               ),
+
+              /// Divider
               const Divider(
                 height: ConstPadding.triplePadding,
                 color: Colors.transparent,
@@ -115,6 +134,7 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  /// Cancel button
                   TextButton(
                     onPressed: () => context.pop(),
                     child: Text(Loc.of(context).cancel),
@@ -123,10 +143,17 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                     width: ConstPadding.padding,
                     color: Colors.transparent,
                   ),
+
+                  /// Confirm button
                   TextButton(
                     onPressed: () {
-                      ref.read(tokenProvider.notifier).setPower(_power);
-                      ref.read(tokenProvider.notifier).setToughness(_toughness);
+                      ref
+                          .read(tokenCardDbListProvider.notifier)
+                          .updatePower(token: widget.token, number: _power);
+                      ref
+                          .read(tokenCardDbListProvider.notifier)
+                          .updateToughness(
+                              token: widget.token, number: _toughness);
                       context.pop();
                     },
                     child: Text(Loc.of(context).confirm),
