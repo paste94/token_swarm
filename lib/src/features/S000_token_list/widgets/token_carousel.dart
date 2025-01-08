@@ -21,7 +21,7 @@ class _TokenCarouselState extends ConsumerState<TokenCarousel> {
   @override
   Widget build(BuildContext context) {
     final list = ref.watch(tokenCardDbListProvider);
-    final log = Logger('TokenCarousel');
+    // final log = Logger('TokenCarousel');
 
     onData(List<TokenCardDb>? data) => data!.isEmpty
         ? Center(child: Text(Loc.of(context).pressBtnToAdd))

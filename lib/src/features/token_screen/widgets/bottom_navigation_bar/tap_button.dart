@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:token_swarm/l10n/generated/app_localizations.dart';
+import 'package:token_swarm/src/app/common_widgets/dialogs/edit_tapped_dialog.dart';
 import 'package:token_swarm/src/app/const/asset_paths.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
 import 'package:token_swarm/src/app/const/typography.dart';
-import 'package:token_swarm/src/features/home_screen/home_widgets.dart';
 import 'package:token_swarm/src/app/provider/token_provider.dart';
 
 class TapButton extends ConsumerWidget {
