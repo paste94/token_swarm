@@ -23,7 +23,7 @@ class _CardListItemState extends ConsumerState<CardListItem> {
         padding: const EdgeInsets.all(8.0),
         child: Text(
           widget.token.name,
-          style: MyTypography.h3,
+          style: Theme.of(context).textTheme.headlineSmall,
           textAlign: TextAlign.center,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,

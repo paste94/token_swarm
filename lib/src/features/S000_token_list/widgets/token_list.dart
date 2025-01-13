@@ -15,11 +15,6 @@ class TokenList extends ConsumerWidget {
     onData(List<TokenCardDb>? data) => data!.isEmpty
         ? Center(child: Text(Loc.of(context).pressBtnToAdd))
         : Scrollbar(
-            // child: GridView.count(
-            //   crossAxisCount: 2,
-            //   childAspectRatio: 0.37,
-            //   children: data.map((token) => TokenTile(token)).toList(),
-            // ),
             child: ListView.separated(
               itemBuilder: (context, i) => InkWell(
                 child: TokenTile(data[i]),

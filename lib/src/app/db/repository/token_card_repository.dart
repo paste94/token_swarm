@@ -1,7 +1,6 @@
 import 'package:logging/logging.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:token_swarm/src/app/db/model/token_card_db.dart';
-import 'package:token_swarm/src/app/provider/token_provider.dart';
 
 class TableNames {
   static const String tokenTableName = "token";
@@ -10,7 +9,7 @@ class TableNames {
 
 class TokenCardRepository {
   static Database? _db;
-  static const int _version = 2;
+  static const int _version = 3;
   static final log = Logger('TokenCardRepository');
 
   static Future _createDb(Database db) async {
@@ -27,6 +26,7 @@ class TokenCardRepository {
       "name STRING,"
       "text STRING,"
       "typeLine STRING,"
+      "colorIdentity STRING,"
       "tokenNumber INTEGER,"
       "tappedNumber INTEGER,"
       "untappedNumber INTEGER,"

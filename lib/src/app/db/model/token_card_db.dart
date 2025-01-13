@@ -17,6 +17,7 @@ class TokenCardDb with _$TokenCardDb {
     required String name,
     required String text,
     required String typeLine,
+    required List<Color> colorIdentity,
     @Default(0) int tokenNumber,
     @Default(0) int tappedNumber,
     @Default(0) int untappedNumber,
@@ -36,6 +37,7 @@ class TokenCardDb with _$TokenCardDb {
       name: map['name'] as String,
       text: map['text'] as String,
       typeLine: map['typeLine'] as String,
+      colorIdentity: parseColorIdentity(map['colorIdentity']),
       tokenNumber: map['tokenNumber'] as int,
       tappedNumber: map['tappedNumber'] as int,
       untappedNumber: map['untappedNumber'] as int,
@@ -49,21 +51,32 @@ class TokenCardDb with _$TokenCardDb {
   factory TokenCardDb.fromMtgCard(MtgCard card) {
     return TokenCardDb(
       id: card.id,
-      power: _parsePT(card.power),
-      toughness: _parsePT(card.toughness),
+      power: parsePT(card.power),
+      toughness: parsePT(card.toughness),
       imageUri: _getImageUri(card),
       imageUriArtCrop: _getImageUriArtCrop(card),
       name: card.name,
       text: card.oracleText ?? '',
       isCreature: card.typeLine.contains('Creature'),
       typeLine: card.typeLine,
+      colorIdentity: card.colorIdentity,
       isSicknessActive: card.typeLine.contains('Creature'),
     );
   }
 
-  static int? _parsePT(String? value) {
+  @visibleForTesting
+  static int? parsePT(String? value) {
     if (value == null) return null;
     return int.tryParse(value) ?? 0;
+  }
+
+  @visibleForTesting
+  static List<Color> parseColorIdentity(String colorIdentity) {
+    if (colorIdentity.isEmpty) return [];
+    return colorIdentity
+        .split(',')
+        .map((colorName) => Color.values.firstWhere((e) => e.name == colorName))
+        .toList();
   }
 
   static String? _getImageUri(MtgCard card) =>
@@ -91,6 +104,7 @@ class TokenCardDb with _$TokenCardDb {
       "isCreature": isCreature,
       "isSicknessActive": isSicknessActive,
       "typeLine": typeLine,
+      "colorIdentity": colorIdentity.map((color) => color.name).join(','),
     };
   }
 }

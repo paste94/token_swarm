@@ -22,7 +22,7 @@ class BtnPowerThoughness extends ConsumerWidget {
                   });
             },
             child: Hero(
-              tag: HeroesStringTokens.powerToughnessDialog,
+              tag: '${HeroesStringTokens.powerToughnessDialog}_${token.id}',
               child: Card.outlined(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -39,6 +39,6 @@ class BtnPowerThoughness extends ConsumerWidget {
               ),
             ),
           )
-        : SizedBox();
+        : const SizedBox();
   }
 }

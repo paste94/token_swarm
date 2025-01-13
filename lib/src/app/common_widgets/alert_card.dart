@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
-import 'package:token_swarm/src/app/const/typography.dart';
 
 class AlertCard extends ConsumerWidget {
   const AlertCard({
@@ -68,7 +67,7 @@ class AlertCard extends ConsumerWidget {
                               bottom: ConstPadding.doublePadding),
                           child: Text(
                             iconText,
-                            style: MyTypography.h3,
+                            style: Theme.of(context).textTheme.headlineSmall,
                           ),
                         )
                       ],

@@ -6,7 +6,7 @@ part of 'card_name_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fetchCardsHash() => r'7acb998c752a3692c5b773c075951ce4f94c6e58';
+String _$fetchCardsHash() => r'9781366b4da6526b3961e882f552175a3c528cf7';
 
 /// See also [fetchCards].
 @ProviderFor(fetchCards)
@@ -20,6 +20,8 @@ final fetchCardsProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef FetchCardsRef
     = AutoDisposeFutureProviderRef<PaginableList<TokenCardDb>>;
 String _$searchCardNameHash() => r'2f820d049be10ad2a54a7ab5f2b2c688b7df18d3';
@@ -39,4 +41,4 @@ final searchCardNameProvider =
 
 typedef _$SearchCardName = AutoDisposeNotifier<String>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

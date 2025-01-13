@@ -26,15 +26,18 @@ class AboutView extends StatelessWidget {
             ),
           ),
           const Divider(color: Colors.transparent),
-          const Center(
+          Center(
               child: Text(
             'Token Swarm',
-            style: MyTypography.h2,
+            style: Theme.of(context).textTheme.headlineMedium,
           )),
-          const Center(
+          Center(
               child: Text(
             'v 0.0.1',
-            style: MyTypography.h3ItalicGrey,
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                  fontStyle: FontStyle.italic,
+                  color: Colors.black54,
+                ),
           )),
         ],
       )),

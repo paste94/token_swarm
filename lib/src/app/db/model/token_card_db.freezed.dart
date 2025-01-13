@@ -24,6 +24,7 @@ mixin _$TokenCardDb {
   String get name => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
   String get typeLine => throw _privateConstructorUsedError;
+  List<Color> get colorIdentity => throw _privateConstructorUsedError;
   int get tokenNumber => throw _privateConstructorUsedError;
   int get tappedNumber => throw _privateConstructorUsedError;
   int get untappedNumber => throw _privateConstructorUsedError;
@@ -32,7 +33,9 @@ mixin _$TokenCardDb {
   bool get isCreature => throw _privateConstructorUsedError;
   bool get isSicknessActive => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TokenCardDb
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TokenCardDbCopyWith<TokenCardDb> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +55,7 @@ abstract class $TokenCardDbCopyWith<$Res> {
       String name,
       String text,
       String typeLine,
+      List<Color> colorIdentity,
       int tokenNumber,
       int tappedNumber,
       int untappedNumber,
@@ -71,6 +75,8 @@ class _$TokenCardDbCopyWithImpl<$Res, $Val extends TokenCardDb>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TokenCardDb
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -82,6 +88,7 @@ class _$TokenCardDbCopyWithImpl<$Res, $Val extends TokenCardDb>
     Object? name = null,
     Object? text = null,
     Object? typeLine = null,
+    Object? colorIdentity = null,
     Object? tokenNumber = null,
     Object? tappedNumber = null,
     Object? untappedNumber = null,
@@ -123,6 +130,10 @@ class _$TokenCardDbCopyWithImpl<$Res, $Val extends TokenCardDb>
           ? _value.typeLine
           : typeLine // ignore: cast_nullable_to_non_nullable
               as String,
+      colorIdentity: null == colorIdentity
+          ? _value.colorIdentity
+          : colorIdentity // ignore: cast_nullable_to_non_nullable
+              as List<Color>,
       tokenNumber: null == tokenNumber
           ? _value.tokenNumber
           : tokenNumber // ignore: cast_nullable_to_non_nullable
@@ -172,6 +183,7 @@ abstract class _$$TokenCardDbImplCopyWith<$Res>
       String name,
       String text,
       String typeLine,
+      List<Color> colorIdentity,
       int tokenNumber,
       int tappedNumber,
       int untappedNumber,
@@ -189,6 +201,8 @@ class __$$TokenCardDbImplCopyWithImpl<$Res>
       _$TokenCardDbImpl _value, $Res Function(_$TokenCardDbImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TokenCardDb
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -200,6 +214,7 @@ class __$$TokenCardDbImplCopyWithImpl<$Res>
     Object? name = null,
     Object? text = null,
     Object? typeLine = null,
+    Object? colorIdentity = null,
     Object? tokenNumber = null,
     Object? tappedNumber = null,
     Object? untappedNumber = null,
@@ -241,6 +256,10 @@ class __$$TokenCardDbImplCopyWithImpl<$Res>
           ? _value.typeLine
           : typeLine // ignore: cast_nullable_to_non_nullable
               as String,
+      colorIdentity: null == colorIdentity
+          ? _value._colorIdentity
+          : colorIdentity // ignore: cast_nullable_to_non_nullable
+              as List<Color>,
       tokenNumber: null == tokenNumber
           ? _value.tokenNumber
           : tokenNumber // ignore: cast_nullable_to_non_nullable
@@ -285,6 +304,7 @@ class _$TokenCardDbImpl extends _TokenCardDb {
       required this.name,
       required this.text,
       required this.typeLine,
+      required final List<Color> colorIdentity,
       this.tokenNumber = 0,
       this.tappedNumber = 0,
       this.untappedNumber = 0,
@@ -292,7 +312,8 @@ class _$TokenCardDbImpl extends _TokenCardDb {
       this.sickNumber = 0,
       this.isCreature = false,
       this.isSicknessActive = false})
-      : super._();
+      : _colorIdentity = colorIdentity,
+        super._();
 
   @override
   final String id;
@@ -310,6 +331,14 @@ class _$TokenCardDbImpl extends _TokenCardDb {
   final String text;
   @override
   final String typeLine;
+  final List<Color> _colorIdentity;
+  @override
+  List<Color> get colorIdentity {
+    if (_colorIdentity is EqualUnmodifiableListView) return _colorIdentity;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_colorIdentity);
+  }
+
   @override
   @JsonKey()
   final int tokenNumber;
@@ -334,7 +363,7 @@ class _$TokenCardDbImpl extends _TokenCardDb {
 
   @override
   String toString() {
-    return 'TokenCardDb(id: $id, power: $power, toughness: $toughness, imageUri: $imageUri, imageUriArtCrop: $imageUriArtCrop, name: $name, text: $text, typeLine: $typeLine, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber, untappedNumber: $untappedNumber, prevTappedNumber: $prevTappedNumber, sickNumber: $sickNumber, isCreature: $isCreature, isSicknessActive: $isSicknessActive)';
+    return 'TokenCardDb(id: $id, power: $power, toughness: $toughness, imageUri: $imageUri, imageUriArtCrop: $imageUriArtCrop, name: $name, text: $text, typeLine: $typeLine, colorIdentity: $colorIdentity, tokenNumber: $tokenNumber, tappedNumber: $tappedNumber, untappedNumber: $untappedNumber, prevTappedNumber: $prevTappedNumber, sickNumber: $sickNumber, isCreature: $isCreature, isSicknessActive: $isSicknessActive)';
   }
 
   @override
@@ -354,6 +383,8 @@ class _$TokenCardDbImpl extends _TokenCardDb {
             (identical(other.text, text) || other.text == text) &&
             (identical(other.typeLine, typeLine) ||
                 other.typeLine == typeLine) &&
+            const DeepCollectionEquality()
+                .equals(other._colorIdentity, _colorIdentity) &&
             (identical(other.tokenNumber, tokenNumber) ||
                 other.tokenNumber == tokenNumber) &&
             (identical(other.tappedNumber, tappedNumber) ||
@@ -381,6 +412,7 @@ class _$TokenCardDbImpl extends _TokenCardDb {
       name,
       text,
       typeLine,
+      const DeepCollectionEquality().hash(_colorIdentity),
       tokenNumber,
       tappedNumber,
       untappedNumber,
@@ -389,7 +421,9 @@ class _$TokenCardDbImpl extends _TokenCardDb {
       isCreature,
       isSicknessActive);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TokenCardDb
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TokenCardDbImplCopyWith<_$TokenCardDbImpl> get copyWith =>
@@ -406,6 +440,7 @@ abstract class _TokenCardDb extends TokenCardDb {
       required final String name,
       required final String text,
       required final String typeLine,
+      required final List<Color> colorIdentity,
       final int tokenNumber,
       final int tappedNumber,
       final int untappedNumber,
@@ -432,6 +467,8 @@ abstract class _TokenCardDb extends TokenCardDb {
   @override
   String get typeLine;
   @override
+  List<Color> get colorIdentity;
+  @override
   int get tokenNumber;
   @override
   int get tappedNumber;
@@ -445,8 +482,11 @@ abstract class _TokenCardDb extends TokenCardDb {
   bool get isCreature;
   @override
   bool get isSicknessActive;
+
+  /// Create a copy of TokenCardDb
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TokenCardDbImplCopyWith<_$TokenCardDbImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

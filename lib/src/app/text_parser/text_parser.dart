@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 
 RichText parseTokenText(BuildContext context, String text) {
@@ -8,8 +7,6 @@ RichText parseTokenText(BuildContext context, String text) {
 
   int lastMatchEnd = 0;
   for (final match in regex.allMatches(text)) {
-    print(match.end);
-
     /// Aggiunge il testo precedente alla parentesi graffa
     if (match.start > lastMatchEnd) {
       newText.add(TextSpan(text: text.substring(lastMatchEnd, match.start)));

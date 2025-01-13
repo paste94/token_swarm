@@ -19,7 +19,9 @@ class TokenCardDbList extends _$TokenCardDbList {
     try {
       List<Map<String, dynamic>> result =
           await TokenCardRepository.queryToken();
-      log.info(result);
+      for (var item in result) {
+        log.info(item);
+      }
       final tasks = result.map((data) => TokenCardDb.fromMap(data)).toList();
       return tasks;
     } catch (e, stackTrace) {
@@ -241,10 +243,10 @@ class TokenCardDbList extends _$TokenCardDbList {
           attribute: 'power',
           newVal: number,
         );
-        return _fetch();
       } catch (e, stackTrace) {
         log.severe('ERROR: $e \n $stackTrace');
       }
+      return _fetch();
     });
   }
 
@@ -259,10 +261,10 @@ class TokenCardDbList extends _$TokenCardDbList {
           attribute: 'toughness',
           newVal: number,
         );
-        return _fetch();
       } catch (e, stackTrace) {
         log.severe('ERROR: $e \n $stackTrace');
       }
+      return _fetch();
     });
   }
 }

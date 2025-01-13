@@ -7,7 +7,6 @@ import 'package:token_swarm/l10n/generated/app_localizations.dart';
 import 'package:token_swarm/src/app/const/asset_paths.dart';
 import 'package:token_swarm/src/app/const/heroes.dart';
 import 'package:token_swarm/src/app/const/measures.dart';
-import 'package:token_swarm/src/app/const/typography.dart';
 import 'package:token_swarm/src/app/db/model/token_card_db.dart';
 import 'package:token_swarm/src/app/db/provider/token_card_db_list_provider.dart';
 
@@ -36,7 +35,7 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
   Widget build(BuildContext context) {
     return Dialog(
       child: Hero(
-        tag: HeroesStringTokens.powerToughnessDialog,
+        tag: '${HeroesStringTokens.powerToughnessDialog}_${widget.token.id}',
         child: Padding(
           padding: const EdgeInsets.all(ConstPadding.triplePadding),
           child: Column(
@@ -48,7 +47,7 @@ class _EditStatsDialogState extends ConsumerState<EditStatsDialog> {
                 children: [
                   Text(
                     Loc.of(context).seelctStats,
-                    style: MyTypography.dialogTitle,
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ],
               ),
