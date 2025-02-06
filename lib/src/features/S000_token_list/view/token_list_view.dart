@@ -40,18 +40,20 @@ class TokenListView extends ConsumerWidget {
               ),
             ),
             IconButton(
-              onPressed: () async {
-                await showModalBottomSheet(
-                    showDragHandle: true,
-                    context: context,
-                    builder: (context) {
-                      return const FractionallySizedBox(
+              onPressed: () async => showModalBottomSheet(
+                  showDragHandle: true,
+                  context: context,
+                  builder: (context) => const FractionallySizedBox(
                         widthFactor: 1,
                         child: InfoTable(),
-                      );
-                    });
-              },
+                      )),
               icon: const Icon(Icons.info),
+            ),
+            IconButton(
+              onPressed: () async {
+                context.push(RoutePath.summary);
+              },
+              icon: const Icon(Icons.list),
             )
           ],
         ),

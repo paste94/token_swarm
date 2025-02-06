@@ -1,2 +1,0 @@
-C:/Users/utente/Personale/token_swarm/android/app/.cxx/Debug/1d3q4a2y/x86/CMakeFiles/edit_cache.dir
-C:/Users/utente/Personale/token_swarm/android/app/.cxx/Debug/1d3q4a2y/x86/CMakeFiles/rebuild_cache.dir

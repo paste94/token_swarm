@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:token_swarm/l10n/generated/app_localizations.dart';
 import 'package:token_swarm/src/app/const/asset_paths.dart';
-import 'package:token_swarm/src/app/const/typography.dart';
 
 class AboutView extends StatelessWidget {
   const AboutView({super.key});

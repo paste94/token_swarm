@@ -5,7 +5,7 @@ import 'package:token_swarm/src/app/const/asset_paths.dart';
 import 'package:token_swarm/src/app/db/model/token_card_db.dart';
 import 'package:token_swarm/src/app/db/provider/token_card_db_list_provider.dart';
 import 'package:token_swarm/src/app/text_parser/text_parser.dart';
-import 'package:token_swarm/src/features/S000_token_list/functions/get_color.dart';
+import 'package:token_swarm/src/app/functions/get_color.dart';
 import 'package:token_swarm/src/features/S000_token_list/widgets/token_tile/elements/token_tile_widgets.dart';
 
 class TokenTile extends ConsumerWidget {
