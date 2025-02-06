@@ -112,7 +112,7 @@ void main() {
         typeLine: 'Creature',
         isCreature: true,
         isSicknessActive: true,
-        colorIdentity: [],
+        colorIdentity: [Color.red, Color.green],
       );
 
       expect(tokenCardTest, tokenCard);
