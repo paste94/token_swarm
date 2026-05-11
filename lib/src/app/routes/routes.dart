@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:token_swarm/src/features/S000_token_list/view/token_list_view.dart';
+import 'package:token_swarm/src/features/S020_full_image/view/full_image_view.dart';
 import 'package:token_swarm/src/features/S300_about/about_view.dart';
 import 'package:token_swarm/src/features/S200_search_card/search_card.dart';
 import 'package:token_swarm/src/features/S400_summary/summary.dart';
@@ -10,6 +11,7 @@ class RoutePath {
   static const searchCard = '/search_card';
   static const about = '/about';
   static const summary = '/summary';
+  static const full_image = '/full_image/:imageUri';
 
   static GoRouter goRouter = GoRouter(
     routes: [
@@ -28,6 +30,13 @@ class RoutePath {
       GoRoute(
         path: RoutePath.summary,
         builder: (context, state) => const Summary(),
+      ),
+      GoRoute(
+        path: RoutePath.full_image,
+        builder: (context, state) {
+          final imageUri = state.pathParameters["imageUri"]!;
+          return FullImageView(imageUri: imageUri);
+        },
       ),
       // GoRoute(
       //   path: RoutePath.token,

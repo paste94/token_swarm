@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:token_swarm/src/app/const/asset_paths.dart';
 import 'package:token_swarm/src/app/db/model/token_card_db.dart';
 import 'package:token_swarm/src/app/db/provider/token_card_db_list_provider.dart';
+import 'package:token_swarm/src/app/routes/routes.dart';
 import 'package:token_swarm/src/app/text_parser/text_parser.dart';
 import 'package:token_swarm/src/app/functions/get_color.dart';
 import 'package:token_swarm/src/features/S000_token_list/widgets/token_tile/elements/token_tile_widgets.dart';
@@ -55,14 +57,18 @@ class TokenTile extends ConsumerWidget {
                       topLeft: Radius.circular(12),
                       topRight: Radius.circular(12),
                     ),
-                    child: CachedNetworkImage(
-                      imageUrl: token.imageUriArtCrop ?? '',
-                      fit: BoxFit.cover,
-                      progressIndicatorBuilder: (_, __, ___) => const Image(
-                        image: AssetImage(AssetsPaths.mtgRear),
-                      ),
-                      errorWidget: (_, __, ___) => const SizedBox(
-                        child: Icon(Icons.image_not_supported),
+                    child: GestureDetector(
+                      onTap: () => context
+                          .push('${RoutePath.full_image}/${token.imageUri}'),
+                      child: CachedNetworkImage(
+                        imageUrl: token.imageUriArtCrop ?? '',
+                        fit: BoxFit.cover,
+                        progressIndicatorBuilder: (_, __, ___) => const Image(
+                          image: AssetImage(AssetsPaths.mtgRear),
+                        ),
+                        errorWidget: (_, __, ___) => const SizedBox(
+                          child: Icon(Icons.image_not_supported),
+                        ),
                       ),
                     ),
                   ),
